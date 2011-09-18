@@ -1,6 +1,6 @@
 # Makefile for single batch
 
-BATCHNO=1
+BATCHNO=B
 OUT=out
 PROBLEMS=../problems
 GRAPHICS=graphics# graphics for the batch (series)
@@ -22,12 +22,14 @@ SERIEDEP=problems uvod$(BATCHNO).tex serial$(BATCHNO).tex $(RESULTS)/vysledky1.t
 
 $(OUT)/serie$(BATCHNO).pdf: serie$(BATCHNO).tex $(SERIEDEP)
 	xelatex -output-directory $(@D) -jobname $(basename $(<F)) '\def\UseOption{web}\input{$<}'
-
+	xelatex -output-directory $(@D) -jobname $(basename $(<F))'\def\UseOption{web}\input{$<}' 2>/dev/null
 $(OUT)/serie$(BATCHNO)-print.pdf: serie$(BATCHNO).tex $(SERIEDEP)
 	xelatex -output-directory $(@D) -jobname '$(basename $(<F))-print' '\def\UseOption{print}\input{$<}'
+	xelatex -output-directory $(@D) -jobname '$(basename $(<F))-print' '\def\UseOption{print}\input{$<}' 2>/dev/null
 
 $(OUT)/reseni$(BATCHNO)-%.pdf: problem$(BATCHNO)-%
 	xelatex -output-directory $(@D) -jobname $(<F) '\def\UseOption{print}\input{$<}'#TODO
+	xelatex -output-directory $(@D) -jobname $(<F) '\def\UseOption{print}\input{$<}' 2>/dev/null#TODO
 
 all: web print solutions
 
