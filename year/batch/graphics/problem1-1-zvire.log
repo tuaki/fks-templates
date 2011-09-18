@@ -1,0 +1,8 @@
+This is MetaPost, version 1.208 (kpathsea version 5.0.0) (mem=mpost 2011.05.21)  18 SEP 2011 00:13
+**problem1-1-zvire.mp
+(./problem1-1-zvire.mp (/home/michal/texmf/metapost/fykos/fks.mp) [1{pdftex.map
+}<bssb10.pfb><cmmi9.pfb>
+Warning: font csr6 cannot be found in any fontmapfile!
+Warning: font csr9 cannot be found in any fontmapfile!
+] )
+1 output file written: problem1-1-zvire.1
