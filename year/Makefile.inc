@@ -1,7 +1,5 @@
 # Common makefile parts
 
-PD=$(PROBLEMS)
-GD=$(PGRAPHICS)
 include $(PROBLEMS)/Makefile.inc
 
 # == Graphics part ==
