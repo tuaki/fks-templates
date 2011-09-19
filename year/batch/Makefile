@@ -21,15 +21,15 @@ problems: $(addprefix problem$(BATCHNO)-, 1 2 3 4 5 6 7 8)
 SERIEDEP=problems uvod$(BATCHNO).tex serial$(BATCHNO).tex $(RESULTS)/vysledky1.tex
 
 $(OUT)/serie$(BATCHNO).pdf: batch$(BATCHNO).tex $(SERIEDEP)
-	xelatex -output-directory $(@D) -jobname $(basename $(<F)) '\def\UseOption{web}\input{$<}'
-	xelatex -output-directory $(@D) -jobname $(basename $(<F))'\def\UseOption{web}\input{$<}' 2>/dev/null
+	xelatex -output-directory $(@D) -jobname $(basename $(@F)) '\def\UseOption{web}\input{$<}'
+	xelatex -output-directory $(@D) -jobname $(basename $(@F)) '\def\UseOption{web}\input{$<}' 2>/dev/null
 $(OUT)/serie$(BATCHNO)-print.pdf: batch$(BATCHNO).tex $(SERIEDEP)
-	xelatex -output-directory $(@D) -jobname '$(basename $(<F))-print' '\def\UseOption{print}\input{$<}'
-	xelatex -output-directory $(@D) -jobname '$(basename $(<F))-print' '\def\UseOption{print}\input{$<}' 2>/dev/null
+	xelatex -output-directory $(@D) -jobname '$(basename $(@F))-print' '\def\classoptions{twoside}\def\UseOption{print}\input{$<}'
+	xelatex -output-directory $(@D) -jobname '$(basename $(@F))-print' '\def\classoptions{twoside}\def\UseOption{print}\input{$<}' 2>/dev/null
 
 $(OUT)/reseni$(BATCHNO)-%.pdf: problem$(BATCHNO)-%
-	xelatex -output-directory $(@D) -jobname $(<F) '\def\UseOption{print}\input{$<}'#TODO
-	xelatex -output-directory $(@D) -jobname $(<F) '\def\UseOption{print}\input{$<}' 2>/dev/null#TODO
+	xelatex -output-directory $(@D) -jobname $(@F) '\def\UseOption{print}\input{$<}'#TODO
+	xelatex -output-directory $(@D) -jobname $(@F) '\def\UseOption{print}\input{$<}' 2>/dev/null#TODO
 
 all: web print solutions
 

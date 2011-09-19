@@ -1,4 +1,7 @@
-\documentclass[twoside,fykos]{fksserie}
+\expandafter\ifx\csname classoptions\endcsname\relax
+  \def\classoptions{}
+\fi
+\documentclass[fykos,\classoptions]{fksserie}
     
 \setcounter{year}{25}
 \setcounter{batch}{1}
@@ -8,7 +11,6 @@
 \begin{document}
 
 \maketitle
-
 \input{uvod\thebatch.tex}
 
 \problemsheading % section
