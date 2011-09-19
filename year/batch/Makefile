@@ -36,7 +36,7 @@ $(OUT)/reseni$(BATCHNO)-%.pdf: problem$(BATCHNO)-%
 all: web book solutions
 
 clean:
-	ls $(OUT) | grep -v '\.pdf$$' | xargs rm
+	find $(OUT) -type f -not \( -name "*.pdf" -o -name ".*" \) | xargs rm
 
 fullclean:
 	rm $(OUT)/*
