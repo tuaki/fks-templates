@@ -45,3 +45,10 @@ $(RESULTS)/%.tex: $(RESULTS)/%.csv
 	cut -d\; -f1,2,3,4,5,6,7,8,9,10,12,13,14 | \
 	sed '/^$$/d;/^%/d;s/;;/;--;/g;s/;;/;--;/g;s/;/ \& /g;s/$$/\\\\/' | sed -e '2i\\\\midrule'  > $@
 
+# == Author solutions ==
+XELATEX_P=xelatex -output-directory $(@D) -jobname '$(basename $(@F))' '\documentclass[fykos]{fkssolution}\setcounter{year}{25}\input{$(PROBLEMS)/problem$(BATCHNO)-$*.tex}\begin{document}\problemsolutionsingle\makefooter\end{document}'
+
+$(OUT)/reseni$(BATCHNO)-%.pdf: $(PROBLEMS)/$(problem$(BATCHNO)_%)
+	$(XELATEX_P)
+	$(XELATEX_P)
+

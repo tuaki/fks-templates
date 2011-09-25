@@ -35,10 +35,6 @@ $(OUT)/serie$(BATCHNO)-print.pdf: batch$(BATCHNO).tex $(SERIEDEP)
 $(OUT)/serie$(BATCHNO)-book.pdf: $(OUT)/serie$(BATCHNO)-print.pdf
 	pdfbook --outfile '$@' $<
 
-$(OUT)/reseni$(BATCHNO)-%.pdf: problem$(BATCHNO)-%
-	xelatex -output-directory $(@D) -jobname $(@F) '\def\UseOption{print}\input{$<}'#TODO
-	xelatex -output-directory $(@D) -jobname $(@F) '\def\UseOption{print}\input{$<}' 2>/dev/null#TODO
-
 clean:
 	find $(OUT) -type f -not \( -name "*.pdf" -o -name ".*" \) | xargs rm
 
