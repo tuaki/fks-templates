@@ -5,18 +5,18 @@ include $(PROBLEMS)/Makefile.inc
 # == Graphics part ==
 # -- Plots --
 # epslatex output + size for two plots vertically on page
-gnuplot=gnuplot -e "set format '$$\"%g\"$$' ; set terminal epslatex monochrome size 12.7cm,7.7cm; set output '$@' " $<
+gnuplot=gnuplot -e "set format '$$\"%g\"$$' ; set terminal epslatex monochrome size 12.7cm,7.7cm; set output '$(@F)' " $(<F)
 define plot
 $(gnuplot)
 endef
 define plot-color
-$(subst monochrome,color,$(gnuplot))
+$(subst output ', output 'color/, $(subst monochrome,color,$(gnuplot)))
 endef
 
 $(PGRAPHICS)/%.eps $(PGRAPHICS)/%.tex: $(PGRAPHICS)/%.plt
-	$(plot)
+	cd $(<D); $(plot)
 $(PGRAPHICS)/color/%.eps $(PGRAPHICS)/color/%.tex: $(PGRAPHICS)/%.plt
-	$(plot-color)
+	cd $(<D); $(plot-color)
 
 $(GRAPHICS)/%.eps $(GRAPHICS)/%.tex: $(GRAPHICS)/%.plt
 	$(plot)
@@ -46,9 +46,31 @@ $(RESULTS)/%.tex: $(RESULTS)/%.csv
 	sed '/^$$/d;/^%/d;s/;;/;--;/g;s/;;/;--;/g;s/;/ \& /g;s/$$/\\\\/' | sed -e '2i\\\\midrule'  > $@
 
 # == Author solutions ==
-XELATEX_P=xelatex -output-directory $(@D) -jobname '$(basename $(@F))' '\documentclass[fykos]{fkssolution}\setcounter{year}{25}\input{$(PROBLEMS)/problem$(BATCHNO)-$*.tex}\begin{document}\problemsolutionsingle\makefooter\end{document}'
+XELATEX_P=xelatex -output-directory $(@D) -jobname '$(basename $(@F))' '\documentclass[fykos]{fkssolution}\setcounter{year}{25}\input{$<}\begin{document}\problemsolutionsingle\makefooter\end{document}'
 
-$(OUT)/reseni$(BATCHNO)-%.pdf: $(PROBLEMS)/$(problem$(BATCHNO)_%)
+# Ugly but working
+$(OUT)/reseni$(BATCHNO)-1.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_1))
+	$(XELATEX_P)
+	$(XELATEX_P)
+$(OUT)/reseni$(BATCHNO)-2.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_2))
+	$(XELATEX_P)
+	$(XELATEX_P)
+$(OUT)/reseni$(BATCHNO)-3.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_3))
+	$(XELATEX_P)
+	$(XELATEX_P)
+$(OUT)/reseni$(BATCHNO)-4.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_4))
+	$(XELATEX_P)
+	$(XELATEX_P)
+$(OUT)/reseni$(BATCHNO)-5.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_5))
+	$(XELATEX_P)
+	$(XELATEX_P)
+$(OUT)/reseni$(BATCHNO)-6.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_6))
+	$(XELATEX_P)
+	$(XELATEX_P)
+$(OUT)/reseni$(BATCHNO)-7.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_7))
+	$(XELATEX_P)
+	$(XELATEX_P)
+$(OUT)/reseni$(BATCHNO)-8.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_8))
 	$(XELATEX_P)
 	$(XELATEX_P)
 

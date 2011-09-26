@@ -2,7 +2,8 @@
 !.gitignore
 !color
 !*.eps
+!*.tex
 !*.mp
 !*.plt
 !*.png
-!*.png
+!*.jpeg
