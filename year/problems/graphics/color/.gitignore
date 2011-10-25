@@ -1,7 +1,2 @@
-*
-!.gitignore
-!*.eps
-!*.mp
-!*.plt
-!*.png
-!*.png
+*.log
+*.mpx

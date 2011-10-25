@@ -1,9 +1,2 @@
-*
-!.gitignore
-!color
-!*.eps
-!*.tex
-!*.mp
-!*.plt
-!*.png
-!*.jpeg
+*.log
+*.mpx

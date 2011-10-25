@@ -34,7 +34,7 @@ $(OUT)/serie$(BATCHNO)-print.pdf: batch$(BATCHNO).tex $(SERIEDEP)
 	$(XELATEX2)
 
 $(OUT)/serie$(BATCHNO)-book.pdf: $(OUT)/serie$(BATCHNO)-print.pdf
-	pdfbook --outfile '$@' $<
+	pdfbook --booklet true --outfile '$@' $<
 
 clean:
 	find $(OUT) -type f -not \( -name "*.pdf" -o -name ".*" \) | xargs rm
