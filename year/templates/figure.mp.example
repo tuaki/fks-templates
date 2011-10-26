@@ -1,0 +1,24 @@
+input fks
+verbatimtex
+%&latex
+\documentclass[9pt]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage{fkssugar}
+\begin{document}
+etex
+ 
+prologues:=3;
+u:=1cm;
+ 
+beginfig(1);
+%
+% kreslení
+%
+endfig;
+ 
+ 
+verbatimtex
+\end{document}
+etex
+ 
+end;

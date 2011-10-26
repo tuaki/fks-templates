@@ -1,0 +1,15 @@
+%
+% zkopírovat do své pracovní kopie (*.example ponechat nezměnený v repozitáři)
+% překládat jako xelatex solution.tex (anebo v GUI pomocí volby XeLaTeX)
+%
+\documentclass[fykos]{fkssolution} % dle názvu semináře
+\setcounter{year}{25}
+
+\problemsdir{./../problems}
+\input{./../problems/problem1-1.tex} % zde změnit
+ 
+% samotný vzorák upravit v includovaném souboru, zde je to hotovo
+\begin{document}
+    \problemsolutionsingle
+    \makefooter
+\end{document}

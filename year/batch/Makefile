@@ -9,15 +9,16 @@ PGRAPHICS=$(PROBLEMS)/graphics# graphics for problems
 RESULTS=results
 
 .SUFFIXES:
-.PHONY: all clean cleanall web book solutions problems
+.PHONY: all clean cleanall web book solutions problems series
 
 
 # == Main targets ==
-all: web book solutions
+all: web book solutions series
 include ../Makefile.inc
 web: $(OUT)/serie$(BATCHNO).pdf
 book: $(OUT)/serie$(BATCHNO)-book.pdf
 solutions: $(addsuffix .pdf, $(addprefix $(OUT)/reseni$(BATCHNO)-, 1 2 3 4 5 6 7 8))
+series: $(OUT)/serial$(BATCHNO).pdf
 $(eval PROBS=$(addsuffix }, $(addprefix $${problem$(BATCHNO)_, 1 2 3 4 5 6 7 8) $(addprefix $${problem$(SOLVEDBATCHNO)_, 1 2 3 4 5 6 7 8)))
 PROBDEP= $(addprefix $(PROBLEMS)/, $(PROBS))
 GRAPHDEP=
@@ -35,6 +36,11 @@ $(OUT)/serie$(BATCHNO)-print.pdf: batch$(BATCHNO).tex $(SERIEDEP)
 
 $(OUT)/serie$(BATCHNO)-book.pdf: $(OUT)/serie$(BATCHNO)-print.pdf
 	pdfbook --booklet true --outfile '$@' $<
+
+XELATEX_S=xelatex -output-directory $(@D) -jobname '$(basename $(@F))' '\documentclass[fykos]{fksseries}\setcounter{year}{25}\setcounter{batch}{$(BATCHNO)}\begin{document}\input{$<}\par\makefooter\end{document}'
+$(OUT)/serial$(BATCHNO).pdf: serial$(BATCHNO).tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP))
+	$(XELATEX_S)
+	$(XELATEX_S)
 
 clean:
 	find $(OUT) -type f -not \( -name "*.pdf" -o -name ".*" \) | xargs rm

@@ -1,0 +1,19 @@
+\documentclass[fykos]{fksseries}
+\setcounter{year}{25}
+
+% % % % % %
+\setcounter{batch}{1} % změna čísla seriálu zde
+% % % % % %
+
+% nastavení cest pro překlad v adresáři šablon
+\problemsdir{./../problems}
+\newcommand\batchdir{./../batch\thebatch}
+\makeatletter
+\@myinputpath{{\batchdir/graphics/color/}{\@problemsdir/graphics/color/}{\batchdir/graphics/}{\@problemsdir/graphics/}} 
+\makeatother
+
+\begin{document}
+\input{\batchdir/serial\thebatch.tex}
+
+\makefooter
+\end{document}
