@@ -1,0 +1,34 @@
+\expandafter\ifx\csname classoptions\endcsname\relax
+  \def\classoptions{}
+\fi
+\documentclass[fykos,\classoptions]{fksgeneric}
+
+\input{common.tex}
+\newcommand\uloha[6]{#3}
+
+
+\newcommand\problemresult{%
+\stepcounter{problem}
+\noindent \textbf{Úloha \theproblem}\qquad \input{./problems/problem\theproblem.tex}\par
+\smallskip
+}
+
+
+\begin{document}
+ \problemresult
+ \problemresult
+ \problemresult
+ \problemresult
+ \problemresult
+ \problemresult
+ \problemresult
+ \problemresult
+ \problemresult
+ \problemresult
+ \problemresult
+ \problemresult
+ \problemresult
+ \problemresult
+ \problemresult
+\makefooter
+\end{document}

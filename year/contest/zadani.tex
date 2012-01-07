@@ -1,0 +1,46 @@
+\expandafter\ifx\csname classoptions\endcsname\relax
+  \def\classoptions{}
+\fi
+\documentclass[10pt,fykos,\classoptions]{fksempty}
+
+\geometry{ignoreheadfoot,
+  a4paper,
+  margin=0.7cm,
+  headsep=0.2cm}
+
+\usepackage{fkslegacyloader}
+
+\problemsdir{./problems}
+
+% this class doesn't support those, but we use same common
+\newcommand{\leftheader}[1]{\relax}
+\newcommand{\rightheader}[1]{\relax}
+\input{common.tex}
+
+\newcommand\problemtaskbox{%
+\noindent\begin{minipage}{\textwidth}
+ \problemtask\par
+ \vspace{0.5\baselineskip}
+ \noindent\makebox[\linewidth]{\rule{\paperwidth}{0.5pt}} 
+\end{minipage}\par
+\vspace{0.5\baselineskip}
+}
+
+% here should be correct number of problems
+\begin{document}
+ \problemtaskbox
+ \problemtaskbox
+ \problemtaskbox
+ \problemtaskbox
+ \problemtaskbox
+ \problemtaskbox
+ \problemtaskbox
+ \problemtaskbox
+ \problemtaskbox
+ \problemtaskbox
+ \problemtaskbox
+ \problemtaskbox
+ \problemtaskbox
+ \problemtaskbox
+ \problemtaskbox
+\end{document}
