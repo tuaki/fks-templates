@@ -15,7 +15,7 @@ RESULTS=results
 # == Main targets ==
 all: web book solutions series
 include ../Makefile.inc
-web: $(OUT)/serie$(BATCHNO).pdf
+web: $(OUT)/serie$(BATCHNO).pdf $(OUT)/zadaniWeb$(BATCHNO).xml
 book: $(OUT)/serie$(BATCHNO)-book.pdf
 solutions: $(addsuffix .pdf, $(addprefix $(OUT)/reseni$(BATCHNO)-, 1 2 3 4 5 6 7 8))
 series: $(OUT)/serial$(BATCHNO).pdf
