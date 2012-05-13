@@ -1,0 +1,48 @@
+\documentclass{minimal}
+\usepackage{fontenc}    
+
+\newcounter{batch}\setcounter{batch}{\batchno}
+\newcounter{problemcount}\setcounter{problemcount}{\problemcount}
+\newcommand{\problemsdir}{../problems}
+\newcounter{problem}
+
+\newwrite\tempfile
+
+\newcommand\probbatch[1]{\relax}
+\newcommand\probno[1]{\immediate\write\tempfile{<number>\unexpanded{#1}</number>}}
+\newcommand\probname[1]{\immediate\write\tempfile{<name>\unexpanded{#1}</name>}}
+\newcommand\proborigin[1]{\immediate\write\tempfile{<origin>\unexpanded{#1}</origin>}}
+\newcommand\probpoints[1]{\immediate\write\tempfile{<points>\unexpanded{#1}</points>}}
+\newcommand\probsolauthors[1]{\relax}
+\newcommand\probsolvers[1]{\relax}
+\newcommand\probavg[1]{\relax}
+\newcommand\probtask[1]{\immediate\write\tempfile{<task>
+\unexpanded{#1}
+</task>}}
+\newcommand\probsolution[1]{\relax}
+\newcommand\probfig[1]{\relax}
+
+
+\begin{document}
+
+\immediate\openout\tempfile=\jobname.xml
+
+\immediate\write\tempfile{<?xml version="1.0" encoding="utf-8"?>}
+\immediate\write\tempfile{<problems>}
+
+\setcounter{problem}{0}
+\loop{
+    \stepcounter{problem}
+    \immediate\write\tempfile{<problem>}
+    \input{\problemsdir/problem\thebatch-\theproblem.tex}
+    \immediate\write\tempfile{</problem>}
+}\ifnum\theproblem<\theproblemcount
+\repeat
+
+\immediate\write\tempfile{</problems>}
+\immediate\closeout\tempfile
+
+
+
+
+\end{document}
