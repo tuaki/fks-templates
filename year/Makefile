@@ -1,7 +1,10 @@
 # Simple recursive makefile
 
-SUBDIRS=batch1
+SUBDIRS=batch1 
 
-all:
-	for dir in $(SUBDIRS); do \
-	make -C $$dir ; done
+.PHONY: $(SUBDIRS)
+
+all: $(SUBDIRS)
+
+$(SUBDIRS):
+	make -C $@
