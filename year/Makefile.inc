@@ -1,5 +1,5 @@
 # Common makefile parts
-
+include Makefile.conf
 include $(PROBLEMS)/Makefile.inc
 
 # == Graphics part ==

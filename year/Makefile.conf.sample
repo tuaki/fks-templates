@@ -1,0 +1,5 @@
+# path to web service client script (rather absolute)
+SOAPCLIENT := ../../../tools/scripts/soapclient.sh
+
+# URL of FKSDB web serice
+WS_URL := http://db.fykos.cz/web-service/default
