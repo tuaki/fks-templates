@@ -1,0 +1,43 @@
+# Makefile for single batch
+
+BATCHNO=B
+OUT=out
+PROBLEMS=../problems
+GRAPHICS=graphics# graphics for the leaflet
+PGRAPHICS=$(PROBLEMS)/graphics# graphics for problems
+
+.SUFFIXES:
+.PHONY: all clean cleanall web book
+
+
+# == Main targets ==
+all: web book 
+include ../Makefile.inc
+web: $(OUT)/leaflet$(BATCHNO).pdf
+book: $(OUT)/leaflet$(BATCHNO)-book.pdf
+$(eval PROBS=$(addsuffix }, $(addprefix $${problem$(BATCHNO)_, 1 2 3 4 5 6 7 8)))
+PROBDEP= $(addprefix $(PROBLEMS)/, $(PROBS))
+GRAPHDEP=
+
+SERIEDEP=$(PROBDEP) leaflet$(BATCHNO).tex return.tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP))
+
+XELATEX=xelatex -output-directory $(@D) -jobname $(basename $(@F)) '\def\UseOption{web}\input{$<}'
+$(OUT)/leaflet$(BATCHNO).pdf: leaflet$(BATCHNO).tex $(SERIEDEP)
+	$(XELATEX)
+	$(XELATEX)
+
+XELATEX2=xelatex -output-directory $(@D) -jobname '$(basename $(@F))' '\def\classoptions{twoside}\def\UseOption{print}\input{$<}'
+$(OUT)/leaflet$(BATCHNO)-print.pdf: leaflet$(BATCHNO).tex $(SERIEDEP)
+	$(XELATEX2)
+	$(XELATEX2)
+
+$(OUT)/leaflet$(BATCHNO)-book.pdf: $(OUT)/leaflet$(BATCHNO)-print.pdf
+	pdfbook --booklet true --outfile '$@' $<
+
+clean:
+	find $(OUT) -type f -not \( -name "*.pdf" -o -name ".*" \) | xargs rm
+
+cleanall:
+	rm $(OUT)/*
+#	ls $(GRAPHICS) $(PGRAPHICS) | grep -v '\(mp\|plt\|eps\|jpg\|png\)$$' | xargs rm
+
