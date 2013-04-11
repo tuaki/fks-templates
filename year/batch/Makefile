@@ -1,7 +1,7 @@
 # Makefile for single batch
 
 BATCHNO=B
-SOLVEDBATCHNO=BB
+SOLVEDBATCHNO=AB
 OUT=out
 PROBLEMS=../problems
 GRAPHICS=graphics# graphics for the batch (series)
@@ -22,7 +22,9 @@ series: $(OUT)/serial$(BATCHNO).pdf
 $(eval PROBS=$(addsuffix }, $(addprefix $${problem$(BATCHNO)_, 1 2 3 4 5 6 7 8) $(addprefix $${problem$(SOLVEDBATCHNO)_, 1 2 3 4 5 6 7 8)))
 PROBDEP= $(addprefix $(PROBLEMS)/, $(PROBS))
 GRAPHDEP=
-SERIEDEP=$(PROBDEP) uvod$(BATCHNO).tex serial$(BATCHNO).tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP)) $(RESULTS)/vysledky1.tex
+#SERIEDEP=$(PROBDEP) uvod$(BATCHNO).tex serial$(BATCHNO).tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP))
+# Use variant below when Astrid supports xsltproc.
+SERIEDEP=$(PROBDEP) uvod$(BATCHNO).tex serial$(BATCHNO).tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP)) $(addprefix $(RESULTS)/vysledky$(SOLVEDBATCHNO)-,1.tex 2.tex 3.tex 4.tex) $(RESULTS)/statistiky$(SOLVEDBATCHNO).csv
 
 XELATEX=xelatex -output-directory $(@D) -jobname $(basename $(@F)) '\def\UseOption{web}\input{$<}'
 $(OUT)/serie$(BATCHNO).pdf: batch$(BATCHNO).tex $(SERIEDEP)
@@ -53,4 +55,3 @@ cleanall:
 
 $(OUT)/zadaniWeb$(BATCHNO).xml: $(PROBLEMS)/web.tex $(SERIEDEP)
 	xelatex -output-directory $(@D) -jobname $(basename $(@F)) '\def\batchno{$(BATCHNO)}\def\problemcount{8}\input{$<}'
-
