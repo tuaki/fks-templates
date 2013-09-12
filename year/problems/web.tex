@@ -1,6 +1,30 @@
 \documentclass{minimal}
-\usepackage{fontenc}    
 
+%
+% Dummy definitions to enable load macros
+%
+\usepackage{fontenc}    
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+
+\newcounter{year}\setcounter{year}{0}
+\newif\ifyearbook
+\yearbookfalse
+
+%
+% Load useful macros.
+%
+\usepackage[fykos]{fksmeta}
+
+%
+% TeX to text macros
+%
+\newcommand~{ }
+
+
+%
+% Redefine problem loading to produce XML fragments
+%
 \newcounter{batch}\setcounter{batch}{\batchno}
 \newcounter{problemcount}\setcounter{problemcount}{\problemcount}
 \newcommand{\problemsdir}{../problems}
@@ -9,15 +33,19 @@
 \newwrite\tempfile
 
 \newcommand\probbatch[1]{\relax}
-\newcommand\probno[1]{\immediate\write\tempfile{<number>\unexpanded{#1}</number>}}
-\newcommand\probname[1]{\immediate\write\tempfile{<name>\unexpanded{#1}</name>}}
-\newcommand\proborigin[1]{\immediate\write\tempfile{<origin>\unexpanded{#1}</origin>}}
-\newcommand\probpoints[1]{\immediate\write\tempfile{<points>\unexpanded{#1}</points>}}
-\newcommand\probsolauthors[1]{\relax}
+\makeatletter
+\newcommand\probno[1]{\immediate\write\tempfile{<number>#1</number>}%
+\immediate\write\tempfile{<label>\@metaprobletter{#1}</label>}}
+\makeatother
+\newcommand\probname[1]{\immediate\write\tempfile{<name>#1</name>}}
+\newcommand\proborigin[1]{\immediate\write\tempfile{<origin><![CDATA[\unexpanded{#1}]]></origin>}}
+\newcommand\probpoints[1]{\immediate\write\tempfile{<points>#1</points>}}
+\newcommand\probauthors[1]{\immediate\write\tempfile{<authors>#1</authors>}}
+\newcommand\probsolauthors[1]{\immediate\write\tempfile{<solution-authors>#1</solution-authors>}}
 \newcommand\probsolvers[1]{\relax}
 \newcommand\probavg[1]{\relax}
-\newcommand\probtask[1]{\immediate\write\tempfile{<task>
-<![CDATA[\unexpanded{#1}]]>
+\newcommand\probtask[1]{\immediate\write\tempfile{<task>%
+<![CDATA[\unexpanded{#1}]]>%
 </task>}}
 \newcommand\probsolution[1]{\relax}
 \newcommand\probfig[1]{\relax}
@@ -28,7 +56,7 @@
 \immediate\openout\tempfile=\jobname.xml
 
 \immediate\write\tempfile{<?xml version="1.0" encoding="utf-8"?>}
-\immediate\write\tempfile{<problems>}
+\immediate\write\tempfile{<problems deadline="\mdeadline" deadline-post="\mdeadlineS">}
 
 \setcounter{problem}{0}
 \loop{

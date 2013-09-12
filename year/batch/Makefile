@@ -53,7 +53,15 @@ cleanall:
 	rm $(OUT)/*
 #	ls $(GRAPHICS) $(PGRAPHICS) | grep -v '\(mp\|plt\|eps\|jpg\|png\)$$' | xargs rm
 
+
 # == XML for web transport ==
 
+define XML_DEFS
+\def\batchno{$(BATCHNO)}\
+\def\problemcount{PB}\
+$(ARG)
+endef
+
 $(OUT)/zadaniWeb$(BATCHNO).xml: $(PROBLEMS)/web.tex $(SERIEDEP)
-	xelatex -output-directory $(@D) -jobname $(basename $(@F)) '\def\batchno{$(BATCHNO)}\def\problemcount{8}\input{$<}'
+	xelatex -output-directory $(@D) -jobname $(basename $(@F)) '$(XML_DEFS)\input{$<}'
+
