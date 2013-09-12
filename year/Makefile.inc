@@ -2,6 +2,7 @@
 
 include ../Makefile.conf
 include $(PROBLEMS)/Makefile.inc
+include ../Deadline.inc
 
 # == Graphics part ==
 # -- Plots --

@@ -8,6 +8,8 @@ GRAPHICS=graphics# graphics for the batch (series)
 PGRAPHICS=$(PROBLEMS)/graphics# graphics for problems
 RESULTS=results
 
+ARG=\def\mdeadline{${DEADLINE[B]}}\def\mdeadlineS{${DEADLINES[B]}}
+
 .SUFFIXES:
 .PHONY: all clean cleanall web book solutions problems series
 
@@ -26,12 +28,12 @@ GRAPHDEP=
 # Use variant below when Astrid supports xsltproc.
 SERIEDEP=$(PROBDEP) uvod$(BATCHNO).tex serial$(BATCHNO).tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP)) $(addprefix $(RESULTS)/vysledky$(SOLVEDBATCHNO)-,1.tex 2.tex 3.tex 4.tex) $(RESULTS)/statistiky$(SOLVEDBATCHNO).csv
 
-XELATEX=xelatex -output-directory $(@D) -jobname $(basename $(@F)) '\def\UseOption{web}\input{$<}'
+XELATEX=xelatex -output-directory $(@D) -jobname $(basename $(@F)) '\def\UseOption{web}$(ARG)\input{$<}'
 $(OUT)/serie$(BATCHNO).pdf: batch$(BATCHNO).tex $(SERIEDEP)
 	$(XELATEX)
 	$(XELATEX)
 
-XELATEX2=xelatex -output-directory $(@D) -jobname '$(basename $(@F))' '\def\classoptions{twoside}\def\UseOption{print}\input{$<}'
+XELATEX2=xelatex -output-directory $(@D) -jobname '$(basename $(@F))' '\def\classoptions{twoside}\def\UseOption{print}$(ARG)\input{$<}'
 $(OUT)/serie$(BATCHNO)-print.pdf: batch$(BATCHNO).tex $(SERIEDEP)
 	$(XELATEX2)
 	$(XELATEX2)
