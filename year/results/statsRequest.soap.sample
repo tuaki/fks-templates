@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://fykos.cz/xml/ws/service">
+	<SOAP-ENV:Header>
+		<ns1:AuthenticationCredentials>
+			<username>--FILLME--</username>
+			<password>--FILLME--</password>
+		</ns1:AuthenticationCredentials>
+	</SOAP-ENV:Header>
+	<SOAP-ENV:Body>
+		<GetStatsRequest>
+			<contest>fykos</contest>
+			<year>26</year>
+			<series series="1">1 2 3 4 5 P E S</series>
+			<series series="2">1 2 3 4 5 P E S</series>
+			<series series="3">1 2 3 4 5 P E S</series>
+			<series series="4">1 2 3 4 5 P E S</series>
+			<series series="5">1 2 3 4 5 P E S</series>
+			<series series="6">1 2 3 4 5 P E S</series>
+		</GetStatsRequest>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+
