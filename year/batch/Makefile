@@ -17,7 +17,7 @@ ARG=\def\mdeadline{${DEADLINE[B]}}\def\mdeadlineS{${DEADLINES[B]}}
 # == Main targets ==
 all: web book solutions series
 include ../Makefile.inc
-web: $(OUT)/serie$(BATCHNO).pdf $(OUT)/zadaniWeb$(BATCHNO).xml
+web: $(OUT)/serie$(BATCHNO).pdf $(OUT)/zadaniWeb$(BATCHNO).xml $(OUT)/zadani$(BATCHNO).pdf
 book: $(OUT)/serie$(BATCHNO)-book.pdf
 solutions: $(addsuffix .pdf, $(addprefix $(OUT)/reseni$(BATCHNO)-, 1 2 3 4 5 6 7 8))
 series: $(OUT)/serial$(BATCHNO).pdf
@@ -26,7 +26,12 @@ PROBDEP= $(addprefix $(PROBLEMS)/, $(PROBS))
 GRAPHDEP=
 #SERIEDEP=$(PROBDEP) uvod$(BATCHNO).tex serial$(BATCHNO).tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP))
 # Use variant below when Astrid supports xsltproc.
-SERIEDEP=$(PROBDEP) uvod$(BATCHNO).tex serial$(BATCHNO).tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP)) $(addprefix $(RESULTS)/vysledky$(SOLVEDBATCHNO)-,1.tex 2.tex 3.tex 4.tex) $(RESULTS)/statistiky$(SOLVEDBATCHNO).csv
+SERIEDEP=$(PROBDEP) uvod$(BATCHNO).tex serial$(BATCHNO).tex problems$(BATCHNO).tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP)) $(addprefix $(RESULTS)/vysledky$(SOLVEDBATCHNO)-,1.tex 2.tex 3.tex 4.tex) $(RESULTS)/statistiky$(SOLVEDBATCHNO).csv
+
+XELATEX_Z=xelatex -output-directory $(@D) -jobname $(basename $(@F)) '\def\UseOption{web}$(ARG)\input{$<}'
+$(OUT)/zadani$(BATCHNO).pdf: problems$(BATCHNO).tex $(SERIEDEP)
+	$(XELATEX_Z)
+	$(XELATEX_Z)
 
 XELATEX=xelatex -output-directory $(@D) -jobname $(basename $(@F)) '\def\UseOption{web}$(ARG)\input{$<}'
 $(OUT)/serie$(BATCHNO).pdf: batch$(BATCHNO).tex $(SERIEDEP)
