@@ -1,5 +1,8 @@
 # path to web service client script (rather absolute)
-SOAPCLIENT := ../../../tools/scripts/soapclient.sh
+SOAPCLIENT := <path to fks-scripts repository>/soapclient.sh
+
+# path to old-style script for stats inscription
+STATS_SH := <path to fks-scripts repository>/dakos-stats.sh
 
 # URL of FKSDB web serice
 WS_URL := http://db.fykos.cz/web-service/default
