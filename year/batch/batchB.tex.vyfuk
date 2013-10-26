@@ -1,7 +1,7 @@
 \expandafter\ifx\csname classoptions\endcsname\relax
   \def\classoptions{}
 \fi
-\documentclass[fykos,\classoptions]{fksbatch}
+\documentclass[SEM,\classoptions]{fksbatch}
     
 \setcounter{year}{Y}
 \setcounter{batch}{B}
@@ -23,8 +23,6 @@
 \problemtask
 \problemtask
 \problemtask
-\problemtask
-\problemtask
 
 \newpage
 
@@ -36,13 +34,10 @@
 \problemsolution
 \problemsolution
 \problemsolution
-\problemsolution
-\newpage
-\problemsolution
 
 \vfill
 \begin{center}
-	\includegraphics[width=0.7\textwidth]{logo2.eps} 
+	\includegraphics[width=0.7\textwidth]{vyfuk-schlitt.eps}
 \end{center}
 \vfill
 
@@ -53,21 +48,19 @@
 
 \resultsheading
 
-Kompletní výsledky najdete na \url{http://fykos.cz}.
+Kompletní výsledky najdete na \url{http://vyfuk.fykos.cz}.
 
-\subsection{Kategorie prvních ročníků}
-\resultstab[1]{vysledkyB-1}
+\subsection{Kategorie šestých ročníků}~\vspace{-18pt}%
+\resultstabsplit[-1]{vysledkyB-6}
 
-\subsection{Kategorie druhých ročníků}
-\resultstab[1]{vysledkyB-2}
+\subsection{Kategorie sedmých ročníků}~\vspace{-18pt}%
+\resultstabsplit[-1]{vysledkyB-7}
 
-%\newpage
+\subsection{Kategorie osmých ročníků}~\vspace{-18pt}%
+\resultstabsplit[-1]{vysledkyB-8}
 
-\subsection{Kategorie třetích ročníků}
-\resultstab[1]{vysledkyB-3}
-
-\subsection{Kategorie čtvrtých ročníků}
-\resultstab[1]{vysledkyB-4}
+\subsection{Kategorie devátých ročníků}~\vspace{-18pt}%
+\resultstabsplit[-1]{vysledkyB-9}
 
 %\newpage
 

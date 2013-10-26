@@ -1,0 +1,75 @@
+\expandafter\ifx\csname classoptions\endcsname\relax
+  \def\classoptions{}
+\fi
+\documentclass[SEM,\classoptions]{fksbatch}
+    
+\setcounter{year}{Y}
+\setcounter{batch}{B}
+\deadline{\mdeadline}
+\deadlineS{\mdeadlineS}
+
+\newfontfamily\cyrillicfont[Script=Cyrillic]{Liberation Serif}
+
+\begin{document}
+
+\maketitle
+\input{uvod\thebatch.tex}
+
+\problemsheading % section
+
+\problemtask
+\problemtask
+\problemtask
+\problemtask
+\problemtask
+\problemtask
+\problemtask
+\problemtask
+
+\newpage
+
+\solutionheading %section
+
+\problemsolution
+\problemsolution
+\problemsolution
+\problemsolution
+\problemsolution
+\problemsolution
+\problemsolution
+\problemsolution
+
+\vfill
+\begin{center}
+	\includegraphics[width=0.7\textwidth]{logo2.eps} 
+\end{center}
+\vfill
+
+\newpage
+\input{serial\thebatch.tex}
+
+\newpage
+
+\resultsheading
+
+Kompletní výsledky najdete na \url{http://fykos.cz}.
+
+\subsection{Kategorie prvních ročníků}~\vspace{-18pt}%
+\resultstabsplit[-1]{vysledkyB-1}
+
+\subsection{Kategorie druhých ročníků}~\vspace{-18pt}%
+\resultstabsplit[-1]{vysledkyB-2}
+
+\subsection{Kategorie třetích ročníků}~\vspace{-18pt}%
+\resultstabsplit[-1]{vysledkyB-3}
+
+\subsection{Kategorie čtvrtých ročníků}~\vspace{-18pt}%
+\resultstabsplit[-1]{vysledkyB-4}
+
+%\newpage
+
+\vfill
+
+\makefooter % adreasa a patička
+
+\end{document}
