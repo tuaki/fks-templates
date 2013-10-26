@@ -16,11 +16,12 @@ ARG=\def\mdeadline{${DEADLINE[B]}}\def\mdeadlineS{${DEADLINES[B]}}
 .PHONY: all clean cleanall web book solutions problems series
 
 # == Main targets ==
-all: web book solutions series
+all: web solutions series
+# book
 include ../Makefile.inc
 web: $(OUT)/serie$(BATCHNO).pdf $(OUT)/zadaniWeb$(BATCHNO).xml $(OUT)/zadani$(BATCHNO).pdf
 book: $(OUT)/serie$(BATCHNO)-book.pdf
-solutions: $(addsuffix .pdf, $(addprefix $(OUT)/reseni$(BATCHNO)-, $PROBLEMSLIST))
+solutions: $(addsuffix .pdf, $(addprefix $(OUT)/reseni$(BATCHNO)-, $(PROBLEMSLIST)))
 series: $(OUT)/serial$(BATCHNO).pdf 
 $(eval PROBS=$(addprefix $${problem,$(addsuffix },$(foreach foo,$(SOLVEDBATCHNO) $(BATCHNO),$(addprefix $(foo)_,$(PROBLEMSLIST))))))
 PROBDEP= $(addprefix $(PROBLEMS)/, $(PROBS))
@@ -48,8 +49,8 @@ $(OUT)/serie$(BATCHNO)-print.pdf: batch$(BATCHNO).tex $(SERIEDEP)
 	$(XELATEX2)
 	$(XELATEX2)
 
-$(OUT)/serie$(BATCHNO)-book.pdf: $(OUT)/serie$(BATCHNO)-print.pdf
-	pdfbook --booklet true --outfile '$@' $<
+#$(OUT)/serie$(BATCHNO)-book.pdf: $(OUT)/serie$(BATCHNO)-print.pdf
+#	pdfbook --booklet true --outfile '$@' $<
 
 XELATEX_S=xelatex -output-directory $(@D) -jobname '$(basename $(@F))' '\documentclass[SEM]{fksseries}\setcounter{year}{Y}\setcounter{batch}{$(BATCHNO)}\begin{document}\input{$<}\par\makefooter\end{document}'
 $(OUT)/serial$(BATCHNO).pdf: serial$(BATCHNO).tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP))

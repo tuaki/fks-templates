@@ -5,6 +5,7 @@
     
 \setcounter{year}{Y}
 \setcounter{batch}{B}
+\setcounter{solvedbatch}{AB}
 \deadline{\mdeadline}
 \deadlineS{\mdeadlineS}
 
@@ -54,16 +55,16 @@
 
 Kompletní výsledky najdete na \url{http://fykos.cz}.
 
-\subsection{Kategorie prvních ročníků}~\vspace{-18pt}%
+\subsection{Kategorie prvních ročníků}~\vspace{-10pt}\par%
 \resultstabsplit[-1]{vysledkyB-1}
 
-\subsection{Kategorie druhých ročníků}~\vspace{-18pt}%
+\subsection{Kategorie druhých ročníků}~\vspace{-10pt}\par%
 \resultstabsplit[-1]{vysledkyB-2}
 
-\subsection{Kategorie třetích ročníků}~\vspace{-18pt}%
+\subsection{Kategorie třetích ročníků}~\vspace{-10pt}\par%
 \resultstabsplit[-1]{vysledkyB-3}
 
-\subsection{Kategorie čtvrtých ročníků}~\vspace{-18pt}%
+\subsection{Kategorie čtvrtých ročníků}~\vspace{-10pt}\par%
 \resultstabsplit[-1]{vysledkyB-4}
 
 %\newpage
