@@ -50,7 +50,7 @@ $(RESULTS)/vysledky%.tex: $(GLOB_RESULTS)/vysledky.xml
 		$(GLOB_RESULTS)/texresults.xsl $< >$@
 
 $(RESULTS)/statistiky%.csv: $(GLOB_RESULTS)/statistiky.xml
-	xsltproc --stringparam series $(word 1,$(subst -, ,$(subst .tex,,$(subst $(RESULTS)/vysledky,,$@)))) \
+	xsltproc --stringparam series $* \
 		$(GLOB_RESULTS)/texstats.xsl $< >$@
 	# apply created results to statistics
 	$(STATS_SH) $(PROBLEMS) $@
