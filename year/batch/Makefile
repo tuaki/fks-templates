@@ -10,7 +10,7 @@ GRAPHICS=graphics# graphics for the batch (series)
 PGRAPHICS=$(PROBLEMS)/graphics# graphics for problems
 RESULTS=results
 
-ARG=\def\mdeadline{${DEADLINE[B]}}\def\mdeadlineS{${DEADLINES[B]}}
+ARG=\def\mdeadline{${DEADLINE[${BATCHNO}]}}\def\mdeadlineS{${DEADLINES[${BATCHNO}]}}
 
 .SUFFIXES:
 .PHONY: all clean cleanall web book print solutions problems series

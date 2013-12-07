@@ -6,7 +6,7 @@ PROBLEMS=../problems
 GRAPHICS=graphics# graphics for the leaflet
 PGRAPHICS=$(PROBLEMS)/graphics# graphics for problems
 
-ARG=\def\mdeadline{${DEADLINE[1]}}\def\mdeadlineS{${DEADLINES[1]}}
+ARG=\def\mdeadline{${DEADLINE[${BATCHNO}]}}\def\mdeadlineS{${DEADLINES[${BATCHNO}]}}
 
 .SUFFIXES:
 .PHONY: all clean cleanall web book
