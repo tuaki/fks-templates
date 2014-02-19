@@ -2,14 +2,14 @@
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://fykos.cz/xml/ws/service">
 	<SOAP-ENV:Header>
 		<ns1:AuthenticationCredentials>
-			<username>--FILLME--</username>
-			<password>--FILLME--</password>
+			<username>--FILLUSERNAME--</username>
+			<password>--FILLPASSWORD--</password>
 		</ns1:AuthenticationCredentials>
 	</SOAP-ENV:Header>
 	<SOAP-ENV:Body>
 		<GetStatsRequest>
 			<contest>fykos</contest>
-			<year>26</year>
+			<year>27</year>
 			<series series="1">1 2 3 4 5 P E S</series>
 			<series series="2">1 2 3 4 5 P E S</series>
 			<series series="3">1 2 3 4 5 P E S</series>
