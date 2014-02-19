@@ -26,7 +26,7 @@ PROBDEP= $(addprefix $(PROBLEMS)/, $(PROBS))
 GRAPHDEP=
 #SERIEDEP=$(PROBDEP) uvod$(BATCHNO).tex serial$(BATCHNO).tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP))
 # Use variant below when Astrid supports xsltproc.
-SERIEDEP=$(PROBDEP) uvod$(BATCHNO).tex serial$(BATCHNO).tex problems$(BATCHNO).tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP)) $(addprefix $(RESULTS)/vysledky$(SOLVEDBATCHNO)-,1.tex 2.tex 3.tex 4.tex) $(RESULTS)/statistiky$(SOLVEDBATCHNO).csv
+SERIEDEP=$(PROBDEP) uvod$(BATCHNO).tex serial$(BATCHNO).tex problems$(BATCHNO).tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP)) $(addprefix $(RESULTS)/vysledky$(SOLVEDBATCHNO)-,1.tex 2.tex 3.tex 4.tex) $(RESULTS)/statistiky$(SOLVEDBATCHNO).csv $(SIGNATURES)
 
 XELATEX_Z=xelatex -output-directory $(@D) -jobname $(basename $(@F)) '\def\UseOption{web}$(ARG)\input{$<}'
 $(OUT)/zadani$(BATCHNO).pdf: problems$(BATCHNO).tex $(SERIEDEP)
@@ -47,7 +47,7 @@ $(OUT)/serie$(BATCHNO)-book.pdf: $(OUT)/serie$(BATCHNO)-print.pdf
 	pdfbook --booklet true --outfile '$@' $<
 
 XELATEX_S=xelatex -output-directory $(@D) -jobname '$(basename $(@F))' '\documentclass[fykos]{fksseries}\setcounter{year}{Y}\setcounter{batch}{$(BATCHNO)}\begin{document}\input{$<}\par\makefooter\end{document}'
-$(OUT)/serial$(BATCHNO).pdf: serial$(BATCHNO).tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP))
+$(OUT)/serial$(BATCHNO).pdf: serial$(BATCHNO).tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP)) $(SIGNATURES)
 	$(XELATEX_S)
 	$(XELATEX_S)
 
