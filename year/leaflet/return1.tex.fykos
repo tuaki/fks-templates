@@ -1,0 +1,20 @@
+\begin{minipage}{0.95\textwidth}
+\textbf{Řešitel}\par
+\vskip-1mm
+
+\begin{tabularx}{\textwidth}{>{\vbox to 6mm{}}rXrX}
+Jméno: & \multicolumn{3}{l}{\dotfill} \\
+E-mail: & \multicolumn{3}{l}{\dotfill} \\
+Datum narození: & \dotfill & Místo narození: &\dotfill\\
+Doručovací adresa: & \multicolumn{3}{l}{\dotfill}\\
+	& \multicolumn{3}{l}{\dotfill}\\
+Podpis: & \multicolumn{3}{l}{\dotfill}\\
+\noalign{\vskip-10pt}
+	& \multicolumn{3}{l}{\footnotesize ~Svým podpisem stvrzujete souhlas se 
+	 zpracováním osobních údajů pro}\\
+\noalign{\vskip-13pt}
+	& \multicolumn{3}{l}{\footnotesize ~účely semináře, viz 
+		\url{http://fykos.cz/doc/souhlas.pdf}.}
+\end{tabularx}
+
+\end{minipage}

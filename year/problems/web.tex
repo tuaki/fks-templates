@@ -6,6 +6,7 @@
 \usepackage{fontenc}    
 \usepackage{hyperref}
 \usepackage{fancyhdr}
+\usepackage{ifthen}
 
 \newcounter{year}\setcounter{year}{0}
 \newif\ifyearbook
@@ -20,7 +21,14 @@
 % TeX to text macros
 %
 \newcommand~{ }
-
+\def\dots{…}%
+\def\uv#1{„#1“}%
+%TODO resit az nastane
+%n,m-das
+% &
+% %
+% @
+% #
 
 %
 % Redefine problem loading to produce XML fragments
@@ -37,7 +45,12 @@
 \newcommand\probno[1]{\immediate\write\tempfile{<number>#1</number>}%
 \immediate\write\tempfile{<label>\@metaprobletter{#1}</label>}}
 \makeatother
-\newcommand\probname[1]{\immediate\write\tempfile{<name>#1</name>}}
+
+\def\xmlWrite#1{\immediate\write\tempfile{#1}}
+%\newcommand\probname[2][]{\immediate\write\tempfile{<name>\ifthenelse{\equal{#1}{}}{a}{b}</name>}}
+
+\newcommand\probname[2][]{\ifthenelse{\catcode`$=11\catcode`&=11\catcode`@=11%
+\equal{#1}{}}{\immediate\write\tempfile{<name>#2</name>}}{\immediate\write\tempfile{<name>#1</name>}}}
 \newcommand\proborigin[1]{\immediate\write\tempfile{<origin><![CDATA[\unexpanded{#1}]]></origin>}}
 \newcommand\probpoints[1]{\immediate\write\tempfile{<points>#1</points>}}
 \newcommand\probauthors[1]{\immediate\write\tempfile{<authors>#1</authors>}}

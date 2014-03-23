@@ -1,0 +1,72 @@
+\expandafter\ifx\csname classoptions\endcsname\relax
+  \def\classoptions{}
+\fi
+\documentclass[SEM,\classoptions]{fksbatch}
+    
+\setcounter{year}{Y}
+\setcounter{batch}{B}
+\setcounter{solvedbatch}{AB}
+\deadline{\mdeadline}
+\deadlineS{\mdeadlineS}
+
+\newfontfamily\cyrillicfont[Script=Cyrillic]{Liberation Serif}
+
+\begin{document}
+
+\maketitle
+\input{uvod\thebatch.tex}
+
+\problemsheading % section
+
+\problemtask
+\problemtask
+\problemtask
+\problemtask
+\problemtask
+\problemtask
+
+\newpage
+
+\solutionheading %section
+
+\problemsolution
+\problemsolution
+\problemsolution
+\problemsolution
+\problemsolution
+\problemsolution
+
+\vfill
+\begin{center}
+	\includegraphics[width=0.7\textwidth]{vyfuk-schlitt.eps}
+\end{center}
+\vfill
+
+\newpage
+\input{serial\thebatch.tex}
+
+\newpage
+
+\resultsheading
+
+Kompletní výsledky najdete na \url{http://vyfuk.fykos.cz}.
+
+\subsection{Kategorie šestých ročníků}~\vspace{-10pt}\par%
+\resultstabsplit[-1]{vysledkyB-6}
+
+\subsection{Kategorie sedmých ročníků}~\vspace{-10pt}\par%
+\resultstabsplit[-1]{vysledkyB-7}
+
+\subsection{Kategorie osmých ročníků}~\vspace{-10pt}\par%
+\resultstabsplit[-1]{vysledkyB-8}
+
+\subsection{Kategorie devátých ročníků}~\vspace{-10pt}\par%
+\resultstabsplit[-1]{vysledkyB-9}
+
+%\newpage
+
+\vfill
+
+\makefooter % adreasa a patička
+
+\end{document}

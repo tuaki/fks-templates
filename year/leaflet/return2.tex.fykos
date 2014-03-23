@@ -1,0 +1,13 @@
+\begin{minipage}{0.95\textwidth}
+\textbf{Škola} \par
+
+\begin{tabularx}{\textwidth}{>{\vbox to 6mm{}}rXrX}
+	Třída: & \dotfill & Rok maturity: &\dotfill\\
+	Adresa: & \multicolumn{3}{l}{\dotfill}\\
+	& \multicolumn{3}{l}{\dotfill}
+\end{tabularx}
+\medskip
+
+\textbf{Jak jste se o FYKOSu dozvěděli?}\par
+
+\end{minipage}

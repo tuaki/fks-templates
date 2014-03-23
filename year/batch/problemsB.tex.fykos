@@ -1,4 +1,4 @@
-\documentclass[fykos]{fksbatch}
+\documentclass[SEM]{fksbatch}
 
 \pagestyle{empty}
 

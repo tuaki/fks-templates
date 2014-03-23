@@ -2,31 +2,37 @@
 
 BATCHNO=B
 SOLVEDBATCHNO=AB
+RESULTSLIST=resultslist
+PROBLEMSLIST=problemslist
 OUT=out
 PROBLEMS=../problems
 GRAPHICS=graphics# graphics for the batch (series)
 PGRAPHICS=$(PROBLEMS)/graphics# graphics for problems
 RESULTS=results
 
-ARG=\def\mdeadline{${DEADLINE[B]}}\def\mdeadlineS{${DEADLINES[B]}}
+ARG=\def\mdeadline{${DEADLINE[${BATCHNO}]}}\def\mdeadlineS{${DEADLINES[${BATCHNO}]}}
 
 .SUFFIXES:
-.PHONY: all clean cleanall web book solutions problems series
-
+.PHONY: all clean cleanall web book print solutions problems series
 
 # == Main targets ==
-all: web book solutions series
+all: web print solutions series
 include ../Makefile.inc
 web: $(OUT)/serie$(BATCHNO).pdf $(OUT)/zadaniWeb$(BATCHNO).xml $(OUT)/zadani$(BATCHNO).pdf
 book: $(OUT)/serie$(BATCHNO)-book.pdf
-solutions: $(addsuffix .pdf, $(addprefix $(OUT)/reseni$(BATCHNO)-, 1 2 3 4 5 6 7 8))
-series: $(OUT)/serial$(BATCHNO).pdf
-$(eval PROBS=$(addsuffix }, $(addprefix $${problem$(BATCHNO)_, 1 2 3 4 5 6 7 8) $(addprefix $${problem$(SOLVEDBATCHNO)_, 1 2 3 4 5 6 7 8)))
+print: $(OUT)/serie$(BATCHNO)-print.pdf
+solutions: $(addsuffix .pdf, $(addprefix $(OUT)/reseni$(BATCHNO)-, $(PROBLEMSLIST)))
+series: $(OUT)/serial$(BATCHNO).pdf 
+$(eval PROBS=$(addprefix $${problem,$(addsuffix },$(foreach foo,$(SOLVEDBATCHNO) $(BATCHNO),$(addprefix $(foo)_,$(PROBLEMSLIST))))))
 PROBDEP= $(addprefix $(PROBLEMS)/, $(PROBS))
 GRAPHDEP=
 #SERIEDEP=$(PROBDEP) uvod$(BATCHNO).tex serial$(BATCHNO).tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP))
 # Use variant below when Astrid supports xsltproc.
-SERIEDEP=$(PROBDEP) uvod$(BATCHNO).tex serial$(BATCHNO).tex problems$(BATCHNO).tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP)) $(addprefix $(RESULTS)/vysledky$(SOLVEDBATCHNO)-,1.tex 2.tex 3.tex 4.tex) $(RESULTS)/statistiky$(SOLVEDBATCHNO).csv $(SIGNATURES)
+SERIEDEP=$(PROBDEP) uvod$(BATCHNO).tex serial$(BATCHNO).tex problems$(BATCHNO).tex \
+	$(addprefix $(GRAPHICS)/, $(GRAPHDEP)) \
+	$(addprefix $(RESULTS)/vysledky, $(addsuffix .tex,$(foreach foo,$(SOLVEDBATCHNO),$(addprefix $(foo)-,$(RESULTSLIST)))))\
+	$(foreach foo,$(SOLVEDBATCHNO),$(addprefix $(addprefix $(RESULTS)/statistiky,$(foo)),.csv))
+
 
 XELATEX_Z=xelatex -output-directory $(@D) -jobname $(basename $(@F)) '\def\UseOption{web}$(ARG)\input{$<}'
 $(OUT)/zadani$(BATCHNO).pdf: problems$(BATCHNO).tex $(SERIEDEP)
@@ -46,8 +52,8 @@ $(OUT)/serie$(BATCHNO)-print.pdf: batch$(BATCHNO).tex $(SERIEDEP)
 $(OUT)/serie$(BATCHNO)-book.pdf: $(OUT)/serie$(BATCHNO)-print.pdf
 	pdfbook --booklet true --outfile '$@' $<
 
-XELATEX_S=xelatex -output-directory $(@D) -jobname '$(basename $(@F))' '\documentclass[fykos]{fksseries}\setcounter{year}{Y}\setcounter{batch}{$(BATCHNO)}\begin{document}\input{$<}\par\makefooter\end{document}'
-$(OUT)/serial$(BATCHNO).pdf: serial$(BATCHNO).tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP)) $(SIGNATURES)
+XELATEX_S=xelatex -output-directory $(@D) -jobname '$(basename $(@F))' '\documentclass[SEM]{fksseries}\setcounter{year}{Y}\setcounter{batch}{$(BATCHNO)}\begin{document}\input{$<}\par\makefooter\end{document}'
+$(OUT)/serial$(BATCHNO).pdf: serial$(BATCHNO).tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP))
 	$(XELATEX_S)
 	$(XELATEX_S)
 

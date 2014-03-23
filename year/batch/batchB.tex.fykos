@@ -1,10 +1,11 @@
 \expandafter\ifx\csname classoptions\endcsname\relax
   \def\classoptions{}
 \fi
-\documentclass[fykos,\classoptions]{fksbatch}
+\documentclass[SEM,\classoptions]{fksbatch}
     
 \setcounter{year}{Y}
 \setcounter{batch}{B}
+\setcounter{solvedbatch}{AB}
 \deadline{\mdeadline}
 \deadlineS{\mdeadlineS}
 
@@ -37,7 +38,6 @@
 \problemsolution
 \problemsolution
 \problemsolution
-\newpage
 \problemsolution
 
 \vfill
@@ -55,19 +55,17 @@
 
 Kompletní výsledky najdete na \url{http://fykos.cz}.
 
-\subsection{Kategorie prvních ročníků}
-\resultstab[1]{vysledkyB-1}
+\subsection{Kategorie prvních ročníků}~\vspace{-10pt}\par%
+\resultstabsplit[-1]{vysledkyB-1}
 
-\subsection{Kategorie druhých ročníků}
-\resultstab[1]{vysledkyB-2}
+\subsection{Kategorie druhých ročníků}~\vspace{-10pt}\par%
+\resultstabsplit[-1]{vysledkyB-2}
 
-%\newpage
+\subsection{Kategorie třetích ročníků}~\vspace{-10pt}\par%
+\resultstabsplit[-1]{vysledkyB-3}
 
-\subsection{Kategorie třetích ročníků}
-\resultstab[1]{vysledkyB-3}
-
-\subsection{Kategorie čtvrtých ročníků}
-\resultstab[1]{vysledkyB-4}
+\subsection{Kategorie čtvrtých ročníků}~\vspace{-10pt}\par%
+\resultstabsplit[-1]{vysledkyB-4}
 
 %\newpage
 
