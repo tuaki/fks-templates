@@ -1,7 +1,7 @@
 \expandafter\ifx\csname classoptions\endcsname\relax
   \def\classoptions{}
 \fi
-\documentclass[SEM,\classoptions]{fksbatch}
+\documentclass[vyfuk,\classoptions]{fksbatch}
     
 \setcounter{year}{Y}
 \setcounter{batch}{B}
@@ -25,7 +25,7 @@
 \problemtask
 \problemtask
 
-\newpage
+\input{serial\thebatch.tex}
 
 \solutionheading %section
 
@@ -36,20 +36,7 @@
 \problemsolution
 \problemsolution
 
-\vfill
-\begin{center}
-	\includegraphics[width=0.7\textwidth]{vyfuk-schlitt.eps}
-\end{center}
-\vfill
-
-\newpage
-\input{serial\thebatch.tex}
-
-\newpage
-
 \resultsheading
-
-Kompletní výsledky najdete na \url{http://vyfuk.fykos.cz}.
 
 \subsection{Kategorie šestých ročníků}~\vspace{-10pt}\par%
 \resultstabsplit[-1]{vysledkyB-6}
@@ -62,8 +49,6 @@ Kompletní výsledky najdete na \url{http://vyfuk.fykos.cz}.
 
 \subsection{Kategorie devátých ročníků}~\vspace{-10pt}\par%
 \resultstabsplit[-1]{vysledkyB-9}
-
-%\newpage
 
 \vfill
 
