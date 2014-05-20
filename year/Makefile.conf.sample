@@ -1,6 +1,6 @@
 # path to web service client script (rather absolute)
 SOAPCLIENT := fks-soapclient.sh
- 
+
 # path to old-style script for stats inscription
 STATS_SH := fks-dakos-stats.sh
 
@@ -8,7 +8,7 @@ STATS_SH := fks-dakos-stats.sh
 XSL_SIGNATURES := /usr/local/share/fks/texsignatures.xsl
 XSL_RESULTS := /usr/local/share/fks/texresults.xsl
 XSL_STATS := /usr/local/share/fks/texstats.xsl
- 
+
 # URL of FKSDB web serice
 WS_URL := http://db.fykos.cz/web-service/default
 
