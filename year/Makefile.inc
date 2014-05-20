@@ -41,81 +41,74 @@ $(GRAPHICS)/%.eps : $(GRAPHICS)/%.1
 $(GRAPHICS)/%.1 : $(GRAPHICS)/%.mp
 	$(mpost-a)
 
-# == Results preprocessing ==
-GLOB_RESULTS := ../results
-$(RESULTS)/vysledky%.tex: $(GLOB_RESULTS)/vysledky.xml
-	xsltproc --stringparam type brojure \
-		--stringparam category $(word 2,$(subst -, ,$(subst .tex,,$(subst $(RESULTS)/vysledky,,$@)))) \
-		--stringparam series   $(word 1,$(subst -, ,$(subst .tex,,$(subst $(RESULTS)/vysledky,,$@)))) \
-		$(GLOB_RESULTS)/texresults.xsl $< >$@
+# -- IPE figures --
+$(PGRAPHICS)/%.eps : $(PGRAPHICS)/%.ipe
+	- ipetoipe -eps $< $@
+	ipetoipe -eps $< $@
 
-$(RESULTS)/statistiky%.csv: $(GLOB_RESULTS)/statistiky.xml
-	xsltproc --stringparam series $* \
-		$(GLOB_RESULTS)/texstats.xsl $< >$@
+$(GRAPHICS)/%.eps : $(GRAPHICS)/%.ipe
+	- ipetoipe -eps $< $@
+	ipetoipe -eps $< $@
+
+
+# == Data retrieval ==
+GLOB_DATA := ../data
+# credentials are at least obfuscated so they aren't easily grep'able from logs
+SOAP_REQUEST = $(SOAPCLIENT) $(WS_URL) $(GLOB_DATA)/$(1) $(2) $(shell echo $(WS_USERNAME) | base64) $(shell echo $(WS_PASSWORD) | base64)
+
+
+$(GLOB_DATA)/%.xml:
+	$(call SOAP_REQUEST,$*Request.soap,$@)
+
+# == Data processing ==
+SIGNATURES := ../signatures.tex
+$(SIGNATURES): $(GLOB_DATA)/signatures.xml $(SIGNATURES_STYLE)
+	xsltproc $(XSL_SIGNATURES) $< >$@
+
+$(RESULTS)/vysledky$(SOLVEDBATCHNO)-%.tex: $(GLOB_DATA)/results.xml $(XSL_RESULTS)
+	xsltproc --stringparam type brojure \
+		--stringparam category $* \
+		--stringparam series $(SOLVEDBATCHNO) \
+		$(XSL_RESULTS) $< >$@
+
+$(RESULTS)/statistiky$(SOLVEDBATCHNO).csv: $(GLOB_DATA)/stats.xml $(XSL_STATS)
+	xsltproc --stringparam series $(SOLVEDBATCHNO) \
+		$(XSL_STATS) $< >$@
 	# apply created results to statistics
 	$(STATS_SH) $(PROBLEMS) $@
-	
-$(GLOB_RESULTS)/vysledky.xml:
-	$(SOAPCLIENT) $(WS_URL) $(GLOB_RESULTS)/resultsRequest.soap $@
 
-$(GLOB_RESULTS)/statistiky.xml:
-	$(SOAPCLIENT) $(WS_URL) $(GLOB_RESULTS)/statsRequest.soap $@
 
 $(RESULTS)/%.tex: $(RESULTS)/%.csv
 	iconv -f latin2 -t utf8 $< | \
 	cut -d\; -f1,2,3,4,5,6,7,8,9,10,12,13,14 | \
 	sed '/^$$/d;/^%/d;s/;;/;--;/g;s/;;/;--;/g;s/;/ \& /g;s/$$/\\\\/' | sed -e '2i\\\\midrule'  > $@
 
-
-# == Results preprocessing ==
-#GLOB_RESULTS := ../results
-#$(RESULTS)/vysledky$(SOLVEDBATCHNO)-%.tex: $(GLOB_RESULTS)/vysledky.xml
-#	xsltproc --stringparam type detail \
-#		--stringparam category $* \
-#		--stringparam series $(SOLVEDBATCHNO) \
-#		$(GLOB_RESULTS)/texresults.xsl $< >$@
-#
-#$(GLOB_RESULTS)/vysledky.xml:
-#	$(SOAPCLIENT) $(WS_URL) $(GLOB_RESULTS)/request.xml $@
-#
-#$(RESULTS)/%.tex: $(RESULTS)/%.csv
-#	iconv -f latin2 -t utf8 $< | \
-#	cut -d\; -f1,2,3,4,5,6,7,8,9,10,12,13,14 | \
-#	sed '/^$$/d;/^%/d;s/;;/;--;/g;s/;;/;--;/g;s/;/ \& /g;s/$$/\\\\/' | sed -e '2i\\\\midrule'  > $@
-
-# Until creating better solution
-$(RESULTS)/vysledky$(SOLVEDBATCHNO).dat: $(GLOB_RESULTS)/vysledky.xml
-	xsltproc --stringparam type detail \
-		--stringparam series $(SOLVEDBATCHNO) \
-		$(GLOB_RESULTS)/webresult.xsl $< >$@
-
-
 # == Author solutions ==
-XELATEX_P=xelatex -output-directory $(@D) -jobname '$(basename $(@F))' '\documentclass[SEM]{fkssolution}\setcounter{year}{Y}\input{$<}\begin{document}\problemsolutionsingle\makefooter\end{document}'
+XELATEX_P=xelatex -output-directory $(@D) -jobname '$(basename $(@F))' '\documentclass[fykos]{fkssolution}\setcounter{year}{27}\input{$<}\begin{document}\problemsolutionsingle\makefooter\end{document}'
 
 # Ugly but working
-$(OUT)/reseni$(BATCHNO)-1.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_1))
+$(OUT)/reseni$(BATCHNO)-1.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_1)) $(SIGNATURES)
 	$(XELATEX_P)
 	$(XELATEX_P)
-$(OUT)/reseni$(BATCHNO)-2.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_2))
+$(OUT)/reseni$(BATCHNO)-2.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_2)) $(SIGNATURES)
 	$(XELATEX_P)
 	$(XELATEX_P)
-$(OUT)/reseni$(BATCHNO)-3.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_3))
+$(OUT)/reseni$(BATCHNO)-3.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_3)) $(SIGNATURES)
 	$(XELATEX_P)
 	$(XELATEX_P)
-$(OUT)/reseni$(BATCHNO)-4.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_4))
+$(OUT)/reseni$(BATCHNO)-4.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_4)) $(SIGNATURES)
 	$(XELATEX_P)
 	$(XELATEX_P)
-$(OUT)/reseni$(BATCHNO)-5.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_5))
+$(OUT)/reseni$(BATCHNO)-5.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_5)) $(SIGNATURES)
 	$(XELATEX_P)
 	$(XELATEX_P)
-$(OUT)/reseni$(BATCHNO)-6.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_6))
+$(OUT)/reseni$(BATCHNO)-6.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_6)) $(SIGNATURES)
 	$(XELATEX_P)
 	$(XELATEX_P)
-$(OUT)/reseni$(BATCHNO)-7.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_7))
+$(OUT)/reseni$(BATCHNO)-7.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_7)) $(SIGNATURES)
 	$(XELATEX_P)
 	$(XELATEX_P)
-$(OUT)/reseni$(BATCHNO)-8.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_8))
+$(OUT)/reseni$(BATCHNO)-8.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_8)) $(SIGNATURES)
 	$(XELATEX_P)
 	$(XELATEX_P)
 
