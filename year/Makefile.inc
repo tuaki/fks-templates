@@ -60,6 +60,8 @@ SOAP_REQUEST = $(SOAPCLIENT) $(WS_URL) $(GLOB_DATA)/$(1) $(2) $(shell echo $(WS_
 $(GLOB_DATA)/%.xml:
 	$(call SOAP_REQUEST,$*Request.soap,$@)
 
+.PRECIOUS: $(GLOB_DATA)/*.xml $(GLOB_DATA)/results.xml
+
 # == Data processing ==
 SIGNATURES := ../signatures.tex
 $(SIGNATURES): $(GLOB_DATA)/signatures.xml $(SIGNATURES_STYLE)

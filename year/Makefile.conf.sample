@@ -10,7 +10,7 @@ XSL_RESULTS := /usr/local/share/fks/texresults.xsl
 XSL_STATS := /usr/local/share/fks/texstats.xsl
 
 # URL of FKSDB web serice
-WS_URL := http://db.fykos.cz/web-service/default
+WS_URL := https://db.fykos.cz/web-service/default
 
 # credentials to the FKSDB WS
 WS_USERNAME := johndoe
