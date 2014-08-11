@@ -7,4 +7,4 @@ SUBDIRS=batch1
 all: $(SUBDIRS)
 
 $(SUBDIRS):
-	make -C $@
+	$(MAKE) -C $@
