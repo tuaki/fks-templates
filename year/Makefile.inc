@@ -1,4 +1,5 @@
 # Common makefile parts
+# vim: syn=make
 
 include ../Makefile.conf
 include $(PROBLEMS)/Makefile.inc
