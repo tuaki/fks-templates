@@ -1,342 +1,41 @@
-\documentclass[fykos]{fksempty}
-\usepackage{bbding} 
+\expandafter\ifx\csname classoptions\endcsname\relax
+  \def\classoptions{}
+\fi
+\documentclass[vyfuk,\classoptions]{fksbatch}
+
 \setcounter{year}{Y}
 \setcounter{batch}{B}
 
-\newfontfamily\dcmid[Scale=1.9]{[lmssdc10.pfb]}
-\newfontfamily\dcbig[Scale=9]{[lmssbx10.pfb]}
-\newcommand\mss{\sffamily\fontsize{12pt}{12pt}\selectfont}
-\newcommand\mssb{\sffamily\fontsize{15pt}{15pt}\selectfont}
-
-\newlength\logohead
-\setlength\logohead{0mm}
-\newcommand\nadpissptakemL[4]{\subsection[#1]{\includegraphics{logo#2.eps} \addtolength{\logohead}{#3}\raisebox{\logohead}{#1}}}
-\newcommand\nadpissptakemLL[4]{\section[#1]{\includegraphics{logo#2.eps} \addtolength{\logohead}{#3}\raisebox{\logohead}{#1}}}
-\makeatletter
-\newcommand\seriesheading[1]{%
-\section[Seriál: #1]{\centering Seriál: {#1}}}
-\makeatother
+\newfontfamily\cyrillicfont[Script=Cyrillic]{Liberation Serif}
 
 \begin{document}
+\maketitle
 
-\noindent{\dcmid Fyzikální korespondenční seminář MFF UK \rule[4pt]{28mm}{3pt}}
-\vspace{1mm}
-\noindent{\includegraphics[height=20mm]{logo8.eps}\hspace{0pt plus2fil}\dcbig F\hspace{0pt plus1fil}Y\hspace{0pt plus1fil}K\hspace{0pt plus1fil}O\hspace{0pt plus1fil}S}
-\vspace{5mm}
-\noindent{\rule[3pt]{9cm}{3pt} \dcmid jsme tu již 26~let}
-\noindent{\mss Přemýšlíte nad fyzikálními problémy, i~když jsou na první pohled obtížné?}
-%\vskip5mm
-%\noindent{\mss Chcete místo školy strávit dva týdny s~těmi, kdo mají stejné zájmy jako vy?}
-% změna loga
-\begin{wrapfigure}[0]{r}{55mm}
-\includegraphics[width=55mm]{logo7.eps}
-\end{wrapfigure}    
-% ----------
-\vskip2mm
-\noindent{\mss Už se nechcete nudit ve školních lavicích?}
-\vskip5mm
-\noindent{\mss Experimentujete rádi?}
-\vskip5mm
-%\noindent{\mss Chcete vědět, kdo jsme?}
-%\vskip5mm
-\noindent{\mss Hledáte přátelství na celý život?}
-\vskip5mm
-\noindent{\mss Chcete potkat a~poznat naše zahraniční řešitele?}
-\vskip5mm
-\noindent{\mss Zajímají vás podrobnosti největších fyzikálních objevů?}
-\vskip5mm
-\noindent{\mss Zajímá vás, co se odehrává v~českých fyzikálních}
-\vskip1mm
-\noindent{\mss laboratořích a~jak to tam vypadá?}
-%   \vskip1mm
-%   \noindent{\csss ve školních lavicích?}
-\vskip5mm
-\noindent{\mss Chcete mít ze sebe radost?}
-\vskip5mm
-\noindent{\mss Chcete jet na exkurze do zahraničí?}
+\input{uvod.tex}
 
-
-\vskip9mm
-\noindent{\hfill\mssb Řešte naše úlohy!\hfill}
-\vskip3mm
-
-\noindent\rule{\textwidth}{1pt}
-
-% -- konec titulní strany --
- \nadpissptakemL{Co je to {\FYKOS}?}{5}{6mm}{}
-
-
-{\FYKOS} (FYzikální KOrespondenční Seminář) pro vás představuje
-možnost si zajímavým způsobem rozšířit chápání fyziky a~proniknout
-do dalších, dosud nepoznaných, oblastí této vědy. Seminář
-organizují studenti a~zaměstnanci Matematicko-fyzikální fakulty
-Univerzity Karlovy v~Praze již
-%%%%%%%%%%%%%%%
-šestadvacátým %
-%%%%%%%%%%%%%%%
-rokem. Cílem {\FYKOS}u je rozvíjet fyzikální myšlení, protože
-člověk, který se umí nad (nejen fyzikálními) problémy zamyslet
-a~cítí touhu se dobrat k~nějakému řešení, se uplatní všude, kde si
-schopností lidského mozku cení.
-
-% \FYKOS{} je určen všem zájemcům o~fyziku ze všech ročníků a~typů
-% středních škol kdekoliv ve světě, kteří jsou schopni komunikovat
-% česky, slovensky nebo anglicky.
-
-\nadpissptakemL{Jak se stát řešitelem {\FYKOS}u?}{2}{6mm}{}
-
-Jednoduše! Stačí se jen \textbf{zaregistrovat na našem webu a~poslat
-řešení některých úloh}. Vše lze vyřídit i~klasickou poštou,
-kdy nám kromě řešení pošlete i~základní kontaktní informace
-(můžete využít přichystanou návratku).
-Poté vám již bude zasíláno zadání dalších sérií na vámi udanou adresu.
-% Můžete se samozřejmě připojit kdykoliv během roku, ale budete se muset
-% smířit s~bodovým náskokem ostatních řešitelů.
-% %%%
-% Výběr na soustředění však probíhá podle hodnocení za pololetí,
-% tudíž je nyní optimální chvíle zapojit se do semináře a~provířit
-% vody stávajících řešitelů.
-% %%%
-% 
-Není nutné posílat řešení všech úloh, i~jedna vyřešená úloha má
-smysl. Řešitelé, kteří spočítají úplně všechno, jsou výjimkou.
-Často je dobré poslat i~řešení, které není dotažené úplně do
-konce, žádný učený z~nebe nespadl!
-
-%\subsubsection{Proč řešit \FYKOS?}
-%
-%Řešením úloh \FYKOS{}u získáte praxi v~řešení fyzikálních
-%problémů a~hlubší náhled na jejich podstatu. \FYKOS{} je též
-%velmi vhodnou přípravou pro současné a~budoucí úspěšné řešitele
-%jiných fyzikálních soutěží (Fyzikální olympiáda, SOČ apod.).
-%
-%Řešení {\FYKOS}u je dobrým odrazovým můstkem pro studium na
-%Matematicko-fyzikální fakultě UK. Díky tomu, že poznáte
-%organizátory {\FYKOS}u, si uděláte představu, jaké to je být
-%studentem MFF.
-%
-%Pro nejlepší řešitele jsou připravena dvě soustředění, kde se
-%seznámíte se spoustou nových přátel, se kterými máte jednu
-%společnou zálibu~-- fyziku. Mnohá z~těchto přátelství pak
-%přetrvávají během studia na VŠ i~déle.
-%
-%A~samozřejmě na nejlepší řešitele v~každé kategorii čekají
-%hodnotné a~zajímavé ceny.
-%
- %\vfil\eject
- \nadpissptakemL{Jak {\FYKOS} probíhá?}{3}{6mm}{}
-
-Šestkrát do roka vám poštou zašleme brožurku se zadáním
-tzv.~\emph{série} osmi úloh. Na jejich řešení máte zhruba pět týdnů. 
-Úlohy pošlete poštou nebo nahrajete na našem webu do zadaných termínů.
-My během dvou týdnů úlohy opravíme 
-a~se zadáním následující série je pošleme poštou zpátky. V~den 
-termínu doručení ($\approx$~termín~uploadu) se na internetu objeví autorská řešení úloh, 
-proto pozdější odeslání není možné.
-
-%\subsubsection{Jaké jsou ve {\FYKOS}u úlohy?}
-
-%Úlohy většinou vycházejí ze znalostí středoškolských studentů
-%(samozřejmě těch, co se zajímají o~fyziku) a~snaží se je
-%dále rozšířit. První dvě jsou jednodušší a tvoří takzvanou 
-%rozcvičku (R). Další tři bývají zpravidla obtížnější. Pátá úloha 
-%nemívá tak přímočaré řešení jako první čtyři úlohy, proto jí 
-%říkáme {\it problémová\/} (P). Předposlední úloha je {\it 
-%experimentální\/} (E), očekává se, že zadaný experiment nejen 
-%navrhnete, ale hlavně zrealizujete a~vyhodnotíte. Poslední
-%úloha (S) souvisí se {\it seriálem na pokračování\/}, který vám 
-%během roku přiblíží 
-%%%
-%komplexní čísla a jejich použití ve fyzice. Letošní seriál 
-%můžete sledovat i na kanálu Fykosák na YouTube ({\tt 
-%http://www.youtube.com/fykosak}).
-%%%
-%U každé z úloh je uvedeno její maximální bodové ohodnocení. 
-%Celkem můžete za rok získat až 200 bodů.
-\subsubsection{Jak mají vypadat řešení jednotlivých úloh?}
-
-Ve správném řešení je důležité popsat a odůvodnit postup,
-jímž byl získán uváděný výsledek.
-Proto se nebojte psát více k~danému problému; čím více nad něčím přemýšlíme, tím lépe.
-
-Posíláte-li řešení běžnou poštou, pište každou úlohu na
-\emph{zvláštní} papír formátu~A4 (menší se nám lehce ztratí)
-a~u~horního okraje jej podepište a~zřetelně označte číslo úlohy.
-Je-li vaše řešení některé úlohy na více listech, očíslujte je, 
-podepište a~sešijte k~sobě.
-
-Obdobná pravidla platí i pro elektronická řešení,
-ta můžete odesílat přes internetový formulář%
-\footnote{\url{http://upload.fykos.cz/} -- vyžaduje přihlášení.} ve formátu PDF.
-Doporučení, jak připravit hezké elektronické řešení jsou na webu.%
-\footnote{\url{http://fykos.cz/ulohy/elektronicka-reseni}}
-
-
-
-\nadpissptakemL{Jak se {\FYKOS} vyhodnocuje?}{7}{6mm}{}
-
-Seminář je jedna velká, nepřetržitá soutěž. Za každou úlohu
-obdržíte určitý počet bodů podle míry správnosti vašeho řešení
-a~obtížnosti úlohy (bodová maxima najdete u~zadání úloh, 
-experiment je bodován nejštědřeji). Pokud někdo vymyslí 
-originální řešení či zašle skvěle propracovanou úlohu, může 
-získat tzv.~\emph{bonus}, určitý počet bodů navíc
-k~bodům standardním.
-
-Řešitelé jsou rozděleni do čtyř kategorií dle ročníku,
-jejž navštěvují,
-přičemž studentům 1.~a~2.~ročníků se body za první dvě úlohy série (alias rozcvičku) násobí dvěma.
-
-
-\subsubsection{Odměny za řešení}
-
-Největší odměnou úspěšným řešitelům jsou soustředění (popsaná dále),
-kde účastníci mj.~dostávají FYKOSí trička.
-
-Přinejmenším třicítka nejlepších řešitelů
-nebo nejlepší třetina řešitelů (podle toho, co je vyšší)
-je odměněna odbornou či populární knížkou,
-deskovou hrou nebo jinou hodnotnou cenou.
-Tuto také dostane alespoň pět prvních řešitelů z~každé kategorie.
-% Ideálním místem na předání odměn je podzimní soustředění,
-% ale i kteří nepřijedou nezůstanou bez odměny a budeme se snažit dát předem na výběr z více cen, pokud to bude organizačně možné. 
-
-Pro ty, kteří z~nejrůznějších důvodů na soustředění nepřijedou,
-nebo chtějí mít triček více, máme také připravenou možnost,
-jak tričko získat.
-Stačí vyřešit aspoň 3~série s~celkovým ziskem minimálně 70 bodů.
-Navíc za každou úlohu, za kterou dostane řešitel bonusový bod,
-získá též i drobnou odměnu -- dle našich aktuálních zásob a fantazie.
-
-Formální odměnou je \emph{Osvědčení úspěšného řešitele korespondenčního semináře},
-na jehož základě může účastník požádat o~\textbf{prominutí odborné přijímací zkoušky na MFF~UK}.%
-\footnote{Podrobnosti na \url{http://www.mff.cuni.cz/studium/uchazec/prijriz-bc.htm}.}
-K~jeho zisku je potřeba alespoň~$"50 \%"$ celkového počtu bodů v~jednom ročníku semináře.
-
-%\subsubsection{Publikace}
-
-%Již se stalo tradicí, že každým rokem vydáváme ročenku, kde
-%najdete pohromadě celý předcházející ročník semináře. Od zadání,
-%přes řešení a~seriál na pokračování, až po výsledkovou listinu. 
-%%K~dispozici jsou ročníky
-%%%%%%%%%%%%%%%%%%
-%XVII--XXIII.       %
-%%%%%%%%%%%%%%%%%%%
-%Ročenky nabízíme na akcích fakulty pro středoškoláky, jako je Den
-%otevřených dveří (listopad), Jeden den s~fyzikou (únor) nebo na 
-%soustředění. Ročenku od nás obdrží každý řešitel z~první poloviny 
-%výsledkové listiny. 
-
-
-%\nadpissptakemL{Akce {\FYKOS}u a odměny řešitelům}{6}{6mm}{}
-\nadpissptakemL{Akce {\FYKOS}u}{6}{6mm}{}
-
-\subsubsection{Soustředění}
-
-\FYKOS{} pořádá dvakrát do roka, na jaře a~na podzim,
-soustředění. Tato týdenní akce je určena pro přibližně
-30~nejlepších řešitelů každého pololetí,
-které vybereme ze všech kategorií,
-a~probíhá v~nějakém krásném koutu naší vlasti. Účastníci
-soustředění prožijí několik dní plných atraktivních přednášek
-a~experimentů z~fyziky, a~aby intelektuální zátěž nebyla příliš
-vysoká, odpočinou si všichni (řešitelé i~organizátoři) při hrách, 
-zajímavém zážitkovém programu a~sportu.
-
-Řešitelům, kteří v~odpovídajících třech sériích získají více
-než polovinu bodů Studenta Pilného, \textbf{uhradíme část poplatku}
-za soustředění a~soustředění \textbf{celé zaplatíme při zisku alespoň tří
-čtvrtin bodů}.
-\medskip
-
-\subsubsection{TSAF}
-TSAF (\ldots{} s~aplikovanou fyzikou)%
-\footnote{\ldots = tři dny, týden atd.}
-jsou sérií exkurzí po rozmanitých pracovištích spojených s~fyzikou pro šikovné řešitele.
-Více o~letošním zahraničním TSAFu se dočtete v~části aktualit.
-
-\subsubsection{Fyziklání}
-FYKOSí Fyziklání%
-\footnote{\url{http://fyziklani.cz/}}
-je týmová soutěž pro středoškoláky.
-Družstva mohou být až pětičlenná a~výjimkou nejsou ani slovenští účastníci.
-Soutež se koná v~Praze na konci zimy a úkolem soutěžících
-je ve třech hodinách správně vyřešit co nejvíce z~asi 40 příkladů různých
-obtížnostních úrovní a oblastí fyziky. 
-
-Pořádáme i internetovou variantu Fyziklání%
-\footnote{\url{http://online.fyziklani.cz/}},
-která se koná o~několik týdnů dříve a můžete takříkajíc z~tepla domova procvičit týmovou souhru.
-
-
-\nadpissptakemL{{\FYKOS}í aktuality}{4}{7mm}{}\medskip
-
-Od druhé půlky října pořádáme nejen pro řešitele sérii přednášek%
-\footnote{\url{http://fykos.cz/akce/prednasky}}
-s~fyzikální
-tématikou~–~ve stručnosti: mechanika kladek, mechanika kapalin, statistika, kmitavý pohyb a diferenciální rovnice, aproximace.
-Přednášky se budou konat v~Praze na MFF UK v~Troji každý druhý čtvrtek od 18.~října do 13.~prosince.
-
-Rozhodli jsme se, že letošní TSAF (Týden s~aplikovanou fyzikou) pojmeme ve velkém stylu,
-a~proto navštívíme zajímavá místa v zahraničí, nejspíše v~Německu a Švýcarsku.
-Přesný listopadový termín a program akce naleznete na webu.%
-\footnote{\url{http://tsaf.cz/}}
-Co je však důležité -- \textbf{TSAFu se můžete zúčastnit i jako noví řešitelé FYKOSu},
-stačí jen dobře vyřešit první sérii.
-
-Další informace o~akcích a~aktuality kolem \FYKOS{}u se dozvíte na webu \url{http://fykos.cz/}
-a~můžete nás sledovat i~na Facebooku na oficiální stránce \url{http://www.facebook.com/Fykos}.
-
-\nadpissptakemLL{Zadání první série \Roman{year}.~ročníku}{12}{7mm}{}\medskip
-
-Vyřešené úlohy můžete odesílat poštou do~15.~října~2012 (včetně),
-elektronická řešení je možno uploadovat až do 16.~října 2012 do 20.00.
-\medskip
-
-\noindent\textbf{Nabídka}\quad
-{\small
-$$
-    (\forall x \in \text{Řešitel})\big(\text{odeslání}(x, F) \le \text{12.\,9.} \,\wedge\,\text{úspěšnost}(x, F) = 1 - \epsilon \ztoho P[x \in \text{soustředění}] \gg 0\big)\,,
-$$}
-kde $F$ je první série, $P[A]$~je pravděpodobnost jevu~$A$ a $\epsilon \in \langle 0, 1/4\rangle$.
-
-\problemtask
-\problemtask
-\problemtask
-\problemtask
-\problemtask
-\problemtask
-\problemtask
-\problemtask
-\par\noindent\emph{Poznámka}\quad Text seriálu naleznete v~závěru této brožurky.
+\input{proc_resit.tex}
 \newpage
-\input{../batch\thebatch/serial\thebatch.tex}
-\vfill
-\vbox to 67mm{
-\noindent\raisebox{-0.3\baselineskip}{\ScissorHollowRight}\dotfill
-\vfill
-}
-\newpage
+\vspace{-2cm}
+\input{navratka.tex}
 
-\null
-\vfill
-\begin{center}
-\metavar{address} 
-%\includegraphics{ptak-drak.eps}
-\end{center}
-\vfill
-%\textbf{\huge Návratka} \hrulefill\par
-\addcontentsline{toc}{section}{Návratka}
-\centerline{\emph{Návratka pro řešitele zasílající úlohy poštou}} %k~odstřižení
-\vbox to 67mm{
-\noindent\dotfill\raisebox{-0.3\baselineskip}{\ScissorHollowLeft}\par
-\vfill
-\centering
-\noindent\input{return.tex}
-\vfill
-%\vspace{-2cm}
-}
+\problemsheading
+\centerline{\Large\slshape\sffamily Termín uploadu: 20.~1.~2015~20.00}
+\centerline{\Large\slshape\sffamily Termín odeslání: 19.~1.~2015}
+\vspace{1.5ex}\setcounter{problem}{0}
 
-% touch comment
-\end{document} 
+\problemtask
+\problemtask
+\problemtask
+\problemtask
+\problemtask
+\problemtask
+\problemtask
+\problemtask
+{\it Poznámka}\qquad Text Výfučtení naleznete na nešem webu
+v~sekci Úlohy/Zadání.
+
+\makefooter
+
+\end{document}
+
 
