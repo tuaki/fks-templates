@@ -51,12 +51,12 @@ vypadá?}
 %\noindent{\mss Hledáte přátelství na celý život?}
 %\vskip5mm
 %\noindent{\mss Chcete potkat a~poznat naše zahraniční řešitele?}
-\vskip5mm
-\noindent{\mss Zajímají vás podrobnosti největších fyzikálních objevů?}
+%\vskip5mm
+%\noindent{\mss Zajímají vás podrobnosti největších fyzikálních objevů?}
 %\vskip5mm
 %\noindent{\mss Chcete mít ze sebe radost?}
-%\vskip5mm
-%\noindent{\mss Chcete jet na exkurze do zahraničí?}
+\vskip5mm
+\noindent{\mss Chcete jet na exkurze do zahraničí?}
 \vskip9mm
 \noindent{\hfill\mssb Odpověděli jste alespoň na jednu otázku ano?\hfill}
 \vskip3mm
@@ -77,7 +77,7 @@ do dalších, dosud nepoznaných, oblastí této vědy. Seminář
 organizují studenti a~zaměstnanci Matematicko-fyzikální fakulty
 Univerzity Karlovy v~Praze již
 %%%%%%%%%%%%%%%
-sedmadvacátým %
+osmadvacátým %
 %%%%%%%%%%%%%%%
 rokem. Cílem {\FYKOS}u je rozvíjet fyzikální myšlení, protože
 člověk, který se umí nad (nejen fyzikálními) problémy zamyslet
@@ -170,8 +170,8 @@ podepište a~sešijte k~sobě.
 Obdobná pravidla platí i~pro elektronická řešení,
 ta můžete odesílat přes internetový formulář%
 \footnote{\url{http://upload.fykos.cz}~--~vyžaduje přihlášení.} ve formátu PDF.
-Doporučení, jak připravit hezké elektronické řešení jsou na webu.%
-\footnote{\url{http://fykos.cz/ulohy/elektronicka-reseni}}
+Doporučení, jak připravit hezké elektronické řešení, jsou na 
+našem webu\footnotei.{\url{http://fykos.cz/ulohy/elektronicka-reseni}}
 
 \nadpissptakemL{Jak se {\FYKOS} vyhodnocuje?}{7}{6mm}{}
 
@@ -184,9 +184,10 @@ získat tzv.~\emph{bonus}, určitý počet bodů navíc
 k~bodům standardním.
 
 Řešitelé jsou rozděleni do čtyř kategorií dle ročníku,
-jejž navštěvují, přičemž studentům 1.~a~2.~ročníků se body za první dvě úlohy série
+jenž navštěvují, přičemž studentům 1.~a~2.~ročníků se body za první dvě úlohy série
 (alias rozcvičku) násobí dvěma.
 
+\vskip-0.3cm
 \begin{table}[b!]
 \centerline{\emph{Návratka pro řešitele zasílající úlohy poštou}} %k~odstřižení
 \vbox to 48mm{
@@ -224,7 +225,7 @@ získá též i~drobnou odměnu~--~dle našich aktuálních zásob a~fantazie.
 
 Formální odměnou je \emph{Osvědčení úspěšného řešitele korespondenčního
 semináře}, na jehož základě může účastník požádat o~\textbf{prominutí odborné
-přijímací zkoušky na MFF~UK}.\footnote{Podrobnosti na
+přijímací zkoušky na MFF~UK}\footnotei.{Podrobnosti na
 \url{http://www.mff.cuni.cz/studium/uchazec/prijriz-bc.htm}.} K~jeho zisku je potřeba
 alespoň~$"50 \%"$ celkového počtu bodů v~jednom ročníku semináře.
 
@@ -261,7 +262,7 @@ Cena soustředění se odvíjí od bodů získaných v~sériích.
 Ve zkratce \textbf{čím víc má řešitel bodů, tím má levnější soustředění}.
 Dokonce pak \textbf{při zisku alespoň tří
 čtvrtin bodů} v~pololetí, ze kterého vás na soustředění zveme,
-máte \textbf{soustředění zdarma}.\footnote{Podrobnosti na
+máte \textbf{soustředění zdarma}\footnotei.{Podrobnosti na
 \url{http://fykos.cz/sous_cena}.}
 \medskip
 
@@ -283,14 +284,14 @@ máte \textbf{soustředění zdarma}.\footnote{Podrobnosti na
 FYKOSí Fyziklání%
 \footnote{\url{http://fyziklani.cz}}
 je týmová soutěž pro středoškoláky.
-Družstva mohou být až pětičlenná a~výjimkou nejsou ani slovenští účastníci.
-Soutěž se koná v~Praze 14.~2.~2014 a~úkolem soutěžících
-je ve třech hodinách správně vyřešit co nejvíce z~asi 40 příkladů různých
+Družstva mohou být až pětičlenná, výjimkou nejsou ani slovenští účastníci.
+Soutěž se koná v~Praze 13.~2.~2015 a~úkolem soutěžících
+je během tří hodin správně vyřešit co nejvíce z~asi 50~příkladů různých
 obtížnostních úrovní a~oblastí fyziky.
 
 Pořádáme i~internetovou variantu Fyziklání%
-\footnote{\url{http://online.fyziklani.cz}},
-která se koná 5.~12.~2013 a~můžete takříkajíc z~tepla domova procvičit
+\footnotei,{\url{http://online.fyziklani.cz}}
+která se konala 4.~12.~2014, ve které~můžete takříkajíc z~tepla domova procvičit
 týmovou souhru.
 
 \nadpissptakemL{{\FYKOS}í aktuality}{4}{7mm}{}\medskip
