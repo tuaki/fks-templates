@@ -24,11 +24,13 @@
 \problemtask
 \problemtask
 \problemtask
+\problemtask
 
 \input{serial\thebatch.tex}
 
 \solutionheading %section
 
+\problemsolution
 \problemsolution
 \problemsolution
 \problemsolution
