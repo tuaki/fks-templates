@@ -56,16 +56,16 @@
 Kompletní výsledky najdete na \url{http://fykos.cz}.
 
 \subsection{Kategorie prvních ročníků}~\vspace{-10pt}\par%
-\resultstabsplit[-1]{vysledkyB-1}
+\resultstab{vysledkyB-1}
 
 \subsection{Kategorie druhých ročníků}~\vspace{-10pt}\par%
-\resultstabsplit[-1]{vysledkyB-2}
+\resultstab{vysledkyB-2}
 
 \subsection{Kategorie třetích ročníků}~\vspace{-10pt}\par%
-\resultstabsplit[-1]{vysledkyB-3}
+\resultstab{vysledkyB-3}
 
 \subsection{Kategorie čtvrtých ročníků}~\vspace{-10pt}\par%
-\resultstabsplit[-1]{vysledkyB-4}
+\resultstab{vysledkyB-4}
 
 %\newpage
 
