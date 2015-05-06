@@ -57,8 +57,11 @@ GLOB_DATA := ../data
 # credentials are at least obfuscated so they aren't easily grep'able from logs
 SOAP_REQUEST = $(SOAPCLIENT) $(WS_URL) $(GLOB_DATA)/$(1) $(2) $(shell echo $(WS_USERNAME) | base64) $(shell echo $(WS_PASSWORD) | base64)
 
+# vysledky?-% is implicit rule, results can't be also imlicit, so mention it explicitly
+# see: https://www.gnu.org/software/make/manual/html_node/Chained-Rules.html
+$(GLOB_DATA)/results.xml: $(GLOB_DATA)/resultsRequest.soap
 
-$(GLOB_DATA)/%.xml:
+$(GLOB_DATA)/%.xml: $(GLOB_DATA)/%Request.soap
 	$(call SOAP_REQUEST,$*Request.soap,$@)
 
 .PRECIOUS: $(GLOB_DATA)/*.xml $(GLOB_DATA)/results.xml
@@ -68,14 +71,14 @@ SIGNATURES := ../signatures.tex
 $(SIGNATURES): $(GLOB_DATA)/signatures.xml $(SIGNATURES_STYLE)
 	xsltproc $(XSL_SIGNATURES) $< >$@
 
-$(RESULTS)/vysledky$(SOLVEDBATCHNO)-%.tex: $(GLOB_DATA)/results.xml $(XSL_RESULTS)
+$(RESULTS)/vysledky%.tex: $(GLOB_DATA)/results.xml $(XSL_RESULTS)
 	xsltproc --stringparam type brojure \
-		--stringparam category $* \
-		--stringparam series $(SOLVEDBATCHNO) \
+		--stringparam category $(word 2,$(subst -, ,$(subst .tex,,$(subst $(RESULTS)/vysledky,,$@)))) \
+		--stringparam series   $(word 1,$(subst -, ,$(subst .tex,,$(subst $(RESULTS)/vysledky,,$@)))) \
 		$(XSL_RESULTS) $< >$@
 
-$(RESULTS)/statistiky$(SOLVEDBATCHNO).csv: $(GLOB_DATA)/stats.xml $(XSL_STATS)
-	xsltproc --stringparam series $(SOLVEDBATCHNO) \
+$(RESULTS)/statistiky%.csv: $(GLOB_DATA)/stats.xml $(XSL_STATS)
+	xsltproc --stringparam series $* \
 		$(XSL_STATS) $< >$@
 	# apply created results to statistics
 	$(STATS_SH) $(PROBLEMS) $@
@@ -87,7 +90,7 @@ $(RESULTS)/%.tex: $(RESULTS)/%.csv
 	sed '/^$$/d;/^%/d;s/;;/;--;/g;s/;;/;--;/g;s/;/ \& /g;s/$$/\\\\/' | sed -e '2i\\\\midrule'  > $@
 
 # == Author solutions ==
-XELATEX_P=xelatex -output-directory $(@D) -jobname '$(basename $(@F))' '\documentclass[fykos]{fkssolution}\setcounter{year}{27}\input{$<}\begin{document}\problemsolutionsingle\makefooter\end{document}'
+XELATEX_P=xelatex -output-directory $(@D) -jobname '$(basename $(@F))' '\documentclass[SEM]{fkssolution}\setcounter{year}{Y}\input{$<}\begin{document}\problemsolutionsingle\makefooter\end{document}'
 
 # Ugly but working
 $(OUT)/reseni$(BATCHNO)-1.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_1)) $(SIGNATURES)
