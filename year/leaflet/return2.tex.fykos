@@ -1,13 +1,31 @@
-\begin{minipage}{0.95\textwidth}
-\textbf{Škola} \par
-
-\begin{tabularx}{\textwidth}{>{\vbox to 6mm{}}rXrX}
-	Třída: & \dotfill & Rok maturity: &\dotfill\\
-	Adresa: & \multicolumn{3}{l}{\dotfill}\\
-	& \multicolumn{3}{l}{\dotfill}
-\end{tabularx}
-\medskip
-
-\textbf{Jak jste se o FYKOSu dozvěděli?}\par
-
-\end{minipage}
+\vskip-0.3cm
+\begin{table}[b!]
+	\centerline{\emph{Návratka pro řešitele zasílající úlohy poštou}} %k~odstřižení
+	\vbox to 52mm{
+		\noindent\raisebox{-0.3\baselineskip}{\ScissorHollowRight}\dotfill\par
+		\vskip1mm
+		\centering
+		\noindent
+		\begin{minipage}{0.95\textwidth}
+			\textbf{Škola} \par
+			
+			\begin{tabularx}{\textwidth}{>{\vbox to 6mm{}}rXrX}
+				Třída: & \dotfill & Rok maturity: &\dotfill\\
+				Adresa: & \multicolumn{3}{l}{\dotfill}\\
+				& \multicolumn{3}{l}{\dotfill}
+			\end{tabularx}
+			
+			\vskip3mm
+			
+			\textbf{Přejete si dostávat informace o~dění na MFF a~akcích, které pořádáme?}
+			
+			\vskip5mm
+			
+			\textbf{Jak jste se o FYKOSu dozvěděli?}\par
+			
+		\end{minipage}
+		\vfill
+	}
+	\vskip5cm \caption{~} \vskip-5cm
+\end{table}
+\clearpage
