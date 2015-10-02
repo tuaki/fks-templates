@@ -7,6 +7,17 @@
 		</ns1:AuthenticationCredentials>
 	</SOAP-ENV:Header>
 	<SOAP-ENV:Body>
-		<GetResultsRequest><contest>fykos</contest><year>27</year><brojure>1 2 3 4 5 6</brojure></GetResultsRequest>
+		<GetResultsRequest>
+			<contest>fykos</contest>
+			<year>29</year>
+			<brojures>
+				<brojure>1</brojure>
+				<brojure>1 2</brojure>
+				<brojure>1 2 3</brojure>
+				<brojure>1 2 3 4</brojure>
+				<brojure>1 2 3 4 5</brojure>
+				<brojure>1 2 3 4 5 6</brojure>
+			</brojures>
+		</GetResultsRequest>
 	</SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
