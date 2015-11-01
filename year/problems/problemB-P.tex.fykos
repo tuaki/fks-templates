@@ -1,3 +1,10 @@
+%%flag:odb-beta   -> 
+%%flag:odb-korek1 -> 
+%%flag:odb-korek2 -> 
+%%flag:jaz-zadani -> 
+%%flag:jaz-reseni -> 
+%%flag:typo-zadani-> 
+%%flag:typo-reseni-> 
 \probbatch{B}
 \probno{P}
 \probname{}

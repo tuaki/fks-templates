@@ -1,6 +1,7 @@
 # Simple recursive makefile
 
-SUBDIRS=batch1 
+SUBDIRS=batch1 \
+		todo
 
 .PHONY: $(SUBDIRS)
 
