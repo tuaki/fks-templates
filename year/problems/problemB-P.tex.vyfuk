@@ -1,7 +1,17 @@
+% kompletní specifikace na fiki
 \probbatch{B}
 \probno{P}
-\probname{}
-\proborigin{}
+\probsource{VYFUK6}
+\probname[cs]{}
+\proborigin[cs]{}
+\proborigintruth{}
+% TODO
+% mechHmBodu,mechTuhTel,hydroMech,mechPlynu,gravPole,kmitani,vlneni,
+% molFyzika,termoDyn,statFyz,optikaGeom,optikaVln,elProud,elPole,magPole,
+% relat,kvantFyz,jadFyz,astroFyz,matematika,chemie,biofyzika,other
+% ... multiple choice oddelene carkami bez mezer
+\probtopics{}
+\probtags{}
 \probpoints{0}
 \probauthors{}
 \probsolauthors{}
@@ -9,9 +19,11 @@
 %\probtags{}
 %\probsolvers{}
 %\probavg{}
-\probtask{%
+%\probfig[cs]{}
+%\probwebfig[cs]{}{}
+\probtask[cs]{%
 }
-\probsolution{%
+\probsolution[cs]{%
 }
 
 % TODO text zadání
@@ -28,4 +40,3 @@
 % poznámky k došlým řešením odborné korektury
 % poznámky k došlým řešením jazykové korektury
 % poznámky k došlým řešením typo korektury
-
