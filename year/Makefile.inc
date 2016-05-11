@@ -22,9 +22,9 @@ $(PGRAPHICS)/color/%.eps $(PGRAPHICS)/color/%.tex: $(PGRAPHICS)/%.plt
 	cd $(<D); $(plot-color)
 
 $(GRAPHICS)/%.eps $(GRAPHICS)/%.tex: $(GRAPHICS)/%.plt
-	$(plot)
+	cd $(<D); $(plot)
 $(GRAPHICS)/color/%.eps $(GRAPHICS)/color/%.tex: $(GRAPHICS)/%.plt
-	$(plot-color)
+	cd $(<D); $(plot-color)
 
 # -- Metapost figures --
 define mpost-a 
