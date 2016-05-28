@@ -95,6 +95,7 @@ $(RESULTS)/%.tex: $(RESULTS)/%.csv
 ../Deadline.inc: ../Deadline_xml.inc
 	echo "#" > $@
 	echo "# Automaticky generovaný" >> $@
+    # not working for times between 0:00:00 and 0:59:59
 	sed -e 's/DEADLINE_XML\[\([0-9]*\)\]=\([0-9]*\)-[0]*\([1-9][0-9]*\)-[0]*\([1-9][0-9]*\)T[0]*\([1-9][0-9]*\):\([0-9]*\):\([0-9]*\)/DEADLINE\[\1\]=\4.~\3.~\2 \5.\6/;s/DEADLINES_XML\[\([0-9]*\)\]=\([0-9]*\)-[0]*\([1-9][0-9]*\)-[0]*\([1-9][0-9]*\)/DEADLINES\[\1\]=\4.~\3.~\2/' $< >> $@
 
     
