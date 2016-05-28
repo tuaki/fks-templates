@@ -4,10 +4,10 @@
 %%flag:jaz-reseni ->
 %%flag:typo-zadani->
 %%flag:typo-reseni->
-% kompletní specifikace na fiki
+% kompletní specifikace/dokumentace na fiki
 \probbatch{B}
 \probno{P}
-\probsource{FYKOS30}
+\probsource{SEMY}
 \probname[cs]{}
 \probname[en]{}
 \proborigin[cs]{}
