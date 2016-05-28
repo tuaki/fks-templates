@@ -1,13 +1,14 @@
-%%flag:odb-korek1 ->
-%%flag:odb-korek2 ->
-%%flag:jaz-zadani ->
-%%flag:jaz-reseni ->
-%%flag:typo-zadani->
-%%flag:typo-reseni->
+%%flag:odb-korek1    ->
+%%flag:odb-korek2    ->
+%%flag:jaz-zadani    ->
+%%flag:jaz-reseni    ->
+%%flag:typo-zadani   ->
+%%flag:typo-zadani-en->
+%%flag:typo-reseni   ->
 % kompletní specifikace/dokumentace na fiki
 \probbatch{B}
 \probno{P}
-\probsource{SEMY}
+\probcontest{SEMY}
 \probname[cs]{}
 \probname[en]{}
 \proborigin[cs]{}
