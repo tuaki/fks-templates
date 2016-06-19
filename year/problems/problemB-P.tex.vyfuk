@@ -5,10 +5,8 @@
 \probname[cs]{}
 \proborigin[cs]{}
 \proborigintruth{}
-% TODO
-% mechHmBodu,mechTuhTel,hydroMech,mechPlynu,gravPole,kmitani,vlneni,
-% molFyzika,termoDyn,statFyz,optikaGeom,optikaVln,elProud,elPole,magPole,
-% relat,kvantFyz,jadFyz,astroFyz,matematika,chemie,biofyzika,other
+% kinematika,dynamika,energie,gravitace,teplo,astronomie,optika,elektrina
+% odhady,matematika,geometrie,programovani,logika,experimenty
 % ... multiple choice oddelene carkami bez mezer
 \probtopics{}
 \probtags{}
