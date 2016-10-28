@@ -7,7 +7,7 @@ sed -i \
 	-e 's/->/   ->/g' \
 	-e '/%%flag:typo-reseni/ i %%flag:typo-zadani-en->' \
 	-e '/%%flag:typo-reseni/ a % kompletní specifikace na fiki' \
-	-e '/\\probno/ a \\\probcontest{}' \
+	-e '/\\probno/ a \\\probsource{}' \
 	-e 's/\\probname/\\\probname[cs]/' \
 	-e '/\\probname/ a \\\probname[en]{}' \
 	-e 's/\\proborigin/\\\proborigin[cs]/' \
