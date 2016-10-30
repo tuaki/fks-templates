@@ -11,7 +11,6 @@ PGRAPHICS=$(PROBLEMS)/graphics# graphics for problems
 RESULTS=results
 
 ARG=\def\mdeadline{${DEADLINE[${BATCHNO}]}}\def\mdeadlineS{${DEADLINES[${BATCHNO}]}}
-ARG_XML=\def\mdeadline{${DEADLINE_XML[${BATCHNO}]}}\def\mdeadlineS{${DEADLINES_XML[${BATCHNO}]}}
 
 .SUFFIXES:
 .PHONY: all clean cleanall web book print solutions problems series
@@ -72,12 +71,9 @@ cleanall:
 define XML_DEFS
 \def\batchno{$(BATCHNO)}\
 \def\problemcount{PB}\
-$(ARG_XML)
+$(ARG)
 endef
 
-$(OUT)/zadaniWeb$(BATCHNO).xml: $(SERIEDEP)
-	xelatex -output-directory $(@D) -jobname $(basename $(@F)) '$(XML_DEFS)\documentclass[SEM]{fksbase}\setcounter{year}{Y}\input{fks-web-xml}'
-	fks-web-xml.sh  $(OUT)/zadaniWeb$(BATCHNO).xml > $(OUT)/zadaniWeb$(BATCHNO)-out.xml
-	cat $(OUT)/zadaniWeb$(BATCHNO)-out.xml | tr -d '\n' | sed 's/<\(.*\)>\s*<\/\1>//g' >  $(OUT)/zadaniWeb$(BATCHNO).xml
-	rm -f $(OUT)/zadaniWeb$(BATCHNO)-out.xml
+$(OUT)/zadaniWeb$(BATCHNO).xml: $(PROBLEMS)/web.tex $(SERIEDEP)
+	xelatex -output-directory $(@D) -jobname $(basename $(@F)) '$(XML_DEFS)\input{$<}'
 
