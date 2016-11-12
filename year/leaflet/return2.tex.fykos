@@ -1,12 +1,12 @@
-\vskip-0.3cm
-\begin{table}[b!]
+\vskip 10pt
+\vfil
+	\vbox{
 	\centerline{\emph{Návratka pro řešitele zasílající úlohy poštou}} %k~odstřižení
-	\vbox to 52mm{
 		\noindent\raisebox{-0.3\baselineskip}{\ScissorHollowRight}\dotfill\par
 		\vskip1mm
 		\centering
 		\noindent
-		\begin{minipage}{0.95\textwidth}
+		\vbox to 120pt{\raggedright
 			\textbf{Škola} \par
 			
 			\begin{tabularx}{\textwidth}{>{\vbox to 6mm{}}rXrX}
@@ -23,9 +23,8 @@
 			
 			\textbf{Jak jste se o FYKOSu dozvěděli?}\par
 			
-		\end{minipage}
-		\vfill
+		}
+		
 	}
-	\vskip5cm \caption{~} \vskip-5cm
-\end{table}
+	
 \clearpage
