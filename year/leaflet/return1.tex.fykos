@@ -1,14 +1,15 @@
 \vskip 10pt
 \vfil
 
-	\vbox{
-	\centerline{\emph{Návratka pro řešitele zasílající úlohy poštou}} %k~odstřižení
+	\vbox to 120pt{\vss
+	\vbox{\centerline{\emph{Návratka pro řešitele zasílající úlohy poštou}} %k~odstřižení
 		\noindent\dotfill\raisebox{-0.3\baselineskip}{\ScissorHollowLeft}\par
 		\vskip1mm
 		\centering
-		\noindenti
+		\noindent}
 		
-	\vbox to 90pt{
+		
+	\vbox{
 		\begin{tabularx}{\textwidth}{>{\vbox to 6mm{}}rXrX} %120pt - \footskip
 		\noalign{\vskip -5pt}
 		Jméno: & \multicolumn{3}{l}{\dotfill} \\

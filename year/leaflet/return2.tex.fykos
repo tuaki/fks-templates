@@ -1,12 +1,12 @@
 \vskip 10pt
 \vfil
-	\vbox{
+	\vbox to 150 pt{\vss
 	\centerline{\emph{Návratka pro řešitele zasílající úlohy poštou}} %k~odstřižení
 		\noindent\raisebox{-0.3\baselineskip}{\ScissorHollowRight}\dotfill\par
 		\vskip1mm
 		\centering
 		\noindent
-		\vbox to 120pt{\raggedright
+		\vbox{\raggedright
 			\textbf{Škola} \par
 			
 			\begin{tabularx}{\textwidth}{>{\vbox to 6mm{}}rXrX}
