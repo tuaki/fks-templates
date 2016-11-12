@@ -1,21 +1,22 @@
-\begin{table}[b!]
+\vskip 10pt
+\vfil
+
+	\vbox{
 	\centerline{\emph{Návratka pro řešitele zasílající úlohy poštou}} %k~odstřižení
-	\vbox to 52mm{
 		\noindent\dotfill\raisebox{-0.3\baselineskip}{\ScissorHollowLeft}\par
 		\vskip1mm
 		\centering
-		\noindent
-		\begin{minipage}{0.95\textwidth}
-		\textbf{Řešitel}\par
-		\vskip-1mm
+		\noindenti
 		
-		\begin{tabularx}{\textwidth}{>{\vbox to 6mm{}}rXrX}
+	\vbox to 90pt{
+		\begin{tabularx}{\textwidth}{>{\vbox to 6mm{}}rXrX} %120pt - \footskip
+		\noalign{\vskip -5pt}
 		Jméno: & \multicolumn{3}{l}{\dotfill} \\
 		E-mail: & \multicolumn{3}{l}{\dotfill} \\
 		Datum narození: & \dotfill & Místo narození: &\dotfill\\
 		Doručovací adresa: & \multicolumn{3}{l}{\dotfill}\\
-			& \multicolumn{3}{l}{\dotfill}\\
-		Podpis: & \multicolumn{3}{l}{\dotfill}\\
+			%& \multicolumn{3}{l}{\dotfill}\\
+			& \dotfill & Podpis: & \dotfill\\
 		\noalign{\vskip-10pt}
 			& \multicolumn{3}{l}{\footnotesize ~Svým podpisem stvrzujete souhlas se 
 			 zpracováním osobních údajů pro}\\
@@ -23,10 +24,10 @@
 			& \multicolumn{3}{l}{\footnotesize ~účely semináře, viz 
 				\url{http://fykos.cz/doc/souhlas.pdf}.}
 		\end{tabularx}
-		
-		\end{minipage}
-		\vfill
+
+
+		}
+
 	}
-	\vskip5cm \caption{~} \vskip-5cm
-\end{table}
+	
 \clearpage
