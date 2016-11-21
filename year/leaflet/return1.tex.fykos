@@ -10,14 +10,14 @@
 		
 		
 	\vbox{
-		\begin{tabularx}{\textwidth}{>{\vbox to 6mm{}}rXrX} %120pt - \footskip
+		\begin{tabularx}{\textwidth}{>{\vbox to 6mm{}}rXrX}
 		\noalign{\vskip -5pt}
 		Jméno: & \multicolumn{3}{l}{\dotfill} \\
 		E-mail: & \multicolumn{3}{l}{\dotfill} \\
 		Datum narození: & \dotfill & Místo narození: &\dotfill\\
 		Doručovací adresa: & \multicolumn{3}{l}{\dotfill}\\
 			%& \multicolumn{3}{l}{\dotfill}\\
-			& \dotfill & Podpis: & \dotfill\\
+			& \dotfill & Vlastní podpis: & \dotfill\\
 		\noalign{\vskip-10pt}
 			& \multicolumn{3}{l}{\footnotesize ~Svým podpisem stvrzujete souhlas se 
 			 zpracováním osobních údajů pro}\\
