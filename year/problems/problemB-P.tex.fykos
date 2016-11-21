@@ -1,14 +1,25 @@
-%%flag:odb-beta   -> 
-%%flag:odb-korek1 -> 
-%%flag:odb-korek2 -> 
-%%flag:jaz-zadani -> 
-%%flag:jaz-reseni -> 
-%%flag:typo-zadani-> 
-%%flag:typo-reseni-> 
+%%flag:odb-korek1    ->
+%%flag:odb-korek2    ->
+%%flag:jaz-zadani    ->
+%%flag:jaz-reseni    ->
+%%flag:typo-zadani   ->
+%%flag:typo-zadani-en->
+%%flag:typo-reseni   ->
+% kompletní specifikace/dokumentace na fiki
 \probbatch{B}
 \probno{P}
-\probname{}
-\proborigin{}
+\probcontest{SEMY}
+\probname[cs]{}
+\probname[en]{}
+\proborigin[cs]{}
+\proborigin[en]{}
+\proborigintruth{}
+% mechHmBodu,mechTuhTel,hydroMech,mechPlynu,gravPole,kmitani,vlneni,
+% molFyzika,termoDyn,statFyz,optikaGeom,optikaVln,elProud,elPole,magPole,
+% relat,kvantFyz,jadFyz,astroFyz,matematika,chemie,biofyzika,other
+% ... multiple choice oddelene carkami bez mezer
+\probtopics{}
+%\probtags{}
 \probpoints{0}
 \probauthors{}
 \probsolauthors{}
@@ -16,8 +27,15 @@
 %\probtags{}
 %\probsolvers{}
 %\probavg{}
-\probtask{%
+%\probfig[cs]{}
+%\probfig[en]{}
+%\probwebfig[cs]{}{}
+%\probwebfig[en]{}{}
+\probtask[cs]{%
 }
-\probsolution{%
+\probtask[en]{%
 }
-
+\probsolution[cs]{%
+}
+\probsolution[en]{%
+}

@@ -1,7 +1,15 @@
+% kompletní specifikace/dokumentace na fiki
 \probbatch{B}
 \probno{P}
-\probname{}
-\proborigin{}
+\probcontest{SEMY}
+\probname[cs]{}
+\proborigin[cs]{}
+\proborigintruth{}
+% kinematika,dynamika,energie,gravitace,teplo,astronomie,optika,elektrina
+% odhady,matematika,geometrie,programovani,logika,experimenty
+% ... multiple choice oddelene carkami bez mezer
+\probtopics{}
+\probtags{}
 \probpoints{0}
 \probauthors{}
 \probsolauthors{}
@@ -9,9 +17,11 @@
 %\probtags{}
 %\probsolvers{}
 %\probavg{}
-\probtask{%
+%\probfig[cs]{}
+%\probwebfig[cs]{}{}
+\probtask[cs]{%
 }
-\probsolution{%
+\probsolution[cs]{%
 }
 
 % TODO text zadání
@@ -28,4 +38,3 @@
 % poznámky k došlým řešením odborné korektury
 % poznámky k došlým řešením jazykové korektury
 % poznámky k došlým řešením typo korektury
-

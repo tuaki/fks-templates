@@ -4,6 +4,7 @@
 include ../Makefile.conf
 include $(PROBLEMS)/Makefile.inc
 include ../Deadline.inc
+include ../Deadline_xml.inc
 
 # == Graphics part ==
 # -- Plots --
@@ -60,6 +61,7 @@ SOAP_REQUEST = $(SOAPCLIENT) $(WS_URL) $(GLOB_DATA)/$(1) $(2) $(shell echo $(WS_
 # vysledky?-% is implicit rule, results can't be also imlicit, so mention it explicitly
 # see: https://www.gnu.org/software/make/manual/html_node/Chained-Rules.html
 $(GLOB_DATA)/results.xml: $(GLOB_DATA)/resultsRequest.soap
+$(GLOB_DATA)/stats.xml: $(GLOB_DATA)/statsRequest.soap
 
 $(GLOB_DATA)/%.xml: $(GLOB_DATA)/%Request.soap
 	$(call SOAP_REQUEST,$*Request.soap,$@)
@@ -88,6 +90,15 @@ $(RESULTS)/%.tex: $(RESULTS)/%.csv
 	iconv -f latin2 -t utf8 $< | \
 	cut -d\; -f1,2,3,4,5,6,7,8,9,10,12,13,14 | \
 	sed '/^$$/d;/^%/d;s/;;/;--;/g;s/;;/;--;/g;s/;/ \& /g;s/$$/\\\\/' | sed -e '2i\\\\midrule'  > $@
+
+# == Deadlines ==
+../Deadline.inc: ../Deadline_xml.inc
+	echo "#" > $@
+	echo "# Automaticky generovaný" >> $@
+    # not working for times between 0:00:00 and 0:59:59
+	sed -e 's/DEADLINE_XML\[\([0-9]*\)\]=\([0-9]*\)-[0]*\([1-9][0-9]*\)-[0]*\([1-9][0-9]*\)T[0]*\([1-9][0-9]*\):\([0-9]*\):\([0-9]*\)/DEADLINE\[\1\]=\4.~\3.~\2 \5.\6/;s/DEADLINES_XML\[\([0-9]*\)\]=\([0-9]*\)-[0]*\([1-9][0-9]*\)-[0]*\([1-9][0-9]*\)/DEADLINES\[\1\]=\4.~\3.~\2/' $< >> $@
+
+    
 
 # == Author solutions ==
 XELATEX_P=xelatex -output-directory $(@D) -jobname '$(basename $(@F))' '\documentclass[SEM]{fkssolution}\setcounter{year}{Y}\input{$<}\begin{document}\problemsolutionsingle\makefooter\end{document}'
