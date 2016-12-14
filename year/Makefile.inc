@@ -56,7 +56,7 @@ $(GRAPHICS)/%.eps : $(GRAPHICS)/%.ipe
 # == Data retrieval ==
 GLOB_DATA := ../data
 # credentials are at least obfuscated so they aren't easily grep'able from logs
-SOAP_REQUEST = $(SOAPCLIENT) $(WS_URL) $(GLOB_DATA)/$(1) $(2) $(shell echo $(WS_USERNAME) | base64) $(shell echo $(WS_PASSWORD) | base64)
+SOAP_REQUEST = $(SOAPCLIENT) $(WS_URL) $(1) $(2) $(shell echo $(WS_USERNAME) | base64) $(shell echo $(WS_PASSWORD) | base64)
 
 # vysledky?-% is implicit rule, results can't be also imlicit, so mention it explicitly
 # see: https://www.gnu.org/software/make/manual/html_node/Chained-Rules.html
@@ -64,7 +64,7 @@ $(GLOB_DATA)/results.xml: $(GLOB_DATA)/resultsRequest.soap
 $(GLOB_DATA)/stats.xml: $(GLOB_DATA)/statsRequest.soap
 
 $(GLOB_DATA)/%.xml: $(GLOB_DATA)/%Request.soap
-	$(call SOAP_REQUEST,$*Request.soap,$@)
+	$(call SOAP_REQUEST,$<,$@)
 
 .PRECIOUS: $(GLOB_DATA)/*.xml $(GLOB_DATA)/results.xml
 
