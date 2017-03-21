@@ -9,6 +9,7 @@ XSL_SIGNATURES := /usr/local/share/fks/texsignatures.xsl
 #XSL_RESULTS := /usr/local/share/fks/texresults-fykos.xsl
 #XSL_RESULTS := /usr/local/share/fks/texresults-vyfuk.xsl
 XSL_STATS := /usr/local/share/fks/texstats.xsl
+XSL_CSV := /usr/local/share/fks/export2csv.xsl
 
 # URL of FKSDB web serice
 WS_URL := https://db.fykos.cz/web-service/default
