@@ -11,6 +11,7 @@ PGRAPHICS=$(PROBLEMS)/graphics# graphics for problems
 RESULTS=results
 
 ARG=\def\mdeadline{${DEADLINE[${BATCHNO}]}}\def\mdeadlineS{${DEADLINES[${BATCHNO}]}}
+ARG_XML=\def\mdeadline{${DEADLINE_XML[${BATCHNO}]}}\def\mdeadlineS{${DEADLINES_XML[${BATCHNO}]}}
 
 .SUFFIXES:
 .PHONY: all clean cleanall web book print solutions problems series
@@ -18,7 +19,7 @@ ARG=\def\mdeadline{${DEADLINE[${BATCHNO}]}}\def\mdeadlineS{${DEADLINES[${BATCHNO
 # == Main targets ==
 all: web print solutions series
 include ../Makefile.inc
-web: $(OUT)/serie$(BATCHNO).pdf $(OUT)/zadaniWeb$(BATCHNO).xml $(OUT)/zadani$(BATCHNO).pdf
+web: $(OUT)/serie$(BATCHNO).pdf $(OUT)/zadaniWeb$(BATCHNO)-cs.xml $(OUT)/zadaniWeb$(BATCHNO)-en.xml $(OUT)/zadani$(BATCHNO).pdf
 book: $(OUT)/serie$(BATCHNO)-book.pdf
 print: $(OUT)/serie$(BATCHNO)-print.pdf
 solutions: $(addsuffix .pdf, $(addprefix $(OUT)/reseni$(BATCHNO)-, $(PROBLEMSLIST)))
@@ -74,6 +75,9 @@ define XML_DEFS
 $(ARG)
 endef
 
-$(OUT)/zadaniWeb$(BATCHNO).xml: $(PROBLEMS)/web.tex $(SERIEDEP)
-	xelatex -output-directory $(@D) -jobname $(basename $(@F)) '$(XML_DEFS)\input{$<}'
+$(OUT)/zadaniWeb$(BATCHNO)-cs.xml: $(PROBLEMS)/web.tex $(SERIEDEP)
+	xelatex -output-directory $(@D) -jobname $(basename $(@F)) '$(XML_DEFS)\def\lang{cs}\input{$<}'
+
+$(OUT)/zadaniWeb$(BATCHNO)-en.xml: $(PROBLEMS)/web.tex $(SERIEDEP)
+	xelatex -output-directory $(@D) -jobname $(basename $(@F)) '$(XML_DEFS)\def\lang{en}\input{$<}'
 
