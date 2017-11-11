@@ -11,6 +11,7 @@ PGRAPHICS=$(PROBLEMS)/graphics# graphics for problems
 RESULTS=results
 
 ARG=\def\mdeadline{${DEADLINE[${BATCHNO}]}}\def\mdeadlineS{${DEADLINES[${BATCHNO}]}}
+ARG_XML=\def\mdeadline{${DEADLINE_XML[${BATCHNO}]}}\def\mdeadlineS{${DEADLINES_XML[${BATCHNO}]}}
 
 .SUFFIXES:
 .PHONY: all clean cleanall web book print solutions problems series
@@ -18,7 +19,7 @@ ARG=\def\mdeadline{${DEADLINE[${BATCHNO}]}}\def\mdeadlineS{${DEADLINES[${BATCHNO
 # == Main targets ==
 all: web print solutions series
 include ../Makefile.inc
-web: $(OUT)/serie$(BATCHNO).pdf $(OUT)/zadaniWeb$(BATCHNO)-cs.xml $(OUT)/zadaniWeb$(BATCHNO)-en.xml $(OUT)/zadani$(BATCHNO).pdf
+web: $(OUT)/serie$(BATCHNO).pdf $(OUT)/zadaniWeb$(BATCHNO)-cs.xml $(OUT)/zadaniWeb$(BATCHNO)-en.xml $(OUT)/zadaniWeb$(BATCHNO)-new.xml $(OUT)/zadani$(BATCHNO).pdf
 book: $(OUT)/serie$(BATCHNO)-book.pdf
 print: $(OUT)/serie$(BATCHNO)-print.pdf
 solutions: $(addsuffix .pdf, $(addprefix $(OUT)/reseni$(BATCHNO)-, $(PROBLEMSLIST)))
@@ -68,15 +69,25 @@ cleanall:
 
 # == XML for web transport ==
 
-define XML_DEFS
+define XML_DEFS_LEGACY
 \def\batchno{$(BATCHNO)}\
 \def\problemcount{PB}\
 $(ARG)
 endef
 
+define XML_DEFS
+\def\batchno{$(BATCHNO)}\
+\def\problemcount{PB}\
+$(ARG_XML)
+endef
+
 $(OUT)/zadaniWeb$(BATCHNO)-cs.xml: $(PROBLEMS)/web.tex $(SERIEDEP)
-	    xelatex -output-directory $(@D) -jobname $(basename $(@F)) '$(XML_DEFS)\def\lang{cs}\input{$<}'
+	xelatex -output-directory $(@D) -jobname $(basename $(@F)) '$(XML_DEFS_LEGACY)\def\lang{cs}\input{$<}'
 
 $(OUT)/zadaniWeb$(BATCHNO)-en.xml: $(PROBLEMS)/web.tex $(SERIEDEP)
-	    xelatex -output-directory $(@D) -jobname $(basename $(@F)) '$(XML_DEFS)\def\lang{en}\input{$<}'
-
+	xelatex -output-directory $(@D) -jobname $(basename $(@F)) '$(XML_DEFS_LEGACY)\def\lang{en}\input{$<}'
+$(OUT)/zadaniWeb$(BATCHNO)-new.xml: $(SERIEDEP)
+	xelatex -output-directory $(@D) -jobname $(basename $(@F)) '$(XML_DEFS)\documentclass[fykos]{fksbase}\setcounter{year}{Y}\input{fks-web-xml}'
+	fks-web-xml.sh $@ > $@.tmp
+	cat $@.tmp | tr -d '\n' | sed 's/<\(.*\)>\s*<\/\1>//g' > $@
+	rm -f $@.tmp
