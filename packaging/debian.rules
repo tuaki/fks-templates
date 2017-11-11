@@ -25,6 +25,3 @@
 # Don't run tests
 #override_dh_auto_test:
 #	true
-
-# This is only temporary workaround till package is moved out of /usr/local
-override_dh_usrlocal:
