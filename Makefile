@@ -1,5 +1,5 @@
 DESTDIR=
-DST=$(DESTDIR)/usr/local/share/fks/templates
+DST=$(DESTDIR)/usr/share/fks/templates
 
 build:
 	true
