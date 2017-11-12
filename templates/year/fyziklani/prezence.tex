@@ -1,0 +1,47 @@
+\expandafter\ifx\csname classoptions\endcsname\relax
+  \def\classoptions{}
+\fi
+\documentclass[fykos,\classoptions]{fksgeneric}
+
+\input{common.tex}
+
+\fancyfoot{}
+
+\newcounter{member}
+
+\newcommand\team[3]{%
+	\section{#2 -- prezenční list}
+	\setcounter{member}{0}
+	\begin{tabular}{ll}
+		ID týmu: & \textbf{\Huge #1}\\
+		Kategorie: & \textbf{\Huge #3}
+	\end{tabular}
+	\medskip
+
+	\noindent\textit{Pokud máte jiné složení týmu nebo nejsou uvedeny správné údaje, 
+	doplňte níže správné.\\Správnost údajů potvrďte podpisem.\\}
+}
+
+\newcommand\guide[2]{%
+	%Doprovod #1
+}
+
+\newcommand\member[4]{%
+	\stepcounter{member}
+	\vskip1mm
+	\noindent
+	\begin{tabularx}{\textwidth}{b{13mm}b{50mm}>{\vbox to 6mm{}}lX}
+		{\LARGE \themember. člen}& \textbf{#1} \ifthenelse{\equal{#1}{}}{}{(#4. roč.)} 
+			& Oprava: & \dotfill \\
+		& \small\mail{#2} & Oprava: & \dotfill \\
+		& #3 & Oprava: & \dotfill \\
+		& Podpis: \dotfill & & \\
+	\end{tabularx}
+
+}
+\newcommand\teamend{\newpage}
+
+\begin{document}
+\input{teams.tex}
+\end{document}
+	

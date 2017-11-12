@@ -1,0 +1,28 @@
+\expandafter\ifx\csname classoptions\endcsname\relax
+  \def\classoptions{fyziklani2}
+\fi
+\documentclass[fykos,\classoptions]{fksgeneric}
+\usepackage[fyziklani2]{fkslegacyloader}
+\input{common.tex}
+
+\makeatletter
+\newcommand\problemresult{%
+\stepcounter{problem}%
+% sloupec s výsledky zarovnán na levý "okraj"
+% pomni, že šířka závisí na vypisovaném textu
+%\makebox[20mm][l]{\textbf{Úloha \octnumber{problem}}} \input{./problems/problem_\problemname{\theproblem}.tex}\par
+\makebox[20mm][l]{\textbf{Úloha \octnumber{problem}}}%
+\@LoadProblem{}{\theproblem}{\@probhumanresult}\par
+\smallskip
+}
+\makeatother
+
+
+\begin{document}
+    \setcounter{problem}{0}
+    \loop{
+        \noindent\problemresult
+    }\ifnum\theproblem<\theproblemscount
+    \repeat
+\makefooter
+\end{document}

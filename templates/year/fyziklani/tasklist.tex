@@ -1,0 +1,41 @@
+\documentclass{fksbase}
+\usepackage{fontenc}
+\usepackage{newfile}
+\usepackage{polyglossia}
+\newoutputstream{outfile}
+\openoutputfile{tasklist.csv}{outfile}
+
+\usepackage[fyziklani2]{fkslegacyloader}
+
+% due to common.tex
+\newcommand\leftheader[1]{\relax}
+\newcommand\rightheader[1]{\relax}
+\input{common.tex}
+
+\setmainlanguage{czech}
+
+\def~{ }
+
+\newwrite\outfile
+
+\newcommand\header{\addtostream{outfile}{label;name}}
+
+\begin{document}
+
+\makeatletter
+\immediate\openout\outfile=tasklist.csv
+\header
+\setcounter{problem}{0}
+\loop{
+    \stepcounter{problem}
+    \begin{\langiso{cs}}
+        \@LoadProblem{}{\theproblem}{}
+        \addtostream{outfile}{\problemnum{}{problem};\@probname}
+    \end{\langiso{cs}}
+}\ifnum\theproblem<\theproblemscount
+\repeat
+\makeatother
+
+\immediate\closeout\outfile
+
+\end{document}

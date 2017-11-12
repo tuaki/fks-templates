@@ -1,0 +1,43 @@
+\expandafter\ifx\csname classoptions\endcsname\relax
+  \def\classoptions{}
+\fi
+\documentclass[fykos,\classoptions]{fksgeneric}
+
+\usepackage[fyziklani2]{fkslegacyloader}
+
+\input{common.tex}
+
+\begin{document}
+\null
+\vspace{0pt plus1fil}
+\begin{center}
+\section[Řešení úloh Y. ročníku FYKOSího Fyziklání]{\Huge Řešení úloh Y.
+ročníku FYKOSího Fyziklání}
+\vspace{10pt}
+\includegraphics[width=0.6\textwidth]{logo7.eps}
+\end{center}
+\vspace{0pt plus2fil}
+
+\newpage
+    \setcounter{problem}{0}
+    \loop{
+        \problemsolution
+        
+        % TODO po přeskládání úloh
+        \ifthenelse{\equal{\octnumber{problem}}{DC}}{\newpage}{}
+%        \ifthenelse{\equal{\octnumber{problem}}{AD}}{\vskip2.7cm}{}
+    }\ifnum\theproblem<\theproblemscount
+    \repeat
+
+%\clearpage
+\null
+\vspace{0pt plus4fill}
+\begin{center}
+\includegraphics[width=2cm]{logo8.eps}
+\bigskip
+
+\metavar{address}
+
+\end{center}
+\makefooter
+\end{document}

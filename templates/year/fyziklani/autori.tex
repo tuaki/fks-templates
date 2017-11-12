@@ -1,0 +1,42 @@
+\documentclass{minimal}
+\usepackage{fontenc}    
+
+\newcounter{batch}\setcounter{batch}{0}
+\newcounter{problem}
+
+\newwrite\outfile
+
+\newcommand\header{\immediate\write\outfile{\%uloha;nazev;vzorak;namet}}
+\newcommand\uloha[6]{\immediate\write\outfile{\theproblem;\unexpanded{#1};\unexpanded{#4};\unexpanded{#6}}}
+
+
+\makeatletter
+\newcommand\problemsdir[1]{}
+\newcommand\problemstats{}
+\newcommand\problemnum[2]{}
+\newcommand\leftheader[1]{}
+\newcommand\rightheader[1]{}
+\newcommand\problempoints[1]{}
+\newcommand\@metaprobletter[1]{}
+\makeatother
+\input{common.tex}
+
+\begin{document}
+
+\immediate\openout\outfile=autori.csv
+    \header
+        \stepcounter{batch}
+        \setcounter{problem}{0}
+        \loop{
+            \stepcounter{problem}
+            \input{problems/problem\theproblem.tex}
+        }\ifnum\theproblem<\theproblemscount
+        \repeat
+        \newpage
+
+\immediate\closeout\outfile
+
+
+
+
+\end{document}

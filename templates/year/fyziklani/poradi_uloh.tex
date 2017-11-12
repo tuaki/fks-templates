@@ -1,0 +1,46 @@
+\expandafter\ifx\csname classoptions\endcsname\relax
+  \def\classoptions{fyziklani2}
+\fi
+\documentclass[fykos,\classoptions]{fksgeneric}
+
+\usepackage{fkslegacyloader}
+
+\input{common.tex}
+\begin{document}
+
+\begingroup
+\catcode`<=1 \catcode`>=2
+\catcode`{=12 \catcode`}=12
+\gdef\wbgroup<{>
+\gdef\wegroup<}>
+\endgroup
+
+
+\newcommand{\addproblem}[2]{%
+  \stepcounter{problemscount}
+  \immediate\write\sortfile{\unexpanded{#1\or}}
+  \immediate\write\depfile{problem_\theproblemscount= problem_#1.tex #2}
+}
+
+
+\newwrite\sortfile
+\immediate\openout\sortfile=sort.tex
+\makeatletter
+\immediate\write\sortfile{\@percentchar AUTOMATICALLY GENERATED FILE, DO NOT EDIT!}
+\immediate\write\sortfile{\@backslashchar newcommand\wbgroup \@backslashchar problemname\wegroup\wbgroup \@backslashchar or}
+\newwrite\depfile
+\immediate\openout\depfile=Makefile-fyz.inc
+
+\immediate\write\depfile{#AUTOMATICALLY GENERATED FILE, DO NOT EDIT!}
+
+%%%%%%%%%%%%%%%
+\setcounter{problemscount}{0}
+\input{problems/problem-sort}
+%%%%%%%%%%%%%%%
+\immediate\write\sortfile{\wegroup}
+\immediate\write\sortfile{\@backslashchar setcounter\wbgroup problemscount\wegroup\wbgroup\theproblemscount\wegroup}
+\makeatother
+\immediate\closeout\sortfile
+\immediate\closeout\depfile
+
+\end{document}

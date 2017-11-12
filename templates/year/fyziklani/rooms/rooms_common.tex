@@ -1,0 +1,43 @@
+%
+% Store
+%
+\newcommand\team[3]{%
+	\expandafter\def\csname te@m#1\endcsname{#2}
+	\expandafter\def\csname te@mcat#1\endcsname{#3}
+}
+
+\newcommand\guide[2]{}
+
+\newcommand\member[4]{}
+\newcommand\teamend{}
+
+%
+% Read
+%
+\def\teamname{}
+\renewcommand\teamname[1]{%
+	\expandafter\ifx\csname te@m#1\endcsname\relax\errmessage{Unknown team ID #1.}
+\else
+\expandafter\csname te@m#1\endcsname\fi%
+}
+\newcommand\teamcat[1]{%
+\expandafter\csname te@mcat#1\endcsname%
+}
+\newcommand\teamroom[1]{%
+\expandafter\ifx\csname te@mroom#1\endcsname\relax  
+  \else
+  \expandafter\csname te@mroom#1\endcsname\fi%
+}
+
+%
+% Utils
+%
+\def\disabletable{%
+\def\\{}
+\def\hline{}
+\def\multicolumn##1##2##3{}
+\catcode`\&=9
+}
+% probably not needed due to environment scoping
+\def\enabletable{
+}

@@ -1,0 +1,76 @@
+%% advanced numbering of problems
+\usepackage{intcalc}
+
+\problemsdir{./problems}
+\renewcommand\problemnum[2]{\octnumber{#2}}
+\renewcommand\problemstats{\relax}
+\renewcommand\problempoints{\textbf{5 -- 3 -- 2 -- 1}}
+\leftheader{FYKOSí Fyziklání}
+\rightheader{XI. ročník \qquad 17. února 2017}%TODO uprav
+\newcommand\eventid{ID}%TODO uprav
+
+\newcounter{problemscount}% total number of problems, setup by problem-sort.tex
+\newcounter{problemscountenv}\setcounter{problemscountenv}{7}% total number of problems in starting envelope
+\newcounter{maxcutterpaper}\setcounter{maxcutterpaper}{7}% max number of papers in cutter
+\newcounter{teamcounter}\setcounter{teamcounter}{0} % ordinal team counter
+
+\makeatletter
+\renewcommand\@metaprobletter[1]{\the#1}
+% \renewcommand*{\sign@ture}[1]{%
+% \hspace{10pt}
+% \begin{tabular}{c}
+% \sigstyle{\signame{#1}}\\
+% %\mail{\sigmail{#1}}
+% \end{tabular}}
+
+% problems numbering
+\newcommand\octletter[1]{\ifcase#1 A\or B\or C\or D\or E\or F\or G\or H\or I\else\@ctrerr\fi}
+\newcommand\octnumber[1]{\octletter{\intcalcDiv{\intcalcDec{\value{#1}}}{8}}\octletter{\intcalcMod{\intcalcDec{\value{#1}}}{8}}}
+
+% team names and IDs
+\newcommand\newteam[2]{%
+  \stepcounter{teamcounter}%
+  \expandafter\def\csname teamid@\theteamcounter\endcsname{%
+    #1%
+  }%
+  \expandafter\def\csname teamname@\theteamcounter\endcsname{%
+    #2%
+  }%
+}
+\newcommand\teamid[1]{%
+	\expandafter\csname teamid@#1\endcsname % team without ID should raise an error (undefined sequence...)
+}
+\newcommand\teamname[1]{%
+  \expandafter\ifx\csname teamname@#1\endcsname\relax
+  BEZ NÁZVU% TODO označit i stylem písma, aby to někdo nevybrakoval název týmu "BEZ NÁZVU"?
+  \else
+  \expandafter\csname teamname@#1\endcsname\fi
+}
+
+\makeatother
+
+\IfFileExists{problems/sort.tex}{\input{problems/sort.tex}}{}% setup problem names and problemscount
+
+\newcommand{\TODO}[1][]{\textbf{!TODO!} #1\par}
+
+% Fallback fonts for team with name '(ノಠ益ಠ)ノ ᕦ(ò óˇ)ᕤ''
+
+%\usepackage[CJKUnifiedIdeographs,Katakana,UnifiedCanadianAboriginalSyllabics,Telugu]{ucharclasses}
+\usepackage{ucharclasses}
+
+\newfontfamily\droidfallbackfont{Droid Sans Fallback}
+\newfontfamily\freesansfont{FreeSans}
+\newfontfamily\freeseriffont{FreeSerif}
+\newfontfamily\liberationfont[BoldFont={Liberation Serif}]{Liberation Serif}
+%\newfontfamily\originalfont{Latin Modern Roman}
+\let\originalfont\normalfont
+
+
+\setTransitionsFor{Katakana}{\droidfallbackfont}{\originalfont}
+%\setTransitionsFor{MathematicalOperators}{\freesansfont}{\originalfont}
+\setTransitionsFor{CJKUnifiedIdeographs}{\droidfallbackfont}{\originalfont}
+\setTransitionsFor{CJKSymbolsAndPunctuation}{\droidfallbackfont}{\originalfont}
+\setTransitionsFor{Thai}{\freeseriffont}{\originalfont}
+\setTransitionsFor{UnifiedCanadianAboriginalSyllabics}{\freesansfont}{\originalfont}
+%\setTransitionsFor{Telugu}{\droidfallbackfont}{\originalfont}
+

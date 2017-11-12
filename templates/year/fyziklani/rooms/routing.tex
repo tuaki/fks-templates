@@ -1,0 +1,55 @@
+\expandafter\ifx\csname classoptions\endcsname\relax
+  \def\classoptions{}
+\fi
+\documentclass[\classoptions]{fksgeneric}
+
+\usepackage{longtable}
+
+\input{common.tex}
+\input{rooms/rooms_common.tex}
+
+
+
+
+
+
+\renewcommand\t[1]{%
+\global\expandafter\edef\csname te@mroom#1\endcsname{\currentroom}%
+}
+
+
+%
+% Rooms
+%
+\newenvironment{room}[2]{%
+	\newcommand\currentroom{#1}
+\disabletable
+}{%
+\enabletable
+}
+
+\renewcommand\team[3]{%
+\immediate\write\csvfile{#1;\teamroom{#1}}
+	#1 & #2 & #3 & \teamroom{#1}\\
+}
+
+
+
+\begin{document}
+
+\input{rooms/rooms_def.tex}
+
+\newwrite\csvfile
+\immediate\openout\csvfile=teams.csv
+
+\begin{longtable}{rlll}
+\textbf{ID} & \textbf{Tým} & \textbf{Kategorie} & \textbf{Místnost}\\
+\endfirsthead
+\textbf{ID} & \textbf{Tým} & \textbf{Kategorie} & \textbf{Místnost}\\
+\endhead
+\input{teams.tex}
+\end{longtable}
+
+\immediate\closeout\csvfile
+
+\end{document}

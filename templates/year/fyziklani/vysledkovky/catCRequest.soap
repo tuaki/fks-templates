@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://fykos.cz/xml/ws/service">
+	<SOAP-ENV:Header>
+		<ns1:AuthenticationCredentials>
+			<username>--FILLUSERNAME--</username>
+			<password>--FILLPASSWORD--</password>
+		</ns1:AuthenticationCredentials>
+	</SOAP-ENV:Header>
+	<SOAP-ENV:Body>
+		<GetExportRequest>
+			<qid>klani.msmt</qid>
+			<parameter name="contest">fykos</parameter>
+			<parameter name="event_id">116</parameter>
+			<parameter name="country_iso"></parameter>
+			<parameter name="category">C</parameter>
+			<parameter name="status">participated</parameter>
+		</GetExportRequest>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

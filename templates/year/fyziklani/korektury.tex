@@ -1,0 +1,46 @@
+\expandafter\ifx\csname classoptions\endcsname\relax
+  \def\classoptions{fyziklani2}
+\fi
+\documentclass[fykos,\classoptions]{fksgeneric}
+\usepackage[fyziklani2]{fkslegacyloader}
+\usepackage{changepage}
+\input{common.tex}
+\pagestyle{empty}
+
+\geometry{ignoreheadfoot,
+	a4paper,
+	hmargin=0.7cm,
+	tmargin=1.0cm,
+	bmargin=1.0cm}
+
+\newcommand\problemtaskbox{%
+	\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.5pt}}
+	\vspace{-2mm}\par% !!MAGIC!!
+	\noindent\begin{minipage}[t][67mm]{\textwidth}
+		\centerline{\textbf{Tým XXX} {\footnotesize 
+		(0)}}
+		\problemtask\par
+	\end{minipage}
+	\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.5pt}}
+}
+
+\begin{document}
+\makeatletter
+\setcounter{problem}{0}
+\loop{
+	\problemtaskbox
+	\vskip2mm
+	\begin{adjustwidth}{0mm}{62mm}
+		\noindent\makebox[20mm][l]{\textbf{Úloha \octnumber{problem}}}
+		\@LoadProblem{}{\theproblem}{\@probhumanresult}\par
+	\end{adjustwidth} 
+	\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.5pt}}
+	\addtocounter{problem}{-1}
+	\begin{adjustwidth}{0mm}{62mm}
+		\problemsolution
+	\end{adjustwidth} 
+	\clearpage
+}\ifnum\theproblem<\theproblemscount
+\repeat
+\makeatother
+\end{document}

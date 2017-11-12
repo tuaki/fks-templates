@@ -1,0 +1,168 @@
+\expandafter\ifx\csname classoptions\endcsname\relax
+  \def\classoptions{}
+\fi
+\documentclass[10pt,fykos,\classoptions]{fksempty}
+
+\usepackage{xstring}
+\usepackage{fp}
+\usepackage{pst-barcode}
+
+\geometry{ignoreheadfoot,
+  a4paper,
+  hmargin=0.7cm,
+  tmargin=0.20cm,
+  bmargin=0.0cm,
+  headsep=0.0cm}
+
+\usepackage[fyziklani2]{fkslegacyloader}
+
+\problemsdir{./problems}
+
+% this class doesn't support those, but we use same common
+\newcommand{\leftheader}[1]{\relax}
+\newcommand{\rightheader}[1]{\relax}
+\input{common.tex}
+
+\input{naboj_team.tex}
+
+% needed to use before \barcode or \qrcode
+% produces 9 digit code according to https://en.wikipedia.org/wiki/Routing_transit_number#Check_digit
+\newcommand{\barcodedef}[1]{%
+    \def\probnumfull{\ifnum\theproblem<10 0\fi\theproblem}%
+    \def\teamnumfull{\ifnum#1<100000 0\fi\ifnum#1<10000 0\fi\ifnum#1<1000 0\fi\ifnum#1<100 0\fi\ifnum#1<10 0\fi#1}%
+    \StrChar{\teamnumfull}{1}[\inpA]%1
+    \StrChar{\teamnumfull}{2}[\inpB]%2
+    \StrChar{\teamnumfull}{3}[\inpC]%3
+    \StrChar{\teamnumfull}{4}[\inpD]%4
+    \StrChar{\teamnumfull}{5}[\inpE]%5
+    \StrChar{\teamnumfull}{6}[\inpF]%6
+    \StrChar{\problemnum{}{problem}}{1}[\inpGtmp]%7
+    \StrChar{\problemnum{}{problem}}{2}[\inpHtmp]%8
+    \def\inpG{\intcalcSub{\expandafter`\inpGtmp}{`A}}%
+    \def\inpH{\intcalcSub{\expandafter`\inpHtmp}{`A}}%
+    \FPeval{\result}{%
+        round(%
+            7*(\inpA+\inpD+\inpG) + %
+            3*(\inpB+\inpE+\inpH) + %
+            9*(\inpC+\inpF      )   %
+        ,0)%
+    }%
+    \FPeval{\finalresult}{round(\result-trunc(\result/10,0)*10,0)}%
+}
+
+\newcommand{\barcode}{\bf\tt\LARGE%
+% sazba
+{\small\inpA\inpB}\inpC\inpD\inpE\inpF\problemnum{}{problem}\finalresult%
+}
+
+\newcommand{\qrcode}{%
+\begin{pspicture}(1in,1in)%
+%\psbarcode{https://db.fykos.cz/fyziklani116/submit/entry/000683AA3}{}{qrcode}%
+\psbarcode{https://db.fykos.cz/fyziklani\eventid/submit/entry/\inpA\inpB\inpC\inpD\inpE\inpF\problemnum{}{problem}\finalresult}{}{qrcode}%
+\end{pspicture}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Setting problems per page
+% here set appropriate height 
+%
+% Parameters of geometry may be modified,
+% (Note they're fine tuned to vertically center content
+% (which should be done in a more generic way, however.))
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\problemtaskbox{%
+\setcounter{figure}{0}
+\vspace{-2mm}\par% !!MAGIC!!
+\noindent\begin{minipage}[t][67mm]{\textwidth}
+	\centerline{\textbf{Tým \teamid{\theteamno}} {\footnotesize (\teamname{\theteamno})}}
+	\problemtask\par
+\end{minipage}
+%begin barcode
+% 59.5mm !!MAGIC!!
+% 5mm !!MAGIC!!
+\barcodedef{\teamid{\theteamno}}
+\vspace{-\baselineskip}\raisebox{0pt}[0pt][0pt]{\hspace{0.7\textwidth}\raisebox{59.5mm}{\hfill\barcode\hfill}}%
+\par\noindent%
+\vspace{-\baselineskip}\raisebox{0pt}[0pt][0pt]{\raisebox{5mm}{\qrcode}}%
+\par%
+%end barcode
+\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.5pt}}
+}
+
+
+% here should be correct number of problems
+\begin{document}
+\newcounter{teamscount}\setcounter{teamscount}{\teamscount}% pocet tymu
+\newcounter{teamno}\setcounter{teamno}{0}% id teamu
+\newcounter{problemno}% poradi problemu
+\newcounter{problemskip}% poradi problemu
+\newcounter{pagecount}\setcounter{pagecount}{0}% pocet stranek
+\newcounter{pageno}% id stránky
+\newcounter{pagebl}% id bloku
+\newcounter{pagebllgt}% lgt bloku
+
+% jiny celk. pocet uloh
+\opt{obalka}{
+  \setcounter{problemscount}{\theproblemscountenv}
+}
+\opt{balicek}{
+  \setcounter{problem}{\theproblemscountenv}
+}
+% vypocet poctu stranek
+\loop{
+  \addtocounter{problem}{4}% 4 ulohy na str
+  \stepcounter{pagecount}
+}\ifnum\theproblem<\theproblemscount
+\repeat
+
+% sazba pres tymy
+\loop{
+  \stepcounter{teamno}
+% counter init
+  \setcounter{problemno}{0}
+  \setcounter{problemskip}{0}
+  \setcounter{pageno}{0}
+  \setcounter{pagebl}{0}
+  \setcounter{pagebllgt}{0}
+  \opt{balicek}{
+%    \setcounter{problem}{\theproblemscountenv}
+    \setcounter{problemskip}{\theproblemscountenv}
+  }
+% neschopna rezacka (nutno vice bloku)
+  \ifnum\thepagecount<\themaxcutterpaper%
+    \setcounter{pagebllgt}{\thepagecount}%
+  \else%
+    \setcounter{pagebllgt}{\themaxcutterpaper}%
+  \fi
+% sazba pres stranky
+  \loop{
+    \newpage\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.5pt}}\nopagebreak[4]
+    \setcounter  {problem}{\thepageno}\addtocounter{problem}{\theproblemskip}
+%    PR:\theproblem INC:\thepagebllgt
+% sazba stránky
+    \setcounter{problemno}{0}
+    \loop{
+      \ifnum\theproblem<\theproblemscount\problemtaskbox\addtocounter{problem}{-1}\fi
+      \addtocounter{problem}{\thepagebllgt}
+      \stepcounter{problemno}
+    }\ifnum\theproblemno<4\repeat% uloh na stranku
+% posledni blok musi byt kratsi
+    \stepcounter{pageno}
+    \ifnum\themaxcutterpaper=\thepagebllgt
+      \pgfmathparse{Mod(\thepageno,\thepagebllgt)==0?1:0}\ifnum\pgfmathresult>0 
+% 3*\thepagebllgt UGLY
+        \addtocounter{problemskip}{\thepagebllgt}
+        \addtocounter{problemskip}{\thepagebllgt}
+        \addtocounter{problemskip}{\thepagebllgt}
+        \pgfmathparse{(\thepagecount-\thepageno)<\thepagebllgt?1:0}\ifnum\pgfmathresult>0
+          \setcounter{pagebllgt}{\thepagecount}
+          \addtocounter{pagebllgt}{-\thepageno}
+        \fi
+      \fi
+    \fi
+  }\ifnum\thepageno<\thepagecount\repeat
+% zbytek puvodni sazby
+  \clearpage
+}\ifnum\theteamno<\theteamscount\repeat
+ 
+\end{document}

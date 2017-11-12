@@ -1,0 +1,108 @@
+% Stručný návod:
+% - Připravit CSV soubor s údaji oddělenými středníky v UTF-8
+% - Přímo v souboru je potřeba vyplnit jména podpisujích osob a funkce (těsně před begin{document}
+%
+% Vytvořil Aleš Flandera 2015 %
+
+\documentclass[8pt,a4paper,landscape]{article}
+
+\pagestyle{empty}
+
+\usepackage[czech,english]{babel}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{epstopdf}
+\usepackage{amsbsy}
+
+\usepackage[left=1.5cm,right=1.5cm,top=1.5cm,bottom=1cm]{geometry}
+
+\usepackage{ifthen}
+\usepackage{datatool}
+
+\usepackage[printwatermark]{xwatermark}
+\usepackage{tikz}
+
+% Fallback fonts for team with name '(ノಠ益ಠ)ノ ᕦ(ò óˇ)ᕤ''
+\usepackage{ucharclasses}
+
+\newfontfamily\droidfallbackfont{Droid Sans Fallback}
+\newfontfamily\freesansfont{FreeSans}
+\newfontfamily\freeseriffont{FreeSerif}
+\newfontfamily\liberationfont[BoldFont={Liberation Serif}]{Liberation Serif}
+\let\originalfont\normalfont
+
+%\setTransitionsFor{Katakana}{\droidfallbackfont}{\originalfont}
+%\setTransitionsFor{MathematicalOperators}{\freesansfont}{\originalfont}
+\setTransitionsFor{CJKUnifiedIdeographs}{\droidfallbackfont}{\originalfont}
+\setTransitionsFor{CJKSymbolsAndPunctuation}{\droidfallbackfont}{\originalfont}
+\setTransitionsFor{Thai}{\freeseriffont}{\originalfont}
+%\setTransitionsFor{UnifiedCanadianAboriginalSyllabics}{\freesansfont}{\originalfont}
+%\setTransitionsFor{Telugu}{\droidfallbackfont}{\originalfont}
+
+%velikosti písma
+\newcommand{\PismoMale}{\fontsize{15}{15}\selectfont}
+\newcommand{\PismoStredni}{\fontsize{18}{18}\selectfont}
+\newcommand{\PismoVelke}{\fontsize{27}{27}\selectfont}
+\newcommand{\PismoDiplom}{\fontsize{45}{45}\selectfont}
+\newcommand{\PismoDiplomEN}{\fontsize{45}{45}\selectfont}
+\newcommand{\PismoSoutez}{\fontsize{35}{35}\selectfont}
+\newcommand{\PismoPaticka}{\fontsize{8}{10}\selectfont}
+\newcommand{\PismoOsoby}{\fontsize{10}{10}\selectfont}
+
+\newcommand{\MezeraDiplom}{\vspace{0.7cm}}
+\newcommand{\MezeraZaklad}{\vspace{0.4cm}}
+\newcommand{\MezeraCara}{\vspace{0.3cm}}
+\newcommand{\MezeraPodpisy}{\vspace{1.5cm}}
+
+\newcommand{\MezeraTym}{\vspace{0.5cm}}
+
+\begin{document}
+\DTLsetseparator{;}
+\DTLloaddb{team}{diplomy/list.csv} % cesta k CSV souboru hír
+\DTLforeach{team}{%
+\teamname=JmenoTymu,%
+\teammembers=ClenoveTymu,%
+\place=Poradi}{%  mapování dat do maker, klíče jsou specifikovány v prvním řádku souboru CSV
+
+%\thisfancyput(20.5cm,-4.5cm){\includegraphics[height=5cm]{logoUK}}
+%\thisfancyput(-4.5cm,-4.5cm){\includegraphics[height=5cm]{logoMFF}}
+
+%\newdimen\horniskip
+%\horniskip=0 pt
+%\advance\horniskip by 0.10427852349\textwidth
+%\advance\horniskip by \MezeraTym
+
+%\phantom{\begin{minipage}{0.55\textwidth}
+%\begin{center}
+%\includegraphics[width=\textwidth]{diplomy/logotyp_fakulty3.eps}\\
+%\end{center}
+%\end{minipage}}%obrazek je 596x113
+%~\vspace{0.10427852349\textwidth}
+%
+%
+%\MezeraTym
+%
+\begin{center}
+%{\fontsize{17}{19}\selectfont \textbf{uděluje}}\,
+%
+{~\vphantom{\PismoDiplom \textbf{D\,I\,P\,L\,O\,M}}}\\
+%
+%\hphantom{{\fontsize{17}{19}\selectfont \textbf{uděluje}}}
+%
+%
+%\\
+{~\MezeraTym}\\
+\MezeraTym
+{~\vspace{0.10427852349\textwidth}}\\
+%
+{\PismoMale týmu}\, {\PismoVelke \textbf{\teamname}}\,
+\hphantom{{\fontsize{17}{19}\selectfont \textbf{týmu}}}\\
+\MezeraTym
+%
+{\PismoMale ve složení} {\PismoStredni \teammembers}\\
+%
+\vfill
+\end{center}
+\newpage
+}%konec foreach
+\end{document}

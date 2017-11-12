@@ -1,0 +1,201 @@
+% Stručný návod:
+% - Připravit CSV soubor s údaji oddělenými středníky v UTF-8 -- tady ne
+% - Přímo v souboru je potřeba vyplnit jména podpisujích osob a funkce (těsně před begin{document}
+%
+% Vytvořil Aleš Flandera 2015 %
+
+\documentclass[8pt,a4paper,landscape]{article}
+
+\pagestyle{empty}
+
+\usepackage[czech,english]{babel}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{epstopdf}
+\usepackage{amsbsy}
+
+\usepackage[left=1.5cm,right=1.5cm,top=1.5cm,bottom=1cm]{geometry}
+
+\usepackage{ifthen}
+\usepackage{datatool}
+
+\usepackage[printwatermark]{xwatermark}
+\usepackage{tikz}
+
+% Fallback fonts for team with name '(ノಠ益ಠ)ノ ᕦ(ò óˇ)ᕤ''
+\usepackage{ucharclasses}
+
+\newfontfamily\droidfallbackfont{Droid Sans Fallback}
+\newfontfamily\freesansfont{FreeSans}
+\newfontfamily\freeseriffont{FreeSerif}
+\newfontfamily\liberationfont[BoldFont={Liberation Serif}]{Liberation Serif}
+\let\originalfont\normalfont
+
+%\setTransitionsFor{Katakana}{\droidfallbackfont}{\originalfont}
+%\setTransitionsFor{MathematicalOperators}{\freesansfont}{\originalfont}
+\setTransitionsFor{CJKUnifiedIdeographs}{\droidfallbackfont}{\originalfont}
+\setTransitionsFor{CJKSymbolsAndPunctuation}{\droidfallbackfont}{\originalfont}
+\setTransitionsFor{Thai}{\freeseriffont}{\originalfont}
+%\setTransitionsFor{UnifiedCanadianAboriginalSyllabics}{\freesansfont}{\originalfont}
+%\setTransitionsFor{Telugu}{\droidfallbackfont}{\originalfont}
+
+\newsavebox\mybox
+\savebox\mybox{%
+\begin{tikzpicture}
+    \node at (0,0) {\includegraphics{diplomy/fs.pdf}};
+    \draw[fill=white,fill opacity=0.8,draw opacity=0] (-3.5,-3.5) rectangle (3.5,3.5);
+\end{tikzpicture}
+}
+
+\newwatermark[
+	allpages,
+	angle=0,
+	scale=2,
+	xpos=0,
+	ypos=0
+]{\usebox\mybox}
+
+%velikosti písma
+\newcommand{\PismoMale}{\fontsize{15}{15}\selectfont}
+\newcommand{\PismoStredni}{\fontsize{18}{18}\selectfont}
+\newcommand{\PismoVelke}{\fontsize{27}{27}\selectfont}
+\newcommand{\PismoDiplom}{\fontsize{45}{45}\selectfont}
+\newcommand{\PismoDiplomEN}{\fontsize{45}{45}\selectfont}
+\newcommand{\PismoSoutez}{\fontsize{35}{35}\selectfont}
+\newcommand{\PismoPaticka}{\fontsize{8}{10}\selectfont}
+\newcommand{\PismoOsoby}{\fontsize{10}{10}\selectfont}
+
+\newcommand{\MezeraDiplom}{\vspace{0.7cm}}
+\newcommand{\MezeraZaklad}{\vspace{0.4cm}}
+\newcommand{\MezeraCara}{\vspace{0.3cm}}
+\newcommand{\MezeraPodpisy}{\vspace{1.5cm}}
+\newcommand{\MezeraTym}{\vspace{0.5cm}}
+
+\newcommand{\osobaLeva}{prof. RNDr. Vladimír Baumruk, DrSc.}
+\newcommand{\osobaPrava}{doc. RNDr. František Chmelík, CSc.}
+\newcommand{\osobaStred}{\if\category\catA Daniel Dupkala\else\if\category\catB Mgr. Aleš Flandera\else Mgr. Karel Kolář\fi\fi}
+\newcommand{\OsobaPravaFceCZ}{proděkan pro studijní záležitosti}
+\newcommand{\OsobaStrdFceCZ}{\if\category\catA vedoucí FYKOSího Fyziklání\else vedoucí kategorie \category\fi}
+\newcommand{\OsobaLevaFceCZ}{proděkan pro fyzikální sekci}
+
+\newcommand\catA{A}
+\newcommand\catB{B}
+\newcommand\catC{C}
+\newcommand\category{}
+\newcommand\datum{17.~2.~2017}%TODO uprav
+\newcommand\rocnik{Y}
+
+%\thisfancyput(20.5cm,-4.5cm){\includegraphics[height=5cm]{logoUK}}
+%\thisfancyput(-4.5cm,-4.5cm){\includegraphics[height=5cm]{logoMFF}}
+
+\def\body#1{
+\renewcommand\category{#1}
+\begin{center}
+\begin{minipage}{0.40\textwidth}
+\centering
+{\fontsize{17}{19}\selectfont \textbf{Fyzikální korespondenční seminář,\\ který zastřešuje}}
+\end{minipage}
+%
+\hfill
+%
+\begin{minipage}{0.55\textwidth}
+\begin{center}
+\includegraphics[width=\textwidth]{diplomy/logotyp_fakulty3.eps}\\
+\end{center}
+\end{minipage}
+%
+%
+\MezeraTym
+%
+%
+\begin{center}
+\centering
+{\fontsize{17}{19}\selectfont \textbf{uděluje}}\,
+%
+{\PismoDiplom \textbf{D\,I\,P\,L\,O\,M}}\,
+%
+\hphantom{{\fontsize{17}{19}\selectfont \textbf{uděluje}}}
+\end{center}
+%
+%
+\MezeraTym
+%
+{~\vphantom{\PismoVelke Áy}}\\%neruste me mezery!
+\MezeraTym
+%
+{~\vphantom{\PismoStredni Áy}}\\%aby vznikla dost velka mezera
+{~\vphantom{\PismoStredni Áy}}\\
+%
+%
+\MezeraZaklad
+% TODO podle toho, jestli se bude tisknout známé nebo neznámé pořadí.
+{\PismoVelke \textbf{za \,\,\,\,\,. místo v kategorii \category}}\\
+%{\PismoVelke \textbf{za \phantom{\place}. místo v kategorii \category}}\\
+\MezeraZaklad
+%
+{\PismoMale v \rocnik{}. ročníku mezinárodní soutěže v řešení fyzikálních úloh\\}
+%
+\MezeraZaklad
+{\PismoSoutez \textbf{FYKOSí Fyziklání}\\}
+\MezeraZaklad
+%
+{\PismoMale pořádané dne \datum{} v Praze na MFF UK}\\
+%
+\MezeraPodpisy
+\begin{minipage}{0.25\textwidth}
+\centering
+\hrule
+\MezeraCara
+{\PismoOsoby
+\osobaLeva\\
+\OsobaLevaFceCZ
+}
+\end{minipage}
+%
+\hspace{2cm}
+%
+\begin{minipage}{0.25\textwidth}
+\centering
+\hrule
+\MezeraCara
+{\PismoOsoby
+\osobaStred\\
+\OsobaStrdFceCZ
+}
+\end{minipage}
+%
+\hspace{2cm}
+%
+\begin{minipage}{0.25\textwidth}
+\centering
+\hrule
+\MezeraCara
+{\PismoOsoby
+\osobaPrava\\
+\OsobaPravaFceCZ
+}
+\end{minipage}
+%
+\end{center}
+%
+\vfill
+{\PismoPaticka \noindent{}FYKOSí Fyziklání je soutěž vyhlašovaná Univerzitou
+Karlovou, Matematicko fyzikální fakultou. Financována je přes Oddělení
+pro vnější vztahy a~propagaci MFF UK. Spoluvyhlašovatelem soutěže je
+Ministerstvo školství, mládeže a~tělovýchovy. Soutěž připravují organizátoři
+Fyzikálního korespondenčního semináře MFF UK. Zaštítěna je Ústavem teoretické
+fyziky, Ústavem částicové a~jaderné fyziky a~Katedrou didaktiky fyziky MFF UK.}
+%
+%*****************************************************************
+%anglická verze diplomu
+%*****************************************************************
+
+\newpage
+%
+}
+\begin{document}
+
+\body{A}
+\body{B}
+\body{C}
+\end{document}

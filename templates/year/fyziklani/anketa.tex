@@ -1,0 +1,286 @@
+\def\UseOption{print,lngcs}
+\expandafter\ifx\csname classoptions\endcsname\relax
+  \def\classoptions{}
+\fi
+\documentclass[fykos,\classoptions]{fksgeneric}% TODO hlavička, asi něco jako mfnaboj
+\usepackage{pst-barcode}
+
+%\pagestyle{empty}
+\renewcommand\makefooter{}
+
+\fancyhead[L]{\bfseries\small FYKOSí Fyziklání ROK}
+\fancyhead[R]{}
+\fancyfoot{}
+
+
+\setcounter{year}{3}%tady bylo TODO
+\setcounter{batch}{1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% Makra %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\city{}
+\newcount\team\team=\teamscount \multiply\team by 5
+\newcount\teamN\teamN=0%
+%\newcount\pps\pps=20% pages per 4survey; 4str, 5 clenu
+
+\newcounter{boxcnt}
+\newcounter{sboxcnt}
+\newcounter{questioNum}
+\setcounter{questioNum}{0}
+
+% velikosti boxu na odpoved
+\newlength{\AboxH}\setlength{\AboxH}{1.5\baselineskip}
+\newlength{\AboxD}\setlength{\AboxD}{0.5\baselineskip}
+
+% pocet ctverecku
+\newcounter{sqCnt}
+
+\newcommand{\nl}[0]{&\ifnum\theboxcnt>0\addtocounter{boxcnt}{-1}%
+\setcounter{sboxcnt}{\thesqCnt}%
+\loop\ifnum\thesboxcnt>0\addtocounter{sboxcnt}{-1}%
+\fbox{\vrule width 3pt height 0pt depth 0pt \vrule width 0pt height 3pt depth 0pt}\ifnum\thesboxcnt>0\hfill\fi\repeat%
+\else \fbox{\vrule width 3.53cm height 0pt depth 0pt %3.53cm je tak akorat, aby se vesla v pravemu okraji
+\vrule width 0pt height \AboxH depth \AboxD}\fi\smallskip\\}
+
+% otazka; odpovedi oddělení \nl; počet checkboxů (další jsou boxy)
+\newcommand{\question}[4]{%
+\refstepcounter{questioNum}\addtocounter{questioNum}{-1}%
+\setcounter{sqCnt}{1}%
+\noindent\begin{minipage}[t]{8mm}\stepcounter{questioNum}\bf\arabic{questioNum}.\end{minipage}%
+\begin{minipage}[t]{3cm}{\sl #1}\end{minipage}\hspace{2mm}%
+\setcounter{boxcnt}{#3}%
+\begin{minipage}[t]{\textwidth-8mm-3cm-2mm-0.3pt}%8mm číslo, 3cm otázka, 2mm skvíra, .3pt je z Bulharska
+\begin{tabular}[t]{p{5cm}l}
+#2\nl%
+\end{tabular}\end{minipage}%\vrule%
+\par#4\par\nopagebreak\vfil\smallskip\hrule\vfil\vfil\smallskip%
+}
+
+\newcommand{\evaluation}[4]{%
+\refstepcounter{questioNum}\addtocounter{questioNum}{-1}%
+\setcounter{sqCnt}{5}%
+\noindent\begin{minipage}[t]{8mm}\stepcounter{questioNum}\bf\arabic{questioNum}.\end{minipage}%
+\begin{minipage}[t]{3cm}\sl #1\end{minipage}\hspace{2mm}%
+\setcounter{boxcnt}{#3}%
+\raisebox{\baselineskip}{% posun nahoru o nadpis
+\begin{minipage}[t]{\textwidth-8mm-3cm-2mm-0.3pt}\begin{tabular}[t]{p{5cm}l}%
+& \emph{\hspace{1.5pt}1\hfill2\hfill3\hfill4\hfill5\hspace{1.5pt}~}\\%
+#2\nl%
+&\vrule width 3.78cm height 0pt depth 0pt
+\end{tabular}\end{minipage}}%
+\vspace{-\baselineskip}
+\par#4\par\nopagebreak\vfil\smallskip\hrule\vfil\vfil\smallskip%
+}
+
+\newcommand{\goto}[1]{\emph{\scriptsize\opt{lngcs}{Pokračujte na otázku}\opt{lngsk}{Pokračujte na otázku} \ref{#1}.}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% Zacatek ankety %%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\loop\ifnum\teamN<\the\team%
+\setcounter{questioNum}{0}%
+\section{\opt{lngcs}{Anketa pro účastníky FYKOSího Fyziklání ROK}}
+Otázky vyplňujte začerněním příslušného políčka. Pokud 
+si přejete změnit odpověď, začerněné políčko škrtněte velkým křížkem 
+a~začerněte jiné. Otázky prosíme vyplňujte popořadě a~respektujte skoky. {\bf Anketu nepřehýbejte!}%
+
+
+%opal MFF
+%TODO musí odpovídat na všechno?
+%TODO mohou použít modrou tužku; na MFF jsem to udělal.
+
+\opt{lngcs}{Vzor pro označování:}
+\begin{center}
+\opt{lngcs}{neoznačeno}\quad \includegraphics{neozn.eps}\quad% 
+\opt{lngcs}{označeno}\quad \includegraphics{ozn.eps}\quad%
+\opt{lngcs}{opraveno}\quad \raisebox{-3pt}{\includegraphics{opr.eps}}\quad%
+\end{center}
+
+
+%Pro vyplnění ankety použijte modrou či černou propisovací tužku.
+%Pokud chtete označit nějakou odpověď, vybarvěte pečlivě 
+%odpovídající čtvereček. Pokud chcete Vaše rozhodnutí změnit, nejprve 
+%přešktrněte původní volbu a~pak zabarvěte čtvereček odpovídající nové
+%volbě.
+
+%Manuál viz naše anketa. Vyplnit kolečko, pak jej přeškrtnout.\medskip
+%Nebolo by lepsie tam dat vzor ako na MFF ankete? Su to deti a to od MFF je nazornejsie. //Paťo
+%Bylo, ale nechtělo se mi/neměl jsem čas kreslit obrázky (udělám to) //Lukáš
+
+\subsection{\opt{lngcs}{Korespondenční semináře}}
+\question{\opt{lngcs}{Jsem studentem ročníku:}}{%
+    \opt{lngcs}{1.}\nl 
+    \opt{lngcs}{2.}\nl 
+    \opt{lngcs}{3.}\nl 
+    \opt{lngcs}{4.}}{4}{}
+\question{\opt{lngcs}{Fyziky a~matematiky mám ve škole:}}{%
+    \opt{lngcs}{zoufale moc}\nl 
+    \opt{lngcs}{akorát}\nl 
+    \opt{lngcs}{víc by nezaškodilo}\nl 
+    \opt{lngcs}{zoufale málo}}{4}{}
+\question{\opt{lngcs}{Matematika a~fyzika mě:}}{%
+    \opt{lngcs}{baví, učitel mě motivuje}\nl 
+    \opt{lngcs}{baví, učitel mě nemotivuje}\nl
+    \opt{lngcs}{nebaví, i~když mě učitel motivuje}\nl
+    \opt{lngcs}{nebaví, učitel mě nemotivuje}}{4}{}
+\question{\opt{lngcs}{Účastním se některé z~oborových o\-lym\-piád?}}{%
+    \opt{lngcs}{fyzikální}\nl
+    \opt{lngcs}{matematické}\nl
+    \opt{lngcs}{astronomické}\nl
+    \opt{lngcs}{logické}\nl
+    \opt{lngcs}{biologické}\nl
+    \opt{lngcs}{chemické}\nl
+    \opt{lngcs}{jiné (vypište)}}{6}{}
+\question{\opt{lngcs}{Znám Fyzikální korespondeční seminář (FYKOS)?}}{%TODO
+    \opt{lngcs}{ano, od učitele}\nl
+    \opt{lngcs}{ano, z~nástěnky ve škole}\nl
+    \opt{lngcs}{ano, z~internetu}\nl
+    \opt{lngcs}{ano, od kamarádů}\nl
+    \opt{lngcs}{ano, dostal jsem dopis}\nl
+    \opt{lngcs}{ano, od jinud (odkud?)}\nl
+    \opt{lngcs}{ne}\stepcounter{boxcnt}}{5}{}
+\question{\opt{lngcs}{Znám jiné korespondenční semináře?}}{%
+    \opt{lngcs}{PraSe}\nl
+    \opt{lngcs}{FKS}\nl
+    \opt{lngcs}{M\&M}\nl
+    \opt{lngcs}{KSP}\nl
+    \opt{lngcs}{jiný/další (vypište)}}{4}{}
+\question{\opt{lngcs}{Řeším FYKOS?}}{%
+    \opt{lngcs}{ano}\quad\goto{RESITEL}\nl
+    \opt{lngcs}{ne}}{2}{}
+\question{\opt{lngcs}{Úlohy FYKOSu jsem:}}{%
+    \opt{lngcs}{četl}\nl
+    \opt{lngcs}{nikdy neviděl}\quad\goto{CHCI:RESIT}}{2}{}
+% otázky pro znechucené neřešitele
+\question{\opt{lngcs}{FYKOS neřeším proto, že:}\label{ZNECH:NERES}}{%
+    \opt{lngcs}{je moc těžký}\nl
+    \opt{lngcs}{je moc lehký}\nl
+    \opt{lngcs}{kamarádi by se mi smáli}\nl
+    \opt{lngcs}{nemám čas}\nl
+    \opt{lngcs}{nelíbí se mi úlohy (proč?)}\nl
+    \opt{lngcs}{jiný důvod (vypište)}}{4}{}
+{\setlength{\AboxD}{26pt}%
+
+
+
+\question{\opt{lngcs}{Chci začít řešit FYKOS?}\label{CHCI:RESIT}}{%
+    \opt{lngcs}{ano (vyplňte návratku vloženou v~anketě a~odevzdejte ji spolu s~anketou, zadání vám přijde poštou)}\nl %TODO nebudou mít zadání ve složce?
+    \opt{lngcs}{ne}}{2}{}
+
+}
+
+% nová stránka
+{\vfil%
+\noindent\begin{pspicture}(40pt,40pt)
+\psbarcode{\ifnum\teamN<100 0\fi\ifnum\teamN<10 0\fi\the\teamN}{includecheck}{qrcode}%
+\end{pspicture}
+\hfill\emph{Pokračování na druhé straně.}\vspace{-35pt}\newpage}
+
+
+\question{\opt{lngcs}{Bavilo by mě soustředění FYKOSu?}\label{SOUS}}{%
+    \opt{lngcs}{ano}\nl
+    \opt{lngcs}{ne (proč?)}\nl
+    \opt{lngcs}{nevím, co od něj mám čekat}\stepcounter{boxcnt}}{1}{
+    \noindent\goto{HODNOC}}
+
+
+
+% otazky pro stavající řešitele
+\question{\opt{lngcs}{Úlohy FYKOSu se mi zdají: (můžete zatrhnout i~více odpovědí)}\label{RESITEL}}{%
+    \opt{lngcs}{moc těžké}\nl
+    \opt{lngcs}{tak akorát}\nl
+    \opt{lngcs}{moc lehké}\nl
+    \opt{lngcs}{zajímavé}\nl
+    \opt{lngcs}{o~ničem}\nl
+    \opt{lngcs}{pracné}\nl
+    \opt{lngcs}{příliš matematické}\nl
+    \opt{lngcs}{jiné postřehy (vypište)}}{7}{}
+
+%\subsection{Hodnocení Fyziklání}
+\medskip\noindent{\sffamily\slshape\Large\opt{lngcs}{Hodnocení Fyziklání}}\smallskip\par
+\question{\opt{lngcs}{Na Fyziklání jsem proto, že:}\opt{lngsk}{Na Náboji Junior som, pretože:}\label{HODNOC}}{%
+    \opt{lngcs}{mě baví fyzika}\nl 
+    \opt{lngcs}{se chci procvičit v~počítání příkladů}\nl 
+    \opt{lngcs}{mám volno ze školy}\nl 
+    \opt{lngcs}{jiný důvod (vypište)}}{3}{}
+\evaluation{\opt{lngcs}{Ohodnoťte jako ve škole:}}{%
+    \opt{lngcs}{srozumitelnost zadání úloh}\nl
+    \opt{lngcs}{organizace}\nl
+    \opt{lngcs}{termín}\nl
+    \opt{lngcs}{obtížnost úloh (1--nejlehčí)}
+     }{4}{}
+\evaluation{\opt{lngcs}{Ohodnoťte jako ve škole opravující:}}{%
+    \opt{lngcs}{opravující 0}\nl
+    \opt{lngcs}{opravující 1}\nl
+    \opt{lngcs}{opravující 2}\nl
+    \opt{lngcs}{opravující 3}\nl
+    \opt{lngcs}{opravující 4}\nl
+    \opt{lngcs}{opravující 5}\nl
+    \opt{lngcs}{opravující 6}\nl
+    \opt{lngcs}{opravující 7}
+     }{8}{}
+\question{\opt{lngcs}{Chci se zúčastnit Fyziklání i~příští rok?}}{%
+     \opt{lngcs}{ano}\nl
+     \opt{lngcs}{ne, příští rok již budu na VŠ}\nl
+     \opt{lngcs}{ne, jiný důvod (vypište)}}{2}{}
+{\setlength{\AboxD}{35pt}%vetsi boxy
+\question{\opt{lngcs}{Které úlohy se mi nejvíce nebo nejméně líbily?}}{%
+    \opt{lngcs}{nejvíce}\nl
+    \opt{lngcs}{nejméně}}{0}{}
+\question{\opt{lngcs}{Která oblast mi v~úlohách chyběla? Které bylo až příliš?}}{%
+    \opt{lngcs}{chybělo}\nl
+    \opt{lngcs}{nadbytek}}{0}{}
+}
+%\question{\opt{lngcs}{Měly by mít základní školy v~MFnáboji vlastní kategorii?}\opt{lngsk}{Mali by mať základné školy v~Náboji Junior vlastnú kategóriu?}}{%
+%    \opt{lngcs}{ano}\opt{lngsk}{áno}\nl
+%    \opt{lngcs}{ne}\opt{lngsk}{nie}}{2}{}
+%\question{\opt{lngcs}{Měly by mít týmy složené ze žáků více škol dovolenu účast?}\opt{lngsk}{Mali by mať tímy zložené zo žiakov viacerých škôl povolenú účasť?}}{%
+%    \opt{lngcs}{ano}\opt{lngsk}{áno}\nl
+%    \opt{lngcs}{ano, ale ve zvláštní kategorii}\opt{lngsk}{áno, ale v~osobitej kategórii}\nl
+%    \opt{lngcs}{ne}\opt{lngsk}{nie}}{3}{}
+
+\noindent\begin{minipage}[t]{5mm}\stepcounter{questioNum}\bf\arabic{questioNum}.\end{minipage}
+\begin{minipage}[t]{12cm}\sl%
+\opt{lngcs}{Podněty, připomínky a~vzkazy organizátorům pište sem.}%
+\end{minipage}\nopagebreak\vspace{2mm}%
+\par\noindent\fbox{\vrule width \textwidth height 0pt depth 0pt
+\vrule width 0pt height 4cm depth 0pt}
+
+\vspace{20pt}
+\noindent\begin{pspicture}(40pt,40pt)
+\psbarcode{\ifnum\teamN<100 0\fi\ifnum\teamN<10 0\fi\the\teamN}{includecheck}{qrcode}%
+\end{pspicture}
+\vspace{-70pt}
+
+\bigskip\noindent
+\opt{lngcs}{Děkujeme za vyplnění ankety a těšíme se na shledání na příštím ročníku.}%
+
+\hfill\sigstyle{\opt{lngcs}{Organizátoři}\opt{lngsk}{Organizátori}}
+
+
+\newpage\advance\teamN by 1\repeat%
+
+%\opt{lngcs}{\makefooter}\opt{lngsk}{}%TODO spíše pouze adresa nebo nic
+
+
+
+%\noindent{\bf !TODO!} Logičtější uspořádání otázek\par
+%\noindent{\bf !TODO!} Logičtější uspořádání odpovědí\par
+%\noindent{\bf !TODO!} Větší boxy\par
+%\noindent{\bf !TODO!} interpunkce\par
+%\noindent{\bf !TODO!} tykat/vykat\par%vykat
+%\noindent{\bf !TODO!} nepřehýbat\par
+%\noindent{\bf !TODO!} poděkování\par %je tam
+%\noindent{\bf !TODO!} vyřešit stránkování\par %snad jo
+%\noindent{\bf !TODO!} ??čárový kód\par %beta
+%\noindent{\bf !TODO!} ??identifikace org. místa\par% jméno+kód
+%\noindent{\bf !TODO!} návod viz MFF\par%hotovo
+%\noindent{\bf !TODO!} ??jazykové mutace: CZ/SK\par %připraveno
+%\noindent{\bf !TODO!} nesázet v~patičce email pro řešení\par% FIXED v makrech, udělal jsem předtím velkou chybu //Lukas
+%\noindent{\bf !TODO!} Vyřešit, kde jsem seděl\par %hotovo
+%\noindent{\bf !TODO!} Vyřešit návratku\par%snad jo
+%\noindent{\bf !TODO!} ??Návratku do ankety\par %bude vedle
+\end{document}

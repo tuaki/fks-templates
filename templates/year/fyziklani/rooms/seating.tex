@@ -1,0 +1,29 @@
+\expandafter\ifx\csname classoptions\endcsname\relax
+  \def\classoptions{}
+\fi
+\documentclass[\classoptions,a4paper,landscape]{fksgeneric}
+
+\usepackage{tabularx}
+
+\input{common.tex}
+\input{rooms/rooms_common.tex}
+\input{teams.tex}
+
+\renewcommand\t[1]{%
+\textbf{#1} \teamname{#1}}
+
+
+%
+% Rooms
+%
+\newenvironment{room}[2]{%
+	\section{#1}
+	\begin{tabular}{#2}
+}{%
+	\end{tabular}
+}
+\begin{document}
+
+\input{rooms/rooms_def.tex}
+
+\end{document}
