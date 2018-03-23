@@ -4,14 +4,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\rocnikslovy{třicátým}
-
-\def\datumfyziklani{17.~2.~2017}
-%\def\datumfyziklani{obvykle v~únoru}
-\def\datumfol{30.~11.~2016}
-%\def\datumfol{obvykle v~prosinci}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\def\rocnikslovy{třicátým druhým}
 
 \usepackage{bbding}
 
@@ -47,8 +40,9 @@
 
 \noindent{\dcmid Fyzikální korespondenční seminář MFF UK \rule[4pt]{28mm}{3pt}}
 \vspace{1mm}
-\noindent{\includegraphics[height=20mm]{logo8.eps}\hspace{0pt plus2fil}\dcbig
-F\hspace{0pt plus1fil}Y\hspace{0pt plus1fil}K\hspace{0pt plus1fil}O\hspace{0pt
+\noindent{%
+%\includegraphics[height=20mm]{logo8.eps}\hspace{0pt plus2fil}
+\dcbig F\hspace{0pt plus1fil}Y\hspace{0pt plus1fil}K\hspace{0pt plus1fil}O\hspace{0pt plus1fil}S}
 plus1fil}S}
 \vspace{5mm}
 \noindent{\rule[3pt]{\textwidth}{3pt}}
@@ -110,7 +104,7 @@ z~těchto přátelství pak přetrvávají během studia na VŠ i~déle. A~samoz
 spolu s informacemi o tom, co má obsahovat správné řešení, jak se řešení vyhodnocuje,
 jaké \textbf{další akce} pořádáme, co můžete dostat za \textbf{odměny} a mnoho dalšího.
 K registraci můžete také použít \textbf{návratku} na následující straně. A~můžete nás
-sledovat i~na \textbf{Facebooku} na oficiální stránce \url{http://www.facebook.com/Fykos}.
+sledovat i~na \textbf{Facebooku} na oficiální stránce \url{http://www.facebook.com/FYKOS}.
 
 \medskip
 
@@ -139,6 +133,7 @@ Vyřešené úlohy můžete odesílat poštou do~\mdeadlineS~(včetně), elektro
 \problemtask
 \problemtask
 \problemtask
+\vfill
 \input{return1.tex}
 \newpage
 \problemtask
@@ -153,6 +148,7 @@ Vyřešené úlohy můžete odesílat poštou do~\mdeadlineS~(včetně), elektro
 {\normalfont\normalsize\problempoints}}
 Text nového dílu seriálu a~zadání seriálové úlohy najdete na našem webu.}
 %\par\noindent\emph{Poznámka}\quad Text seriálu naleznete na našem webu.
+\vfill
 \input{return2.tex}
 
 %sem fykosáka, kdyby bylo místo
