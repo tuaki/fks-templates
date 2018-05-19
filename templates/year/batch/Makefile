@@ -26,7 +26,11 @@ solutions: $(addsuffix .pdf, $(addprefix $(OUT)/reseni$(BATCHNO)-, $(PROBLEMSLIS
 series: $(OUT)/serial$(BATCHNO).pdf 
 $(eval PROBS=$(addprefix $${problem,$(addsuffix },$(foreach foo,$(SOLVEDBATCHNO) $(BATCHNO),$(addprefix $(foo)_,$(PROBLEMSLIST))))))
 PROBDEP= $(addprefix $(PROBLEMS)/, $(PROBS))
-GRAPHDEP=
+
+# == graphics dependence ==
+GRAPHDEP_MANUAL=
+include Makefile-graphics.inc #has to be after GRAPHDEP_MANUAL, defines GRAPHDEP
+
 #SERIEDEP=$(PROBDEP) uvod$(BATCHNO).tex serial$(BATCHNO).tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP)) ../Deadline.inc
 # Use variant below when Astrid supports xsltproc.
 SERIEDEP=$(PROBDEP) uvod$(BATCHNO).tex serial$(BATCHNO).tex problems$(BATCHNO).tex $(SIGNATURES) \
