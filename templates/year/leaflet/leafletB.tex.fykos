@@ -114,10 +114,6 @@ sledovat i~na \textbf{Facebooku} na oficiální stránce \url{http://www.faceboo
 
 \medskip
 
-\input{aktuality\thebatch.tex}
-
-%nejsou-li aktuality, vložit obrázek fykosáka
-
 \begin{center}
 \vskip5mm
 \metavar{address}
