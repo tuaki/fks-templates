@@ -47,7 +47,7 @@
 
 \noindent{\dcmid Fyzikální korespondenční seminář MFF UK \rule[4pt]{28mm}{3pt}}
 \vspace{1mm}
-\noindent{\includegraphics[height=20mm]{logo8.eps}\hspace{0pt plus2fil}\dcbig
+\noindent{\dcbig
 F\hspace{0pt plus1fil}Y\hspace{0pt plus1fil}K\hspace{0pt plus1fil}O\hspace{0pt
 plus1fil}S}
 \vspace{5mm}
@@ -79,7 +79,7 @@ plus1fil}S}
 
 % -- konec titulní strany --
 
-\nadpissptakemL{Co je to {\FYKOS}?}{logo5.eps}{-1mm}{0mm}{2.8cm}
+\nadpissptakemL{Co je to {\FYKOS}?}{logo1.eps}{-1mm}{0mm}{2.8cm}
 
 {\FYKOS} (FYzikální KOrespondenční Seminář) představuje pro studenty
 středních škol možnost rozšířit si znalosti fyziky na řešení netradičních úloh.
@@ -114,10 +114,6 @@ sledovat i~na \textbf{Facebooku} na oficiální stránce \url{http://www.faceboo
 
 \medskip
 
-\input{aktuality\thebatch.tex}
-
-%nejsou-li aktuality, vložit obrázek fykosáka
-
 \begin{center}
 \vskip5mm
 \metavar{address}
@@ -139,8 +135,6 @@ Vyřešené úlohy můžete odesílat poštou do~\mdeadlineS~(včetně), elektro
 \problemtask
 \problemtask
 \problemtask
-\input{return1.tex}
-\newpage
 \problemtask
 \problemtask
 \problemtask
@@ -153,7 +147,6 @@ Vyřešené úlohy můžete odesílat poštou do~\mdeadlineS~(včetně), elektro
 {\normalfont\normalsize\problempoints}}
 Text nového dílu seriálu a~zadání seriálové úlohy najdete na našem webu.}
 %\par\noindent\emph{Poznámka}\quad Text seriálu naleznete na našem webu.
-\input{return2.tex}
 
 %sem fykosáka, kdyby bylo místo
 
