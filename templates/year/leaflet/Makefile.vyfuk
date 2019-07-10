@@ -9,6 +9,8 @@ PGRAPHICS=$(PROBLEMS)/graphics# graphics for problems
 .SUFFIXES:
 .PHONY: all clean cleanall web book
 
+ARG=\def\mdeadline{${DEADLINE[${BATCHNO}]}}\def\mdeadlineS{${DEADLINES[${BATCHNO}]}}
+ARG_XML=\def\mdeadline{${DEADLINE_XML[${BATCHNO}]}}\def\mdeadlineS{${DEADLINES_XML[${BATCHNO}]}}
 
 # == Main targets ==
 all: web book 
@@ -19,7 +21,7 @@ $(eval PROBS=$(addsuffix }, $(addprefix $${problem$(BATCHNO)_, 1 2 3 4 5 6 7 8))
 PROBDEP= $(addprefix $(PROBLEMS)/, $(PROBS))
 GRAPHDEP=
 
-SERIEDEP=$(PROBDEP) leaflet$(BATCHNO).tex return.tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP))
+SERIEDEP=$(PROBDEP) leaflet$(BATCHNO).tex return.tex proc_resit.tex uvod.tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP)) ../Deadline.inc
 
 XELATEX=xelatex -output-directory $(@D) -jobname $(basename $(@F)) '\def\UseOption{web}\input{$<}'
 $(OUT)/leaflet$(BATCHNO).pdf: leaflet$(BATCHNO).tex $(SERIEDEP)

@@ -1,22 +1,25 @@
 \begin{minipage}{0.95\textwidth}
-\textbf{Řešitel}\par
-
-\begin{tabularx}{\textwidth}{>{\vbox to 6.5mm{}}rXrX}
+\hrule
+\vspace{0.9em}
+\begin{center}
+\textbf{Návratka pro řešitele zasílající úlohy poštou}
+\end{center}
+Odesláním této vyplněné návratky spolu s řešením alespoň jedné úlohy
+na níže uvedenou adresu se do Výfuku zaregistrujete poštou.
+Alternativně můžete využít systému\\ \url{https://db.fykos.cz/}.\par
+\begin{tabularx}{\textwidth}{>{\vbox to 6mm{}}rXrX}
 Jméno: & \multicolumn{3}{l}{\dotfill} \\
 E-mail: & \multicolumn{3}{l}{\dotfill} \\
-Datum narození: & \dotfill & Místo narození: &\dotfill\\
-Doručovací adresa: & \multicolumn{3}{l}{\dotfill}\\
-% & \multicolumn{3}{l}{\dotfill}\\
- & \multicolumn{3}{l}{\dotfill}
+Telefon: & \dotfill & Telefon na rodiče: & \dotfill \\
+Adresa domů: & \multicolumn{3}{l}{\dotfill}\\
+& \multicolumn{3}{l}{\dotfill}\\
+Název školy: & \multicolumn{3}{l}{\dotfill} \medskip\\ 
+\multicolumn{4}{l}{Odpovídající ročník (zakroužkuj):\hspace{1cm}6.~---~7.~---~8.~---~9.} \medskip
 \end{tabularx}
-
-\textbf{Škola}\par
-
-\begin{tabularx}{\textwidth}{>{\vbox to 6.5mm{}}rXrX}
-Třída: & \dotfill & Rok maturity: &\dotfill\\
-Adresa: & \multicolumn{3}{l}{\dotfill}\\
-% & \multicolumn{3}{l}{\dotfill}\\
-% & \multicolumn{3}{l}{\dotfill}
-\end{tabularx}
+\textit{Vyplněním návratky souhlasím se zpracováním osobních údajů
+v~souladu se zákonem č.~101/2000~Sb. o~ochraně osobních údajů pro
+vnitřní potřebu Matematicko-fyzikální fakulty~UK za účelem
+informování o~akcích pořádaných MFF~UK.} \\ \hrule
 \end{minipage}
+
  
