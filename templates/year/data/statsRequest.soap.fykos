@@ -7,10 +7,16 @@
 		</ns1:AuthenticationCredentials>
 	</SOAP-ENV:Header>
 	<SOAP-ENV:Body>
-		<GetExportRequest>
-			<qid>tex.emails</qid>
-			<parameter name="contest">SEM</parameter>
-		</GetExportRequest>
+		<GetStatsRequest>
+			<contest>SEM</contest>
+			<year>YEAR</year>
+			<series series="1">1 2 3 4 5 P E S</series>
+			<series series="2">1 2 3 4 5 P E S</series>
+			<series series="3">1 2 3 4 5 P E S</series>
+			<series series="4">1 2 3 4 5 P E S</series>
+			<series series="5">1 2 3 4 5 P E S</series>
+			<series series="6">1 2 3 4 5 P E S</series>
+		</GetStatsRequest>
 	</SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
 

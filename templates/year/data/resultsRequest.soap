@@ -8,8 +8,8 @@
 	</SOAP-ENV:Header>
 	<SOAP-ENV:Body>
 		<GetResultsRequest>
-			<contest>fykos</contest>
-			<year>29</year>
+			<contest>SEM</contest>
+			<year>YEAR</year>
 			<brojures>
 				<brojure>1</brojure>
 				<brojure>1 2</brojure>

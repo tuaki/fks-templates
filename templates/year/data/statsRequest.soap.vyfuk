@@ -8,14 +8,14 @@
 	</SOAP-ENV:Header>
 	<SOAP-ENV:Body>
 		<GetStatsRequest>
-			<contest>fykos</contest>
-			<year>27</year>
-			<series series="1">1 2 3 4 5 P E S</series>
-			<series series="2">1 2 3 4 5 P E S</series>
-			<series series="3">1 2 3 4 5 P E S</series>
-			<series series="4">1 2 3 4 5 P E S</series>
-			<series series="5">1 2 3 4 5 P E S</series>
-			<series series="6">1 2 3 4 5 P E S</series>
+			<contest>SEM</contest>
+			<year>YEAR</year>
+			<series series="1">1 2 3 4 5 E V</series>
+			<series series="2">1 2 3 4 5 E V</series>
+			<series series="3">1 2 3 4 5 E V</series>
+			<series series="4">1 2 3 4 5 E V</series>
+			<series series="5">1 2 3 4 5 E V</series>
+			<series series="6">1 2 3 4 5 E V</series>
 		</GetStatsRequest>
 	</SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
