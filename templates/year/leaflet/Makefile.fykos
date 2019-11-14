@@ -21,7 +21,7 @@ $(eval PROBS=$(addsuffix }, $(addprefix $${problem$(BATCHNO)_, 1 2 3 4 5 6 7 8))
 PROBDEP= $(addprefix $(PROBLEMS)/, $(PROBS))
 GRAPHDEP=matfyz.pdf
 
-SERIEDEP=$(PROBDEP) leaflet$(BATCHNO).tex aktuality$(BATCHNO).tex return1.tex return2.tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP)) ../Deadline.inc
+SERIEDEP=$(PROBDEP) leaflet$(BATCHNO).tex $(addprefix $(GRAPHICS)/, $(GRAPHDEP)) ../Deadline.inc
 
 XELATEX=xelatex -output-directory $(@D) -jobname $(basename $(@F)) '\def\UseOption{web}$(ARG)\input{$<}' || (rm -f $@ && false)
 $(OUT)/leaflet$(BATCHNO).pdf: leaflet$(BATCHNO).tex $(SERIEDEP)
