@@ -46,7 +46,7 @@ EOF
 ########################################################
 # Global setup #########################################
 ########################################################
-year=8 #change here!!!
+year=9 #change here!!!
 
 fileid=0
 files=$1
@@ -77,20 +77,23 @@ for file in $files; do \
     sourceE=` grep 'probsource'     $file | sed 's/%*\\\\probsource{\(.*\)}/\1/'	| tr -d '\r' | tr -d '\n'`
     topics=`  grep 'probtopics'     $file | sed 's/%*\\\\probtopics{\(.*\)}/\1/'	| tr -d '\r' | tr -d '\n'`
 
+	studyyears=`grep 'probstudyyears' $file | sed '/^%/d' | sed 's/%*\\\\probstudyyears{\(.*\)}/\1/'	| tr -d '\r' | tr -d '\n'`
+	tags=`		grep 'probtags'		  $file | sed '/^%/d' | sed 's/%*\\\\probtags{\(.*\)}/\1/' 			| tr -d '\r' | tr -d '\n'`
+
     points=`  sed "s/0//"      <<< $points`
     statnum=` sed "s/N\/A//"   <<< $statnum`
     statavg=` sed "s/N\/A//"   <<< $statavg`
     batch=`   sed "s/[^0-9]//" <<< $batch`
     no=`      sed "s/[^0-9]//" <<< $no`
 # multi row data
-    pnamecs=` cat $file |		     	tr '\r' " " | tr '\n' " " | sed 's/.*\\\\probname\[cs\]{\([^}]*\)}.*/\1/' 	| tr -d ' %'`
-    namefull=`cat $file |		     	tr '\r' " " | tr '\n' " " | sed 's/.*\\\\probname\[cs\]{\([^}]*\)}.*/\1/' 	| tr -d '%'`
+    pnamecs=` cat $file |				     	tr '\r' " " | tr '\n' " " | sed 's/.*\\\\probname\[cs\]{\([^}]*\)}.*/\1/' 		| tr -d ' %'`
+    namefull=`cat $file |			     		tr '\r' " " | tr '\n' " " | sed 's/.*\\\\probname\[cs\]{\([^}]*\)}.*/\1/' 		| tr -d '%'`
     resenics=`cat $file | egrep -v "(^%.*)" |	tr '\r' " " | tr '\n' " " | sed 's/.*\\\\probsolution\[cs\]{\([^}]*\)}.*/\1/'	| tr -d ' %'`
-    zadanics=`cat $file | egrep -v "(^%.*)" |	tr '\r' " " | tr '\n' " " | sed 's/.*\\\\probtask\[cs\]{\([^}]*\)}.*/\1/' 	| tr -d ' %'`
+    zadanics=`cat $file | egrep -v "(^%.*)" |	tr '\r' " " | tr '\n' " " | sed 's/.*\\\\probtask\[cs\]{\([^}]*\)}.*/\1/' 		| tr -d ' %'`
 
 # flags problems; Z - zadání, R - řešení
-    prob_textZ=`  grep '%\\ ' $file | grep 'text zadání OK' 			| sed 's/.*--\s*\([^?#]*\)[#?]*.*/\1/' | tr -d '[:blank:]' | tr -d '\r' | tr -d '\n'`
-    prob_textR=`  grep '%\\ ' $file | grep 'text řešení OK'			| sed 's/.*--\s*\([^?#]*\)[#?]*.*/\1/' | tr -d '[:blank:]' | tr -d '\r' | tr -d '\n'`
+    prob_textZ=`  grep '%\\ ' $file | grep 'text zadání OK' 				| sed 's/.*--\s*\([^?#]*\)[#?]*.*/\1/' | tr -d '[:blank:]' | tr -d '\r' | tr -d '\n'`
+    prob_textR=`  grep '%\\ ' $file | grep 'text řešení OK'					| sed 's/.*--\s*\([^?#]*\)[#?]*.*/\1/' | tr -d '[:blank:]' | tr -d '\r' | tr -d '\n'`
     prob_odbkorZ=`grep '%\\ ' $file | grep 'odborné korektury zadání OK' 	| sed 's/.*--\s*\([^?#]*\)[#?]*.*/\1/' | tr -d '[:blank:]' | tr -d '\r' | tr -d '\n'`
     prob_odbkorR=`grep '%\\ ' $file | grep 'odborné korektury řešení OK'	| sed 's/.*--\s*\([^?#]*\)[#?]*.*/\1/' | tr -d '[:blank:]' | tr -d '\r' | tr -d '\n'`
     prob_jazZ=`   grep '%\\ ' $file | grep 'jazykové korektury zadání OK'	| sed 's/.*--\s*\([^?#]*\)[#?]*.*/\1/' | tr -d '[:blank:]' | tr -d '\r' | tr -d '\n'`
@@ -98,22 +101,27 @@ for file in $files; do \
     prob_typoZ=`  grep '%\\ ' $file | grep 'typo korektury zadání OK'		| sed 's/.*--\s*\([^?#]*\)[#?]*.*/\1/' | tr -d '[:blank:]' | tr -d '\r' | tr -d '\n'`
     prob_typoR=`  grep '%\\ ' $file | grep 'typo korektury řešení OK'		| sed 's/.*--\s*\([^?#]*\)[#?]*.*/\1/' | tr -d '[:blank:]' | tr -d '\r' | tr -d '\n'`
 # flags serial
-    ser_text=`    grep '%\\ ' $file | grep 'text Výfučtení OK'			| sed 's/.*--\s*\([^?#]*\)[#?]*.*/\1/' | tr -d '[:blank:]' | tr -d '\r' | tr -d '\n'`
+    ser_text=`    grep '%\\ ' $file | grep 'text Výfučtení OK'				| sed 's/.*--\s*\([^?#]*\)[#?]*.*/\1/' | tr -d '[:blank:]' | tr -d '\r' | tr -d '\n'`
     ser_odbkor=`  grep '%\\ ' $file | grep 'odborné korektury Výfučtení OK'	| sed 's/.*--\s*\([^?#]*\)[#?]*.*/\1/' | tr -d '[:blank:]' | tr -d '\r' | tr -d '\n'`
-    ser_jaz=`     grep '%\\ ' $file | grep 'jazykové korektury Výfučtení OK'	| sed 's/.*--\s*\([^?#]*\)[#?]*.*/\1/' | tr -d '[:blank:]' | tr -d '\r' | tr -d '\n'`
+    ser_jaz=`     grep '%\\ ' $file | grep 'jazykové korektury Výfučtení OK'| sed 's/.*--\s*\([^?#]*\)[#?]*.*/\1/' | tr -d '[:blank:]' | tr -d '\r' | tr -d '\n'`
     ser_typo=`    grep '%\\ ' $file | grep 'typo korektury Výfučtení OK'	| sed 's/.*--\s*\([^?#]*\)[#?]*.*/\1/' | tr -d '[:blank:]' | tr -d '\r' | tr -d '\n'`
 # flags uvod
-    uvod_text=`   grep '%\\ ' $file | grep 'text úvodníku OK'			| sed 's/.*--\s*\([^?#]*\)[#?]*.*/\1/' | tr -d '[:blank:]' | tr -d '\r' | tr -d '\n'`
+    uvod_text=`   grep '%\\ ' $file | grep 'text úvodníku OK'				| sed 's/.*--\s*\([^?#]*\)[#?]*.*/\1/' | tr -d '[:blank:]' | tr -d '\r' | tr -d '\n'`
     uvod_jaz=`    grep '%\\ ' $file | grep 'jazykové korektury úvodníku OK'	| sed 's/.*--\s*\([^?#]*\)[#?]*.*/\1/' | tr -d '[:blank:]' | tr -d '\r' | tr -d '\n'`
     uvod_typo=`   grep '%\\ ' $file | grep 'typo korektury úvodníku OK'		| sed 's/.*--\s*\([^?#]*\)[#?]*.*/\1/' | tr -d '[:blank:]' | tr -d '\r' | tr -d '\n'`
    
+
+	if [[ $(head -n -15 $file | grep '%TODO\|% TODO' | head -c1 | wc -c) -ne 0 ]]; then
+		todo_other=$todo_other";"$(basename $file)
+	fi
+
 # check web publishing
     web=""
     webtask=""
     webtasken=""
 	if [[ "$checkupload" = true ]]; then
 	    if [[ $file =~ problem.* ]]; then
-		prob_name_cs=("" 1 2 3 4 5 E C)
+		prob_name_cs=("" 1 2 3 4 5 E V)
 		prob_swap=(0 1 2 3 4 5 6 7)
 
 		fbatch=`sed "s/.*\\([0-9]\\)-\\([0-9]\\).*/\\1/g" <<< \`basename $file\``
@@ -176,6 +184,7 @@ for file in $files; do \
         echo -ne '\t'
     fi
 
+
 # wcheck
 # @1 jaka uloha
 # @2 co
@@ -195,27 +204,31 @@ for file in $files; do \
         file=`sed -e 's/problem//;s/\.tex//' <<< $file`' -- '$namefull
         # bash escape
         file=`sed -e 's/(/\\\\(/g;s/)/\\\\)/g;s/ /\\\\ /g' <<< $file`
-        wcheck "$file" chybi_batch   "sourceE" 		"$batch"
-        wcheck "$file" chybi_no      "sourceE" 		"$no"
-        wcheck "$file" chybi_source  ""       		"$sourceE"
-        wcheck "$file" chybi_pauthor "sourceE"		"$pauthor"
+        wcheck "$file" chybi_batch   "sourceE" 			"$batch"
+        wcheck "$file" chybi_no      "sourceE" 			"$no"
+        wcheck "$file" chybi_source  ""       			"$sourceE"
+        wcheck "$file" chybi_pauthor "sourceE"			"$pauthor"
         wcheck "$file" chybi_sauthor "sourceE pauthor"  "$sauthor"
         wcheck "$file" chybi_body    "sourceE pauthor"  "$points"
         wcheck "$file" chybi_topics  "sourceE pauthor"  "$topics"
         wcheck "$file" chybi_stat    "web pauthor"      "$statavg"
         wcheck "$file" chybi_stat    "web pauthor"      "$statnum"
         wcheck "$file" chybi_pname   "sourceE pauthor"  "$pnamecs"
-        wcheck "$sauthor:\ $file" chybi_reseni  	"sourceE pauthor"  "$resenics"
-        wcheck "$file" 		  chybi_zadani  	"sourceE pauthor"  "$zadanics"
+
+		if [[ $no = "1" ]]; then wcheck "$file" chybi_studyyears "sourceE no" "$studyyears"; fi
+		if [[ $no = "5" ]]; then wcheck "$file" chybi_tags 		 "sourceE no" "$tags"; fi
+
+        wcheck "$sauthor:\ $file" chybi_reseni  		"sourceE pauthor"  "$resenics"
+        wcheck "$file" 			  chybi_zadani  		"sourceE pauthor"  "$zadanics"
         wcheck "$sauthor:\ $file" chybi_reseniInProg	"sourceE resenics" "$prob_textR" #InProg = In Progress
-        wcheck "$file" 		  chybi_zadaniInProg  	"sourceE zadanics" "$prob_textZ" #InProg = In Progress
+        wcheck "$file"			  chybi_zadaniInProg  	"sourceE zadanics" "$prob_textZ" #InProg = In Progress
 # warning problems
 # workflow problems
 #        file="$file\ --\ Sautor:\ $sauthor"
         wcheck "$file" ceka_okZ     "zadanics prob_textZ"	"$prob_odbkorZ"
         wcheck "$file" ceka_okR     "resenics prob_textR"	"$prob_odbkorR"
         wcheck "$file" ceka_jZ      "prob_odbkorZ zadanics"	"$prob_jazZ"
-        wcheck "$file" ceka_jR      "prob_odbkorR"		"$prob_jazR"
+        wcheck "$file" ceka_jR      "prob_odbkorR"			"$prob_jazR"
         wcheck "$file" ceka_tZ      "prob_jazZ zadanics"	"$prob_typoZ"
         wcheck "$file" ceka_tR      "prob_typoZ prob_jazR"	"$prob_typoR"
         wcheck "$file" ceka_zZ      "batch no sourceE pnamecs topics points pauthor         zadanics prob_odbkorZ prob_jazZ prob_typoZ" "$webtask"    publwwarnings "zadání\\ cs"
@@ -297,19 +310,21 @@ EOF
 
 pprint $texfile "Chybí text:"				chybi_text
 pprint $texfile "Chybí zadání:"				chybi_zadani
-pprint $texfile "Chybí dodělat zadání:"			chybi_zadaniInProg
-pprint $texfile "Chybí autor řešení:"			chybi_sauthor
+pprint $texfile "Chybí dodělat zadání:"		chybi_zadaniInProg
+pprint $texfile "Chybí autor řešení:"		chybi_sauthor
 pprint $texfile "Chybí řešení:"				chybi_reseni
-pprint $texfile "Chybí dodělat řešení:"			chybi_reseniInProg
-pprint $texfile "Chybí název úlohy:"			chybi_pname
+pprint $texfile "Chybí dodělat řešení:"		chybi_reseniInProg
+pprint $texfile "Chybí název úlohy:"		chybi_pname
 pprint $texfile "Chybí body:"				chybi_body
-pprint $texfile "Chybí autor zadání:"			chybi_pauthor
+pprint $texfile "Chybí autor zadání:"		chybi_pauthor
 pprint $texfile "Chybí topics:"				chybi_topics
+pprint $texfile "Chybí studyyears:"			chybi_studyyears
+pprint $texfile "Chybí tags (hard u 5):"	chybi_tags
 pprint $texfile "Chybí statistiky:"			chybi_stat
 pprint $texfile "Chybí batch:"				chybi_batch
 pprint $texfile "Chybí číslo:"				chybi_no
-pprint $texfile "Chybí zdroj (import):"			chybi_source
-pprint $texfile "Nedefinované závislosti:"		unknown_depend
+pprint $texfile "Chybí zdroj (import):"		chybi_source
+pprint $texfile "Nedefinované závislosti:"	unknown_depend
 
 cat << EOF >> $texfile
 \\subsection*{Workflow:}
@@ -317,18 +332,18 @@ EOF
 
 pprint $texfile "Čeká na odbornou korekturu zadání:"	ceka_okZ
 pprint $texfile "Čeká na odbornou korekturu řešení:"	ceka_okR
-pprint $texfile "Čeká na odbornou korekturu:"		ceka_o
+pprint $texfile "Čeká na odbornou korekturu:"			ceka_o
 pprint $texfile "Čeká na jazykovou korekturu zadání:"	ceka_jZ
 pprint $texfile "Čeká na jazykovou korekturu řešení:"	ceka_jR
-pprint $texfile "Čeká na jazykovou korekturu:"		ceka_j
-pprint $texfile "Čeká na typo korekturu zadání:"	ceka_tZ
-pprint $texfile "Čeká na typo korekturu řešení:"	ceka_tR
-pprint $texfile "Čeká na typo korekturu:"		ceka_t
+pprint $texfile "Čeká na jazykovou korekturu:"			ceka_j
+pprint $texfile "Čeká na typo korekturu zadání:"		ceka_tZ
+pprint $texfile "Čeká na typo korekturu řešení:"		ceka_tR
+pprint $texfile "Čeká na typo korekturu:"				ceka_t
 if [[ "$checkupload" = true ]]; then
 pprint $texfile "Čeká na zveřejnění zadání:"            ceka_zZ
-pprint $texfile "Čeká na zveřejnění řešení:"		ceka_zR
-pprint $texfile "Čeká na zveřejnění:"			ceka_z
-pprint $texfile "Zveřejněno s problémy:" 		publwwarnings
+pprint $texfile "Čeká na zveřejnění řešení:"			ceka_zR
+pprint $texfile "Čeká na zveřejnění:"					ceka_z
+pprint $texfile "Zveřejněno s problémy:" 				publwwarnings
 
 
 cat << EOF >> $texfile
@@ -337,9 +352,11 @@ EOF
 
 #pprint $texfile "V nejhorším lze zveřejnit cs zadání:"	ceka_zZ_m
 #pprint $texfile "V nejhorším lze zveřejnit en zadání:" ceka_zZ_en_m
-pprint $texfile "Nelze zveřejnit zadání:"		publerrors_cs
-pprint $texfile "Checklist pro ročenku:"		notcompleted
+pprint $texfile "Nelze zveřejnit zadání:"	publerrors_cs
+pprint $texfile "Checklist pro ročenku:"	notcompleted
 fi
+
+pprint $texfile "Další potřebné TODO:"		todo_other
 
 cat << EOF >> $texfile
 \\end{multicols}
@@ -367,11 +384,11 @@ body {
 <h2>Věci, co už měly být:</h2>
 EOF
 
-pprint-html $htmlfile "Chybí text:"				chybi_text
-pprint-html $htmlfile "Chybí zadání:"				chybi_zadani
-pprint-html $htmlfile "Chybí autor řešení:"			chybi_sauthor
-pprint-html $htmlfile "Chybí řešení:"				chybi_reseni
-pprint-html $htmlfile "Chybí název úlohy:"			chybi_pname
+pprint-html $htmlfile "Chybí text:"			chybi_text
+pprint-html $htmlfile "Chybí zadání:"		chybi_zadani
+pprint-html $htmlfile "Chybí autor řešení:"	chybi_sauthor
+pprint-html $htmlfile "Chybí řešení:"		chybi_reseni
+pprint-html $htmlfile "Chybí název úlohy:"	chybi_pname
 
 cat << EOF >> $htmlfile
 <h2>Workflow:</h2>
@@ -379,18 +396,18 @@ EOF
 
 pprint-html $htmlfile "Čeká na odbornou korekturu zadání:"	ceka_okZ
 pprint-html $htmlfile "Čeká na odbornou korekturu řešení:"	ceka_okR
-pprint-html $htmlfile "Čeká na odbornou korekturu:"		ceka_o
+pprint-html $htmlfile "Čeká na odbornou korekturu:"			ceka_o
 pprint-html $htmlfile "Čeká na jazykovou korekturu zadání:"	ceka_jZ
 pprint-html $htmlfile "Čeká na jazykovou korekturu řešení:"	ceka_jR
 pprint-html $htmlfile "Čeká na jazykovou korekturu:"		ceka_j
 pprint-html $htmlfile "Čeká na typo korekturu zadání:"		ceka_tZ
 pprint-html $htmlfile "Čeká na typo korekturu řešení:"		ceka_tR
-pprint-html $htmlfile "Čeká na typo korekturu:"			ceka_t
+pprint-html $htmlfile "Čeká na typo korekturu:"				ceka_t
 if [[ "$checkupload" = true ]]; then
-pprint-html $htmlfile "Čeká na zveřejnění zadání:"           	ceka_zZ
-pprint-html $htmlfile "Čeká na zveřejnění řešení:"		ceka_zR
-pprint-html $htmlfile "Čeká na zveřejnění:"			ceka_z
-pprint-html $htmlfile "Zveřejněno s problémy:"			publwwarnings
+pprint-html $htmlfile "Čeká na zveřejnění zadání:"         	ceka_zZ
+pprint-html $htmlfile "Čeká na zveřejnění řešení:"			ceka_zR
+pprint-html $htmlfile "Čeká na zveřejnění:"					ceka_z
+pprint-html $htmlfile "Zveřejněno s problémy:"				publwwarnings
 
 cat << EOF >> $htmlfile
 <h2>Fallback:</h2>
@@ -398,29 +415,30 @@ EOF
 
 #pprint-html $htmlfile "V nejhorším lze zveřejnit cs zadání:"	ceka_zZ_m
 #pprint-html $htmlfile "V nejhorším lze zveřejnit en zadání:"	ceka_zZ_en_m
-pprint-html $htmlfile "Nelze zveřejnit cs zadání:"		publerrors_cs
-pprint-html $htmlfile "Checklist pro ročenku:"			notcompleted
+pprint-html $htmlfile "Nelze zveřejnit cs zadání:"	publerrors_cs
+pprint-html $htmlfile "Checklist pro ročenku:"		notcompleted
 fi
 
 cat << EOF >> $htmlfile
 <h2>Obecné chyby:</h2>
 EOF
 
-pprint-html $htmlfile "Chybí body:"                 chybi_body
-pprint-html $htmlfile "Chybí autor zadání:"         chybi_pauthor
-pprint-html $htmlfile "Chybí topics:"               chybi_topics
-pprint-html $htmlfile "Chybí statistiky:"           chybi_stat
-pprint-html $htmlfile "Chybí batch:"                chybi_batch
-pprint-html $htmlfile "Chybí číslo:"                chybi_no
-pprint-html $htmlfile "Chybí zdroj (import):"       chybi_source
-pprint-html $htmlfile "Nedefinované závislosti:"    unknown_depend
+pprint-html $htmlfile "Chybí body:"              chybi_body
+pprint-html $htmlfile "Chybí autor zadání:"      chybi_pauthor
+pprint-html $htmlfile "Chybí topics:"            chybi_topics
+pprint-html $htmlfile "Chybí studyyears:" 		 chybi_studyyears
+pprint-html $htmlfile "Chybí tags (hard u 5):"	 chybi_tags
+pprint-html $htmlfile "Chybí statistiky:"        chybi_stat
+pprint-html $htmlfile "Chybí batch:"             chybi_batch
+pprint-html $htmlfile "Chybí číslo:"             chybi_no
+pprint-html $htmlfile "Chybí zdroj (import):"    chybi_source
+pprint-html $htmlfile "Nedefinované závislosti:" unknown_depend
+
+pprint-html $htmlfile "Další potřebné TODO:"	 todo_other
 
 cat << EOF >> $htmlfile
 </body>
 </html>
 EOF
-
-
-
 
 
