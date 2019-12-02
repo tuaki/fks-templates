@@ -9,12 +9,11 @@
 % odhady,matematika,geometrie,programovani,logika,experimenty
 % ... multiple choice oddelene carkami bez mezer
 \probtopics{}
-\probtags{}
+%\probtags{}
 \probpoints{0}
 \probauthors{}
 \probsolauthors{}
 %\probstudyyears{6,7}
-%\probtags{}
 %\probsolvers{}
 %\probavg{}
 %\probfig[cs]{}
