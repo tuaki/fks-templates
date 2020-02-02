@@ -470,7 +470,7 @@ $(RESULTS)/%.tex: $(RESULTS)/%.csv
     
 
 # == Author solutions ==
-XELATEX_P=xelatex -output-directory $(@D) -jobname '$(basename $(@F))' '\documentclass[SEM]{fkssolution}\setcounter{year}{Y}\input{$<}\begin{document}\problemsolutionsingle\makefooter\end{document}'
+XELATEX_P=xelatex -output-directory $(@D) -jobname '$(basename $(@F))' '\documentclass[SEM]{fkssolution}\setcounter{year}{YEAR}\input{$<}\begin{document}\problemsolutionsingle\makefooter\end{document}'
 
 # Ugly but working
 $(OUT)/reseni$(BATCHNO)-1.pdf: $(addprefix $(PROBLEMS)/, $(problem$(BATCHNO)_1)) $(SIGNATURES)
