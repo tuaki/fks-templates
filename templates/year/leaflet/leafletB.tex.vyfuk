@@ -5,36 +5,42 @@
 
 \setcounter{year}{Y}
 \setcounter{batch}{B}
+\deadline{\mdeadline}
+\deadlineS{\mdeadlineS}
 
 \newfontfamily\cyrillicfont[Script=Cyrillic]{Liberation Serif}
 
 \begin{document}
 \maketitle
 
+\vspace{-1cm}
 \input{uvod.tex}
 
 \input{proc_resit.tex}
-\newpage
-\vspace{-2cm}
-\input{navratka.tex}
 
 \problemsheading
-\centerline{\Large\slshape\sffamily Termín uploadu: 20.~1.~2015~20.00}
-\centerline{\Large\slshape\sffamily Termín odeslání: 19.~1.~2015}
 \vspace{1.5ex}\setcounter{problem}{0}
 
-\problemtask
-\problemtask
-\problemtask
-\problemtask
-\problemtask
-\problemtask
-\problemtask
-\problemtask
-{\it Poznámka}\qquad Text Výfučtení naleznete na nešem webu
-v~sekci Úlohy/Zadání.
+{\it U~každé úlohy je číselně označeno, kterým ročníkům je bodována,
+a počet získatelných bodů.}
 
+\problemtask
+\problemtask
+\problemtask
+\problemtask
+\problemtask
+\problemtask
+\problemtask
+\problemtask
+{\small {\it Doprovodný text k~úloze naleznete na našem webu
+v~sekci Pro~řešitele/Výfučtení.}}
+\pagebreak
+
+\input{return.tex}
+
+\vspace*{\fill}
 \makefooter
+\vspace*{\fill}
 
 \end{document}
 
