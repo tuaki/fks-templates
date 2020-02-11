@@ -4,12 +4,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\rocnikslovy{třicátým}
-
-\def\datumfyziklani{17.~2.~2017}
-%\def\datumfyziklani{obvykle v~únoru}
-\def\datumfol{30.~11.~2016}
-%\def\datumfol{obvykle v~prosinci}
+%\def\rocnikslovy{třicátým} % Zakomentování je schválně, aby se sem každý musel podívat a napsat správný ročník
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -62,7 +57,7 @@ plus1fil}S}
 \otazka{Chcete se fyzikou zabývat i~mimo školní lavice?}
 
 \vskip5mm
-\includegraphics[width=0.75\textwidth]{logo2.eps}
+\includegraphics[width=0.75\textwidth]{logo3.eps}
 
 \otazka{Zajímá vás, co se odehrává v laboratořích?}
 \otazka{Už jste někdy nemohli usnout, dokud jste nevypočítali
